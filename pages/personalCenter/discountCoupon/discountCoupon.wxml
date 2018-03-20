@@ -1,0 +1,4 @@
+<import src='./discountCouponTemplate/discountCouponTemplate.wxml'/>
+<view class='discountCoupon'>
+  <template is='discountCouponList'></template>
+</view>

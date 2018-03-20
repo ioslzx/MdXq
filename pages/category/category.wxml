@@ -1,0 +1,39 @@
+<import src='./categoryTemplate/categoryTemplate.wxml'/>
+<view class='category'>
+  <view class='sideBarBox'>
+    <view class='sideBarList {{categoryindex==index?"activeSideBar":""}}'wx:for='{{sideBarInfo}}' wx:for-index='index' wx:for-key='index' wx:key='index' bindtap='selectCategory' data-categoryIndex='{{index}}'>
+    {{item.sideBarName}}
+    </view>
+  </view>
+  <view class='categoryRightBox'>
+    <view class='searchBox'>
+       <image src='../images/search.png'></image> 
+      <input placeholder='搜索商品名称'></input>
+        <text>搜索</text>  
+    </view>
+    <view class='categorySecondLevel1'>
+      <view class='categorySecondLevelTop'>美甲工具</view>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+    </view>
+    <view class='categorySecondLevel1'>
+      <view class='categorySecondLevelTop'>美甲产品</view>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+    </view>
+    <view class='categorySecondLevel1'>
+      <view class='categorySecondLevelTop'>易耗品</view>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+    </view>
+    <view class='categorySecondLevel1'>
+      <view class='categorySecondLevelTop'>美甲工具</view>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+      <template is='categoryTemplate'></template>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<!--pages/productDetails/productDetails.wxml-->
+
+<import src='../homepage/recommendTemplate/recommendTemplate.wxml'/>
+
+<view class='productDetailsPage'>
+  <view class='productImagesBox'>
+    <swiper indicator-dots="{{swiperParam.indicatorDots}}" indicator-color="{{swiperParam.indicatorColor}}" autoplay='swiperParam.autoplay' interval='{{swiperParam.interval}}' circular='{{swiperParam.circular}}'>
+    <block wx:for="{{imgUrls}}" wx:for-index='index' wx:for-item='item' wx:key="index">
+      <swiper-item>
+        <image src='{{item}}'></image>
+      </swiper-item>
+    </block>
+    </swiper>
+    <view class='handBag'>
+      <image src='../images/beautyCare.png'></image>
+    </view>
+    <view class='productShoppingCart'>
+      <image src='../images/beautyCare.png'></image>
+    </view>
+  </view>
+  <view class='productInfo'>
+    <view style='overflow:hidden'>
+      <view class='productName'>
+        <text>菱形状美甲海绵抛 紫 10条装/条</text>
+      </view>
+      <view class='share'>
+         <image src='../images/beautyCare.png'></image> 
+         <view>分享有奖</view>
+      </view>
+    </view>
+    
+    <view class='price'>
+      <text>会员价:</text>
+      <text>¥15/条</text>
+      <text>20/条</text>
+    </view>
+    <view style='overflow:hidden'>
+      <view class='vipPrice'>
+        <text>股东价</text>
+        <text>¥13</text>
+      </view>
+      <view class='beVIP'>开通会员即可享受</view>
+    </view>
+    <view class='salesAmountAndAddress'>
+      <text>快递:货到付款</text>
+      <text>月销:30000</text>
+      <text>北京</text>
+    </view>
+  </view>
+  <!-- <view class='coupon'>
+    <text>领取优惠券</text>
+    <image src='../images/beautyCare.png'></image>
+    <image src='../images/rightArrow.jpg'></image>
+  </view> -->
+  <view class='sendAndEnsure' style='overflow:hidden'>
+    <view class='send'>
+      <image src='../images/beautyCare.png'></image>
+      <text>极速发货</text>
+    </view>
+    <view class='ensure'>
+      <image src='../images/beautyCare.png'></image>
+      <text>正品保证</text>
+    </view>
+  </view>
+  <view class='amount'>
+    <text>规格数量选择</text>
+    <image src='../images/rightArrow.jpg'></image>
+  </view>
+  <view class='productDetailImg'>
+    <text>商品详情</text>
+    <image src='../images/meinv.jpg'></image>
+  </view>
+   <view class='bottomShoppingCart'>
+    <view class='collection'>
+      <image src='../images/beautyCare.png'></image>
+      <view>收藏</view>
+    </view>
+    <view class='inShopppingCart'>加入购物车</view>
+    <view class='buyNow'>立即购买</view>
+  </view> 
+  <view class='productDetailRecommand'>
+      <image src='../images/beautyCare.png'></image>
+  </view>
+  <view class='productDetailRecommendGoods'>
+      <template is = 'recommendTemplate'/>
+      <!-- <view class='line'></view> -->
+      <template is = 'recommendTemplate'/> 
+      <template is = 'recommendTemplate'/>
+      <template is = 'recommendTemplate'/>  
+  </view>
+</view>

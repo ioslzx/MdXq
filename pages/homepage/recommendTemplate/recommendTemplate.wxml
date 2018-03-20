@@ -1,0 +1,16 @@
+<template name='recommendTemplate'>
+<view class='recommendProductTemplateBox' bindtap='recommendGoProductDetail'>
+    <image class='recommendProductImage' src='../images/beautyCare.png'></image> 
+    <view class='recommendProductName'>哈哈哈哈哈哈</view>
+    <view class='recommendDiscountPrice'>
+      <span>¥10000</span>
+      <span>¥15000</span>
+      <view class='shoppingCart'> 
+      <image src='../images/girl.jpeg'></image>
+      </view> 
+    </view>
+     
+  </view>
+
+
+</template>

@@ -1,0 +1,44 @@
+<!--pages/submitOrder/submitOrder.wxml-->
+<!-- <text>pages/submitOrder/submitOrder.wxml</text> -->
+<import src='./orderInfoTemplate/orderInfoTemplate.wxml'/>
+
+<view class='submitOrderHomePage'>
+  <view class='order'>订单</view>
+  <view class='orderInfoBox'>
+    <template is = 'orderInfoTemplate'/>
+    <template is = 'orderInfoTemplate'/>
+  </view>
+  <view class='deliverMode'>
+    <view>发货方式</view>
+    <view>快递(到付):10元</view>
+  </view>
+  <view class='totalPrice'>
+    <view>订单总计</view>
+    <view>¥60</view>
+  </view>
+  <view class='discount'>优惠减免</view>
+  <view class='couponBox'>
+    <view>优惠券</view>
+    <view>暂无可用优惠券</view>
+    <image src='../images/rightArrow.jpg'></image>   
+  </view>
+  <view class='beansBox'>
+    <view>爱心蜜豆币抵现</view>
+    <view>暂无可用爱心蜜豆币</view>
+    <switch name='switch'></switch>
+  </view>
+  <view class='payType'>选择支付方式</view>
+  <view class='wxPay'>
+    <text>微信支付</text>
+    <radio></radio>
+  </view>
+  <view class='beansPay'>
+    <text>蜜豆币支付</text>
+    <radio></radio>
+  </view>
+  <view class='payBox'>
+    <view class='choosePayType'>微信支付</view>
+    <view class='payTotalPrice'>总计：¥0.00</view>
+    <view class='pay'>付款</view>
+  </view>
+</view>

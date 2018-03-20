@@ -1,0 +1,60 @@
+<view class='captain'>
+    <view class='captainNull' wx:if='{{!isCaptain}}' bindtap='becomeCaptain'>成为堡主</view> 
+    <view class='captainContentBox' wx:else>
+      <view class='captainContentTop'>
+        <view class='topLeft'>
+          <image src='../images/demo1.png'></image>
+        </view>
+        <view class='topCenter'>
+          <view class='lineBox lineBox1'>
+            <text>昵称：</text>
+            <text>我的钱钱</text>
+          </view>
+          <view class='lineBox lineBox2'>
+            <text>ID：</text>
+            <text>123456</text>
+          </view>
+          <view class='lineBox lineBox3'>我的钱钱成为初级堡主</view>
+        </view>
+        <view class='topRight'>
+          <image src='../images/demo1.png'></image>
+        </view>
+      </view>
+      <view class='dividendBox'>
+        <view class='dividendBoxName'>工厂分红收益（元）</view>
+        <view class='dividendAmount'>43</view>
+        <view class='dividendProject'>
+          <view class='dividendProjectNum'>
+            <view>3</view>
+            <view>签到蜜豆币</view>
+          </view>
+        <view class='dividendProjectNum'>
+            <view>3</view>
+            <view>购物分红</view>
+          </view>
+          <view class='dividendProjectNum'>
+            <view>3</view>
+            <view>爱心蜜豆币</view>
+          </view>
+        </view>
+      </view>
+      <view class='captainBottom'>
+        <view class='captainBottomRow' bindtap='myGiftBag'>
+          <image src='../images/demo1.png'></image>
+          <view>我的礼包</view>
+        </view>
+        <view class='captainBottomRow' bindtap='goTopPage'>
+          <image src='../images/demo1.png'></image>
+          <view>排行榜</view>
+        </view>
+        <view class='captainBottomRow'>
+          <image src='../images/demo1.png'></image>
+          <view>客户管理</view>
+        </view>
+        <view class='captainBottomRow'>
+          <image src='../images/demo1.png'></image>
+          <view>提现</view>
+        </view>
+      </view>
+   </view>
+</view>

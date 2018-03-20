@@ -1,0 +1,72 @@
+page{
+  background-color: #F8F8F8;
+}
+.editShippingAddress{
+  border-top: 1rpx solid #DBDBDB;
+}
+.editInfoBox{
+  margin-top: 10rpx;
+  background-color: white;
+}
+.editInfoBoxLine{
+  width: 100%;
+  border-bottom: 1rpx solid #EEEEEE;
+  overflow: hidden;
+  padding: 30rpx 20rpx 30rpx 40rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+.editInfoBoxLine>text:nth-child(2){
+  margin-left: 40rpx;
+}
+.editInfoBoxLine>image{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+.radioBox{
+  display: inline-block;
+  float: right;
+  margin-right: 20rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked {
+background-color:#7F0373!important;
+border-color:#7F0373!important;
+}
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
+}
+.saveBtn{
+  width: 90%;
+  background-color: white;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  text-align: center;
+  margin-left: 5%;
+  margin-top: 55rpx;
+  color: #7F0373;
+}
+.deleteBtn{
+  width: 90%;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  text-align: center;
+  margin-left: 5%;
+  margin-top: 35rpx;
+  border: 1rpx solid #D2D2D2;
+  color: #696969;
+}
+/* 新增地址按钮 */
+.addShippingAddress{
+  width: 100%;
+  padding: 25rpx 0;
+  font-size: 32rpx;
+  text-align: center;
+  color: white;
+  background-color: #FE6C5F;
+  font-weight: 700;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

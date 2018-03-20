@@ -1,0 +1,55 @@
+<!--pages/homepage/homepage.wxml-->
+<import src='./productTemplate/productTemplate.wxml'/>
+<import src='./recommendTemplate/recommendTemplate.wxml'/>
+
+<view class='homepage'>
+  <!--头部banner  -->
+  <view class='bannerBox'>
+    <swiper indicator-dots="{{swiperParam.indicatorDots}}"  indicator-color="{{swiperParam.indicatorColor}}" indicator-active-color="{{swiperParam.indicatorActiveColor}}" autoplay="{{swiperParam.autoplay}}" interval="{{swiperParam.interval}}" circular="{{swiperParam.circular}}">
+    <swiper-item bindtap='goNewGoods'>
+      <image src='../images/girl.jpeg'></image>
+    </swiper-item>
+     <swiper-item>
+      <image src='../images/meinv.jpg'></image>
+    </swiper-item>
+     <swiper-item>
+      <image src='../images/girl.jpeg'></image>
+    </swiper-item>  
+  </swiper>
+  </view>
+  <!--优惠活动  -->
+  <view class='specialOffers'>
+    <image src='../images/beautyCare.png'></image>
+    <text class='discountText'>分享首单商品即可享受85折优惠！</text>
+  </view>
+  <!--活动图  -->
+  <!-- <view class='activity ' >
+    <view class='imgBox {{touchMovingLeft?"redPacketBottomLeft":"redPacketBottomRight"}}' bind:touchstart='touchstart' bind='click' bind:touchmove='touchmove' bind:touchend='touchend'  style='width:150%'>
+      <image src='../images/redpack1.jpg' bindtap='goNewGoods'></image>
+      <image src='../images/redpack2.jpg' bindtap='goSales'></image>
+    </view>
+    
+  </view> -->
+  <!--今日爆品  -->
+  <view class='hotSale'>
+      <text>今日爆品</text>
+  </view>
+  <view class='hotSaleGoods'>
+      <template is = 'productTemplate'/>
+      <template is = 'productTemplate'/>
+      <template is = 'productTemplate'/>
+  </view>
+  <!--为你推荐  -->
+  <view class='recommand'>
+      <text>为你推荐</text>
+  </view>
+  <view class='recommendGoods'>
+      <template is = 'recommendTemplate'/>
+      <!-- <view class='line'></view> -->
+      <template is = 'recommendTemplate'/> 
+      <template is = 'recommendTemplate'/>
+      <template is = 'recommendTemplate'/>  
+  </view>
+</view>
+
+

@@ -1,0 +1,80 @@
+<import src='./orderTemplate/orderTemplate.wxml'/>
+<view class='totalOrder'>
+  <view class='topNavBox'>
+    <view wx:for='{{topNavInfoArr}}' wx:for-index='index' wx:for-item='item' wx:key='index' class='navigation {{index==currentID?"navigationActive":""}}' data-currentID='{{index}}' bindtap='goSelectNav'>{{item.topNavInfoName}}</view>
+  </view>
+  <view class='obligationBox' wx:if='{{currentID==0}}'>
+    <view class='obligationTop'>
+      <text class='obligationTopLeft'>待付款</text>
+      <text class='obligationTopRight'>
+        <text>2018/02/04</text>
+        <text>12:00</text>
+      </text>
+    </view>
+    <template is='obligationCenter'></template>
+    <view class='obligationCenterBottom'>
+      <view class='obligationCenterBottomLine'>
+        <text>总计</text>
+        <text>￥15</text>
+      </view>
+      <view class='obligationCenterBottomLine2'>
+        <text>取消订单</text>
+        <text>付款</text>
+      </view>
+    </view>
+  </view>
+  <view class='waitSendOutBox' wx:if='{{currentID==1}}'>
+    <view class='obligationTop'>
+      <text class='obligationTopLeft'>待发货</text>
+      <text class='obligationTopRight'>
+        <text>2018/02/04</text>
+        <text>12:00</text>
+      </text>
+    </view>
+    <template is='obligationCenter'></template>
+    <view class='obligationCenterBottom'>
+      <view class='obligationCenterBottomLine'>
+        <text>总计</text>
+        <text>￥15</text>
+      </view>
+      <view class='obligationCenterBottomLine2'>
+        <text style='border: 1rpx solid #BEBEBE;color:black '>提醒发货</text>
+      </view>
+    </view>
+  </view>
+  <view class='waitReceivingBox' wx:if='{{currentID==2}}'>
+    <view class='obligationTop'>
+      <text class='obligationTopLeft'>待收货</text>
+      <text class='obligationTopRight'>
+        <text>2018/02/04</text>
+        <text>12:00</text>
+      </text>
+    </view>
+    <template is='obligationCenter'></template>
+    <view class='obligationCenterBottom'>
+      <view class='obligationCenterBottomLine'>
+        <text>总计</text>
+        <text>￥15</text>
+      </view>
+      <view class='obligationCenterBottomLine2'>
+        <text style='border: 1rpx solid #BEBEBE;color:black '>确认收货</text>
+      </view>
+    </view>
+  </view>
+  <view class='allOrdersBox' wx:if='{{currentID==3}}'>
+    <view class='obligationTop'>
+      <text class='obligationTopLeft'>交易完成</text>
+      <text class='obligationTopRight'>
+        <text>2018/02/04</text>
+        <text>12:00</text>
+      </text>
+    </view>
+    <template is='obligationCenter'></template>
+    <view class='obligationCenterBottom'>
+      <view class='obligationCenterBottomLine'>
+        <text>总计</text>
+        <text>￥15</text>
+      </view>
+    </view>
+  </view>
+</view>

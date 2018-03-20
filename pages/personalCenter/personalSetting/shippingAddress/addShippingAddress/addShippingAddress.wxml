@@ -1,0 +1,25 @@
+<view class='addShippingAddress'>
+  <view class='addShoppingInputBox'>
+    <view class='addShoppingInputLine'>
+      <text>收货人：</text>
+      <input></input>
+    </view>
+    <view class='addShoppingInputLine'>
+      <text>手机号码：</text>
+      <input></input>
+    </view>
+    <view class='addShoppingInputLine'>
+      <text>所在地区：</text>
+      <input></input>
+    </view>
+    <view class='addShoppingInputLine'>
+      <text>详细地址：</text>
+      <input></input>
+    </view>
+  </view>
+</view>
+<view class='setDefaultAddress'>
+    <text>设置为默认地址</text>
+    <image src='../../../../images/demo1.png'></image>
+</view>
+<view class='saveAddressBtn'>保存</view>

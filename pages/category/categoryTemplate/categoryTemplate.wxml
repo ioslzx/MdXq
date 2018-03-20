@@ -1,0 +1,6 @@
+<template name='categoryTemplate'>
+  <view class='categoryTemplate'>
+    <image src='../images/demo1.png'></image>
+    <view>光疗灯</view>
+  </view>
+</template>

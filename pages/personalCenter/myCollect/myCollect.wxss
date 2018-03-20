@@ -1,0 +1,19 @@
+page{
+  background-color: #F8F8F8;
+}
+.myCollect{
+  border-top: 1rpx solid #DBDBDB;
+  width: 100%;
+}
+.myCollectTop{
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 30rpx;
+  color: #870481;
+  overflow: hidden;
+}
+.myCollectTop text:last-child{
+  float: right;
+}

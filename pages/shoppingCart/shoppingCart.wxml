@@ -1,0 +1,46 @@
+<!--pages/shoppingCart/shoppingCart.wxml-->
+<!-- <text>pages/shoppingCart/shoppingCart.wxml</text> -->
+
+<import src='./shoppingCartGoodsTemplate/shoppingCartGoodsTemplate.wxml'/>
+<import src='../homepage/recommendTemplate/recommendTemplate.wxml'/>
+
+<view class='shopppingCartPage'>
+  <!--购物车为空时的页面  -->
+  <!-- <view class='emptyShoppingCart'>
+    <view class='shoppingCartimg'>
+      <image src='../images/girl.jpeg'></image>
+    </view>
+    <view>购物车空空的快去逛逛吧~</view>
+    <view class='goShopping' bindtap='goHomepage'>去购物</view>
+  </view>  -->
+  <!--购物车有商品  -->
+  <view class='openVIPBox'>
+    <view class='ringImg'>
+      <image src='../images/beautyCare.png'></image>
+    </view>
+    <view class='textBox'>开通会员本单可节省10元哦~</view>
+    <view class='openVIPBtn'>开通</view>
+  </view>
+  <view class='goodsListBox'>
+    <template is = 'shoppingCartGoodsTemplate' data="{{buyNum}}"/>
+    <template is = 'shoppingCartGoodsTemplate' data="{{buyNum}}"/>
+  </view>
+  <view class='shoppingCartRecommand'>
+      <image src='../images/beautyCare.png'></image>
+  </view>
+  <view class='shoppingCartRecommandGoods'>
+      <template is = 'recommendTemplate'/>
+      <!-- <view class='line'></view> -->
+      <template is = 'recommendTemplate'/> 
+      <template is = 'recommendTemplate'/>
+      <template is = 'recommendTemplate'/>  
+  </view>
+  <view class='price'>
+    <view class='chooseAll'>
+    <radio></radio>
+    <text>全选</text>
+    </view>
+    <view class='totalPrice'>总计：¥0.00</view>
+    <view class='settlement' bindtap='goSubmitOrder'>结算</view>
+  </view>
+</view>

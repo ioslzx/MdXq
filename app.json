@@ -1,0 +1,68 @@
+{
+  "pages":[
+    
+    
+    
+    "pages/homepage/homepage",
+    "pages/buyNewGoods/buyNewGoods",
+    "pages/submitOrder/submitOrder",
+    "pages/shoppingCart/shoppingCart",
+    "pages/category/category",
+    "pages/productDetails/productDetails",
+    
+    "pages/personalCenter/personalCenter",
+    "pages/personalCenter/totalOrder/totalOrder",
+    "pages/personalCenter/discountCoupon/discountCoupon",
+    "pages/personalCenter/recharge/recharge",
+    "pages/personalCenter/personalSetting/personalSetting",
+    "pages/personalCenter/myCollect/myCollect",
+    "pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully",
+    "pages/personalCenter/personalSetting/shippingAddress/shippingAddress",
+    "pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
+    "pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
+    "pages/captain/captain",
+    "pages/captain/inputID/inputID",
+    "pages/captain/topPage/topPage"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "蜜豆星球",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color":"#252525",
+    "selectedColor": "#8F178B",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/homepage/homepage",
+      "text": "首页",
+      "iconPath": "pages/images/tabbarImages/homepage.png",
+      "selectedIconPath": "pages/images/tabbarImages/homepageSelect.png"
+    },
+    {
+      "pagePath": "pages/category/category",
+      "text": "分类",
+      "iconPath": "pages/images/tabbarImages/category.png",
+      "selectedIconPath": "pages/images/tabbarImages/categorySelect.png"
+    },
+    {
+      "pagePath": "pages/shoppingCart/shoppingCart",
+      "text": "购物车",
+      "iconPath": "pages/images/tabbarImages/shoppingCart.png",
+      "selectedIconPath": "pages/images/tabbarImages/shoppingCartSelect.png"
+    },
+    {
+      "pagePath": "pages/personalCenter/personalCenter",
+      "text": "个人中心",
+      "iconPath": "pages/images/tabbarImages/personalCenter.png",
+      "selectedIconPath": "pages/images/tabbarImages/personalCenterSelect.png"
+    },
+    {
+      "pagePath": "pages/captain/captain",
+      "text": "堡主",
+      "iconPath": "pages/images/tabbarImages/captain.png",
+      "selectedIconPath": "pages/images/tabbarImages/captainSelect.png"
+    }]
+  }
+}

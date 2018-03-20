@@ -1,0 +1,14 @@
+<template name='obligationCenter'>
+  <view class='obligationCenter'>
+    <view class='obligationCenterLeft'>
+      <image src='../../images/demo1.png'></image>
+    </view>
+    <view class='obligationCenterMiddle'>
+      <view>去死皮软化剂</view>
+    </view>
+    <view class='obligationCenterRight'>
+      <view>￥15</view>
+      <view>X15</view>
+    </view>
+  </view>
+</template>

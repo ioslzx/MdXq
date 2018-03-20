@@ -1,0 +1,27 @@
+.obligationCenter{
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-bottom: 1rpx solid #DBDBDB;
+}
+.obligationCenterLeft{
+  width: 30%;
+  height: 200rpx;
+  float: left;
+}
+.obligationCenterLeft image{
+  width: 100%;
+  height:100%;
+}
+.obligationCenterMiddle{
+  float: left;
+  margin-left: 30rpx;
+}
+.obligationCenterRight{
+  float: right;
+  text-align: right;
+}
+.obligationCenterRight view:last-child{
+  color: #BEBEBE;
+}

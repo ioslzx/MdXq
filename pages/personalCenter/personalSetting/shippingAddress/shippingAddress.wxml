@@ -1,0 +1,16 @@
+<view class='shippingAddress'>
+  <view class='shippingAddressBox'>
+    <view class='shippingAddressLeft'>
+      <view class='leftLineBox'>
+        <text>美圈惠</text>
+        <text>11111111111</text>
+      </view>
+      <view class='leftLineBox'>
+        <text>朝阳区</text>
+        <text>soho现代城4号楼3006</text>
+      </view>
+    </view>
+    <view class='shippingAddressRight' bindtap='goEditShippingAddress'>编辑</view>
+  </view>
+  <view class='addShippingAddress'>新增地址</view>
+</view>

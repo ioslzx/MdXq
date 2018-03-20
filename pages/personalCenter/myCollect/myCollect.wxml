@@ -1,0 +1,6 @@
+<view class='myCollect'>
+  <view class='myCollectTop'>
+    <text>全部</text>
+    <text>编辑</text>
+  </view>
+</view>

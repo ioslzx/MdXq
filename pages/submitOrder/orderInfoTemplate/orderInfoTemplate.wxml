@@ -1,0 +1,15 @@
+<template name='orderInfoTemplate'>
+  <view class='orderInfoTemplateBox'>
+    <view class='productImg'>
+      <image src='../images/girl.jpeg'></image>
+    </view>
+    <view class='productName'>
+      <view>软化剂</view>
+      <view>15ml</view>
+    </view>
+    <view class='priceAndAmount'>
+      <view>¥30</view>
+      <view>x2</view>
+    </view>
+  </view>
+</template>

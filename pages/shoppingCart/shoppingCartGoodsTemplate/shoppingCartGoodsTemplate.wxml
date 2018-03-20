@@ -1,0 +1,23 @@
+<template name='shoppingCartGoodsTemplate'>
+  <view class='shoppingCartGoodsTemplateBox'>
+    <view class='choose'>
+      <radio></radio>
+    </view>
+    <view class='goodsImg'>
+      <image src='../images/girl.jpeg'></image>
+    </view>
+    <view class='goodsInfo'>
+      <text>软化剂</text>
+      <text>15毫升</text>
+      <text>¥15</text>
+    </view>
+    <view class="stepper">  
+        <!-- 减号 -->  
+        <text class="{{minusStatus}}" bindtap="bindMinus">-</text>  
+        <!-- 数值 -->
+        <input type="number" bindchange="bindManual" disabled='disabled' value="{{buyNum}}" />  
+        <!-- 加号 -->  
+        <text class="normal" bindtap="bindPlus">+</text>  
+    </view>  
+  </view>
+</template>

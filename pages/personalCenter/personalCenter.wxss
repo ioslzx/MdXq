@@ -1,0 +1,94 @@
+page{
+  background-color: #F8F8F8;
+}
+/* 个人中心头部开始 */
+.personalCenterTopBox{
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background-color: white;
+  border-top: 1rpx solid #DBDBDB;
+  margin-bottom: 15rpx;
+}
+.personalCenterTop{
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#CF03FA), to(#84047B)); 
+  border-radius: 20rpx;
+}
+.personalCenterTopLeft{
+  float: left;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  padding: 10rpx;
+  background-color: #D580E0;
+}
+.personalCenterTopLeft image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.personalCenterTopCenter{
+  float: left;
+  margin-left: 30rpx;
+  color: white;
+  font-size: 32rpx;
+  margin-top: 25rpx;
+}
+.centerLine:nth-child(1){
+  margin-bottom: 15rpx;
+}
+.personalCenterTopRight{
+  float: right;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 5rpx;
+  margin-top: 25rpx;
+}
+.personalCenterTopRight image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+/* 订单管理开始 */
+  .orderManagement{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    padding: 40rpx 25rpx 20rpx 0;
+    margin-bottom: 15rpx;
+    box-sizing: border-box;
+  }
+  .orderManagementRow{
+    flex: 1;
+    text-align: center;
+    font-size: 32rpx;
+  }
+  .orderManagementRow image{
+    width: 70rpx;
+    height: 70rpx;
+  }
+  /* 底部开始 */
+  .orderManagementBottom{
+    width: 100%;
+    background-color: white;
+  }
+  .bottomLineBox{
+    border-bottom: 1rpx solid #EEEEEE;
+    font-size: 30rpx;
+    padding: 35rpx 30rpx 35rpx 40rpx;
+    overflow: hidden;
+  }
+  .bottomLineBox image{
+     width: 40rpx;
+     height: 40rpx;
+     float: right;
+  }
+  .residueMoney{
+    float: right;
+     margin-right: 20rpx; 
+     color: #FF5456; 
+  }

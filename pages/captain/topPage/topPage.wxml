@@ -1,0 +1,35 @@
+<view class='topPage'>
+  <view class='topPageTop'>
+    <image src='../../images/demo1.png'></image>
+    <view>点击查看详细规则>></view>
+  </view>
+  <view class='myTopBox'>
+     <view class='headerBox'></view> 
+    <view class='infoBox'>
+      <view>我的钱钱</view>
+      <view>未参与排名</view>
+    </view>
+    <view class='achievementBox'>邀请买手：0人</view>
+  </view>
+  <view class='topBox'>
+    <view class='topBoxTitle'>排行榜</view>
+    <view class='userTopBox'>
+      <view class='myTopBox newMyTopBox'>
+        <view class='userNum'>1</view>
+        <view class='headerBox'></view> 
+        <view class='infoBox' style='margin-top:18rpx'>
+          <view style='color:black'>我的钱钱</view>
+        </view>
+        <view class='achievementBox'>邀请买手：0人</view>
+      </view>
+      <view class='myTopBox newMyTopBox'>
+        <view class='userNum'>2</view>
+        <view class='headerBox'></view> 
+        <view class='infoBox' style='margin-top:18rpx'>
+          <view style='color:black'>我的钱钱</view>
+        </view>
+        <view class='achievementBox'>邀请买手：0人</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<template name='discountCouponList'>
+  <view class='discountCouponList'>
+    <view class='discountCouponListLeft'>
+      <text class='circleBox'></text>
+      <text>￥10</text>
+    </view>
+    <view class='discountCouponListRight'>
+      <view style='color:#747474'>10元甲油胶够买券</view>
+      <view style='color:#BEBEBE'>
+        <text>有效期</text>
+        <text>2018/04/24</text>
+      </view>
+      <text class='newCircleBox'></text>
+    </view>
+  </view>
+</template>

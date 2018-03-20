@@ -1,0 +1,57 @@
+
+page{
+  background-color: #F8F8F8;
+}
+.addShippingAddress{
+  border-top: 1rpx solid #DBDBDB;
+  padding-left: 30rpx;
+  background-color: white;
+  width: 100%;
+}
+.addShoppingInputBox{
+  font-size: 30rpx;
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+.addShoppingInputLine{
+  border-bottom: 1rpx solid #EEEEEE;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.addShoppingInputLine:nth-child(4){
+  height: 125rpx;
+  line-height: 125rpx;
+  border: 0;
+}
+.addShoppingInputLine input{
+  float: right;
+  width: 80%;
+  height: 100%;
+}
+/* 设置默认地址 */
+.setDefaultAddress{
+  width: 100%;
+  padding: 30rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 30rpx;
+}
+.setDefaultAddress>image{
+  width: 70rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  float: right;
+  margin-right: 30rpx;
+}
+/* 保存地址 */
+.saveAddressBtn{
+  width: 80%;
+  padding: 25rpx;
+  font-size: 32rpx;
+  background-color: #800476;
+  color: white;
+  margin-top: 100rpx;
+  text-align: center;
+  margin-left: 7%;
+}
