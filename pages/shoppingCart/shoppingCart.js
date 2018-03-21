@@ -1,4 +1,7 @@
 // pages/shoppingCart/shoppingCart.js
+var app = getApp();
+var baseUrl = app.globalData.baseUrl;
+var imgUrl = app.globalData.imgUrl;
 Page({
 
   /**
@@ -7,13 +10,36 @@ Page({
   data: {
     buyNum: 1,
     minusStatus: 'disabled',
+    isShoppingCartNull:false,
+    shoppingCartListInfo:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // 获取购物车列表
+    var shoppingCartListUrl = baseUrl +'/api/shopping/cart/load-list?customer_id='+10030;
+    this.getShoppingCartList(shoppingCartListUrl);
+  },
+  // 获取购物车列表
+  getShoppingCartList(url){
+    var that=this;
+    wx.request({
+      url: url,
+      success(res){
+        if(res.data.success){
+          console.log(res)
+        }else{
+          that.setData({
+            isShoppingCartNull:true
+          })
+        }
+      },
+      fail(error){
+        console.log(error)
+      }
+    })
   },
   // 点击减号按钮函数
   bindMinus:function(e){

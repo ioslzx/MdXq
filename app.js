@@ -36,6 +36,6 @@ App({
   globalData: {
     userInfo: null,
     baseUrl: "https://api.meiquanhui.com/mall",
-    imgUrl:"https://api.meiquanhui.com/upload"
+    imgUrl:"https://api.meiquanhui.com"
   }
 })

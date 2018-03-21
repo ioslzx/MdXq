@@ -1,14 +1,15 @@
 <template name='obligationCenter'>
   <view class='obligationCenter'>
     <view class='obligationCenterLeft'>
-      <image src='../../images/demo1.png'></image>
+      <image src='{{mallProduct.exhibition}}'></image>
     </view>
     <view class='obligationCenterMiddle'>
-      <view>去死皮软化剂</view>
+      <view>{{mallProduct.product_name}}</view>
     </view>
     <view class='obligationCenterRight'>
-      <view>￥15</view>
-      <view>X15</view>
+      <view>￥{{amount}}</view>
+      <view wx:if='{{mallProduct.quantity!=null}}'>X{{mallProduct.quantity}}</view>
+      <view wx:else>X1</view>
     </view>
   </view>
 </template>

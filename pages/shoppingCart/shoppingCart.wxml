@@ -1,20 +1,18 @@
-<!--pages/shoppingCart/shoppingCart.wxml-->
-<!-- <text>pages/shoppingCart/shoppingCart.wxml</text> -->
 
 <import src='./shoppingCartGoodsTemplate/shoppingCartGoodsTemplate.wxml'/>
 <import src='../homepage/recommendTemplate/recommendTemplate.wxml'/>
 
 <view class='shopppingCartPage'>
   <!--购物车为空时的页面  -->
-  <!-- <view class='emptyShoppingCart'>
+   <view class='emptyShoppingCart' wx:if='{{isShoppingCartNull}}'>
     <view class='shoppingCartimg'>
       <image src='../images/girl.jpeg'></image>
     </view>
     <view>购物车空空的快去逛逛吧~</view>
     <view class='goShopping' bindtap='goHomepage'>去购物</view>
-  </view>  -->
+  </view>  
   <!--购物车有商品  -->
-  <view class='openVIPBox'>
+  <view class='openVIPBox' wx:else>
     <view class='ringImg'>
       <image src='../images/beautyCare.png'></image>
     </view>

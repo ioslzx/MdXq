@@ -1,13 +1,13 @@
 {
   "pages":[
-    
-    
+    "pages/shoppingCart/shoppingCart",
+
     "pages/category/category",
     "pages/category/productList/productList",
     "pages/homepage/homepage",
     "pages/buyNewGoods/buyNewGoods",
     "pages/submitOrder/submitOrder",
-    "pages/shoppingCart/shoppingCart",
+    
     
     "pages/productDetails/productDetails",
     
@@ -21,6 +21,7 @@
     "pages/personalCenter/personalSetting/shippingAddress/shippingAddress",
     "pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
     "pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
+   
     "pages/captain/captain",
     "pages/captain/inputID/inputID",
     "pages/captain/topPage/topPage"
