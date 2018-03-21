@@ -19,9 +19,8 @@
     <view class='textBox'>开通会员本单可节省10元哦~</view>
     <view class='openVIPBtn'>开通</view>
   </view>
-  <view class='goodsListBox'>
-    <template is = 'shoppingCartGoodsTemplate' data="{{buyNum}}"/>
-    <template is = 'shoppingCartGoodsTemplate' data="{{buyNum}}"/>
+  <view class='goodsListBox' wx:for='{{shoppingCartListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+    <template is = 'shoppingCartGoodsTemplate' data="{{...item,quantity}}"/>
   </view>
   <view class='shoppingCartRecommand'>
       <image src='../images/beautyCare.png'></image>
@@ -35,8 +34,11 @@
   </view>
   <view class='price'>
     <view class='chooseAll'>
-    <radio></radio>
-    <text>全选</text>
+      <radio></radio>
+      <text>全选</text>
+    </view>
+    <view class='totalDeleteImg' bindtap='deleteShoppingCart' data-cart_id='{{item.cart_id}}'>
+      <image src='../images/delete.png'></image>
     </view>
     <view class='totalPrice'>总计：¥0.00</view>
     <view class='settlement' bindtap='goSubmitOrder'>结算</view>

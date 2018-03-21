@@ -46,6 +46,18 @@
 .goodsInfo text{
   display: block;
 }
+/* 删除 */
+.deleteImg{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 50rpx;
+}
+.deleteImg image{
+  width: 100%;
+  height: 100%;
+}
 /*数量加减主容器*/  
 .stepper {  
     width: 80px;  

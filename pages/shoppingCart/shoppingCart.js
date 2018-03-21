@@ -8,10 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    buyNum: 1,
+    quantity: 1,
     minusStatus: 'disabled',
     isShoppingCartNull:false,
-    shoppingCartListInfo:[]
+    shoppingCartListInfo:[],
+    cart_ids:''
   },
 
   /**
@@ -28,8 +29,18 @@ Page({
     wx.request({
       url: url,
       success(res){
+        console.log(res)
         if(res.data.success){
-          console.log(res)
+          var data=res.data.result;
+          for(var i=0;i<data.length;i++){
+            data[i].exhibition = imgUrl + data[i].exhibition
+            that.setData({
+              quantity: data[i].quantity
+            })
+          }
+          that.setData({
+            shoppingCartListInfo:data
+          })
         }else{
           that.setData({
             isShoppingCartNull:true
@@ -43,28 +54,88 @@ Page({
   },
   // 点击减号按钮函数
   bindMinus:function(e){
-    var buyNum = this.data.buyNum;
-    if(buyNum>1){
-      buyNum--;
+    // console.log(e)
+    var quantity = this.data.quantity;
+    var cart_id = e.currentTarget.dataset.cart_id;
+    if (quantity>1){
+      quantity--;
     }
-    var minusStatus = buyNum <= 1 ? 'disabled' : 'normal';
+    var minusStatus = quantity <= 1 ? 'disabled' : 'normal';
     // 将数值与状态写回  
     this.setData({
-      buyNum: buyNum,
+      quantity: quantity,
       minusStatus: minusStatus
     });
+    console.log(cart_id)
+    this.bindManual(cart_id, this.data.quantity);
   },
   // 点击增加按钮函数
   bindPlus: function (e) {
-    var buyNum = this.data.buyNum;
-    buyNum++;
+    var quantity = this.data.quantity;
+    var cart_id = e.currentTarget.dataset.cart_id;
+    quantity++;
     // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = buyNum <= 1 ? 'disabled' : 'normal';
+    var minusStatus = quantity <= 1 ? 'disabled' : 'normal';
     // 将数值与状态写回  
     this.setData({
-      buyNum: buyNum,
+      quantity: quantity,
       minusStatus: minusStatus
     });
+    this.bindManual(cart_id, this.data.quantity)
+  },
+  // 获取修改数量
+  bindManual(cart_id, quantity){
+    var quantityUrl = baseUrl +'/api/shopping/cart/edit?cart_id='+
+      cart_id + '&quantity=' + quantity;
+    console.log(quantityUrl)
+    wx.request({
+      url: quantityUrl,
+      success(res){
+        console.log(res)
+      },
+      fail(error){
+        console.log(error)
+      }
+    })
+  },
+  checkedClick(e){
+    console.log(e)
+    var cart_id = e.currentTarget.dataset.cart_id;
+    var checked=e.currentTarget.dataset.checked;
+    if (checked==2){
+      var cart_ids = this.data.cart_ids + cart_id
+      this.setData({
+        cart_ids: cart_ids
+      })
+    }else{
+      var cart_ids = this.data.cart_ids
+      this.setData({
+        cart_ids: cart_ids
+      })
+    }
+  },
+  // 删除购物车内容
+  deleteShoppingCart(e){
+    var that=this;
+    var cart_ids = this.data.cart_ids;
+    var deleteShoppingCartUrl = baseUrl + '/api/shopping/cart/delete?cart_ids=' + cart_ids;
+    console.log(deleteShoppingCartUrl)
+    wx.request({
+      url: deleteShoppingCartUrl,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          // 获取购物车列表
+          var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + 10030;
+          that.getShoppingCartList(shoppingCartListUrl);
+        }else{
+
+        }
+      },
+      fail(error){
+        console.log(error)
+      }
+    })
   },
   goHomepage(e){
     wx.switchTab({
