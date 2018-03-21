@@ -2,8 +2,9 @@
 @import './productListTemplate/productListTemplate.wxss';
 
 page{
-  background-color: background-color: rgb(245, 246, 247);
+  background-color: rgb(245, 246, 247);
 }
+
 .productList{
   width: 100%;
   height: auto;

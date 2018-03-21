@@ -4,7 +4,6 @@ page{
 }
 .totalOrder{
   width: 100%;
-  border-top: 1rpx solid #DBDBDB;
 }
 /* 头部导航 */
 .topNavBox{
@@ -14,6 +13,8 @@ page{
   padding-top: 25rpx; 
   font-size: 30rpx;
   margin-bottom: 15rpx;
+  position: fixed;
+  border-top: 1rpx solid #DBDBDB;
 }
 .navigation{
   flex: 1;

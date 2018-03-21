@@ -35,7 +35,7 @@ Page({
             })
           }
           // debugger
-          // console.log(that.data.projectListInfo)
+          console.log(that.data.projectListInfo)
         }
       },
       fail(error) {

@@ -12,7 +12,10 @@ Page({
     minusStatus: 'disabled',
     isShoppingCartNull:false,
     shoppingCartListInfo:[],
-    cart_ids:''
+    cart_ids:'',
+    // 为你推荐数组
+    recommendGoodsInfo: []
+
   },
 
   /**
@@ -22,6 +25,37 @@ Page({
     // 获取购物车列表
     var shoppingCartListUrl = baseUrl +'/api/shopping/cart/load-list?customer_id='+10030;
     this.getShoppingCartList(shoppingCartListUrl);
+    // 获取为你推荐数据
+    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+  },
+  // 跳转到商品详情
+  goProductDetail(e) {
+    console.log(e);
+    var product_id = e.currentTarget.dataset.product_id;
+    debugger
+    wx.navigateTo({
+      url: '../productDetails/productDetails?product_id=' + product_id,
+    })
+  },
+  //获取为你推荐数据
+  getRecommendGoods(url) {
+    var that = this
+    wx.request({
+      url: url,
+      success(res) {
+        console.log(res)
+        if (res.data.success) {
+          var data = res.data.result;
+          for (var i = 0; i < data.length; i++) {
+            data[i].exhibition = imgUrl + data[i].exhibition;
+            that.setData({
+              recommendGoodsInfo: data
+            })
+          }
+          console.log(that.data.recommendGoodsInfo)
+        }
+      }
+    })
   },
   // 获取购物车列表
   getShoppingCartList(url){

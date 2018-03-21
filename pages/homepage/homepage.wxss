@@ -92,8 +92,7 @@ page{
   width: 100%;
   /*父级元素写这个，子元素写flex：1就是1：1的比例  */
   display: flex;
-  height: 300rpx; 
-
+  height: 370rpx; 
 }
 /*
 为你推荐

@@ -26,11 +26,9 @@
       <image src='../images/beautyCare.png'></image>
   </view>
   <view class='shoppingCartRecommandGoods'>
-      <template is = 'recommendTemplate'/>
-      <!-- <view class='line'></view> -->
-      <template is = 'recommendTemplate'/> 
-      <template is = 'recommendTemplate'/>
-      <template is = 'recommendTemplate'/>  
+    <block wx:for='{{recommendGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+      <template is = 'recommendTemplate' data='{{...item}}'/>
+    </block> 
   </view>
   <view class='price'>
     <view class='chooseAll'>

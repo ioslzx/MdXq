@@ -5,9 +5,9 @@
 <view class='productDetailsPage'>
   <view class='productImagesBox'>
     <swiper indicator-dots="{{swiperParam.indicatorDots}}" indicator-color="{{swiperParam.indicatorColor}}" autoplay='swiperParam.autoplay' interval='{{swiperParam.interval}}' circular='{{swiperParam.circular}}'>
-    <block wx:for="{{imgUrls}}" wx:for-index='index' wx:for-item='item' wx:key="index">
+    <block wx:for="{{imgUrlInfo}}" wx:for-index='index' wx:for-item='item' wx:key="index">
       <swiper-item>
-        <image src='{{item}}'></image>
+        <image src='{{item.imgurl}}'></image>
       </swiper-item>
     </block>
     </swiper>
@@ -21,7 +21,7 @@
   <view class='productInfo'>
     <view style='overflow:hidden'>
       <view class='productName'>
-        <text>菱形状美甲海绵抛 紫 10条装/条</text>
+        <text>{{productDetailsInfoObj.product_name}}</text>
       </view>
       <view class='share'>
          <image src='../images/beautyCare.png'></image> 
@@ -31,19 +31,19 @@
     
     <view class='price'>
       <text>会员价:</text>
-      <text>¥15/条</text>
-      <text>20/条</text>
+      <text>{{productDetailsInfoObj.member_price}}/条</text>
+      <text>{{productDetailsInfoObj.market_price}}/条</text>
     </view>
     <view style='overflow:hidden'>
       <view class='vipPrice'>
         <text>股东价</text>
-        <text>¥13</text>
+        <text>¥{{productDetailsInfoObj.vip_price}}</text>
       </view>
       <view class='beVIP'>开通会员即可享受</view>
     </view>
     <view class='salesAmountAndAddress'>
       <text>快递:货到付款</text>
-      <text>月销:30000</text>
+      <text>月销:{{productDetailsInfoObj.sales_volume}}</text>
       <text>北京</text>
     </view>
   </view>

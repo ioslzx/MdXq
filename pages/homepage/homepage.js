@@ -1,6 +1,9 @@
 // pages/homepage/homepage.js
-Page({
+var app = getApp();
+var imgUrl = app.globalData.imgUrl;
+var baseUrl = app.globalData.baseUrl;
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -11,6 +14,8 @@ Page({
     // touchStart: 0,
     // touchMove: 0,
     // touchEnd: 0,
+    hotGoodsInfo:[],
+    recommendGoodsInfo:[],
     swiperParam: {
       indicatorDots: true,
       indicatorColor: "#aaa",
@@ -26,17 +31,61 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getHotGoods(baseUrl +'/api/product/hot?shop_id=10000')
+    this.getRecommendGoods(baseUrl +'/api/product/recommend?shop_id=10000&recommend_id=4')
+  },
+  //获取为你推荐数据
+  getRecommendGoods(url){
+    var that = this
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          var data = res.data.result;
+          for(var i = 0;  i < data.length;i++){
+            data[i].exhibition = imgUrl + data[i].exhibition;
+            that.setData({
+              recommendGoodsInfo: data
+            })
+          }
+          console.log(that.data.recommendGoodsInfo)
+        }
+      }
+    })
+  },
+  // 获取今日爆品数据
+  getHotGoods(url){
+    var that = this;
+    wx.request({
+      url: url,
+      success(res){
+        // var data = res.data.result
+        // console.log(res)
+        if(res.data.success){
+          var data = res.data.result;
+          for (var i = 0; i < data.length;i++){
+            data[i].exhibition = imgUrl + data[i].exhibition;
+            that.setData({
+              hotGoodsInfo: data
+            })
+          }
+        }
+      },fail(error){
+
+      }
+    })
   },
   goNewGoods(e){
-    console.log(e);
       wx.navigateTo({
         url: '../buyNewGoods/buyNewGoods',
       })
   },
   goProductDetail(e){
+    console.log(e);
+    var product_id = e.currentTarget.dataset.product_id;
     wx.navigateTo({
-      url: '../productDetails/productDetails',
+      url: '../productDetails/productDetails?product_id=' + product_id,
     })
   },
   recommendGoProductDetail(e){

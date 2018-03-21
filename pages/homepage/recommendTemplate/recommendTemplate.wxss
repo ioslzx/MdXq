@@ -2,7 +2,7 @@
 .recommendProductTemplateBox{
   display: block;
   width: 50%;
-  height: 350rpx;
+  height: 490rpx;
   background-color: white;
   box-sizing: border-box;
   padding: 10rpx;
@@ -11,22 +11,23 @@
 }
 /*图片  */
 .recommendProductImage{
-  height: 70%;
+  height: 75%;
   width: 100%;
 }
 /*商品名称  */
 .recommendProductName{
-  height: 15%; 
+  height: 50rpx; 
   width: 100%;
   font-size: 32rpx;
-  margin-top: 8rpx;
+  margin-top: 13rpx;
 }
 /*商品价格  */
 .recommendDiscountPrice{
   width: 100%;
-  height: 15%; 
+  height: 50rpx; 
   /* vertical-align: middle; */
   font-size: 32rpx;
+  
 }
 .recommendDiscountPrice span {
   width: 40%;
