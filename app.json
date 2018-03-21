@@ -1,6 +1,7 @@
 {
   "pages":[
-    "pages/shoppingCart/shoppingCart",
+    
+    
 
     "pages/category/category",
     "pages/category/productList/productList",
@@ -8,11 +9,13 @@
     "pages/buyNewGoods/buyNewGoods",
     "pages/submitOrder/submitOrder",
     
+    "pages/shoppingCart/shoppingCart",
     
     "pages/productDetails/productDetails",
     
     "pages/personalCenter/personalCenter",
     "pages/personalCenter/totalOrder/totalOrder",
+    "pages/personalCenter/orderDetail/orderDetail",
     "pages/personalCenter/discountCoupon/discountCoupon",
     "pages/personalCenter/recharge/recharge",
     "pages/personalCenter/personalSetting/personalSetting",

@@ -87,11 +87,11 @@ Page({
               })
             }
           }
-          console.log(that.data.orderDetail)
+          // console.log(that.data.orderDetail)
           that.setData({
             orderListInfo: data
           })
-          console.log(that.data.orderListInfo)
+          // console.log(that.data.orderListInfo)
         }else{
           wx.showModal({
             title: '提示',
@@ -102,6 +102,13 @@ Page({
       fail(error){
         console.log(error)
       }
+    })
+  },
+  // 点击去订单详情
+  goOrderDetail(e){
+    var order_id = e.currentTarget.dataset.order_id;
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail?order_id=' +order_id
     })
   },
   /**

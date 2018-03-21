@@ -1,0 +1,70 @@
+<view class='orderDetail'>
+  <view class='orderDetailTop'>
+    <view class='orderDetailTopLine'>
+    <!-- 1-正常，2-退货，3-已取消，4-已完成 -->
+      <text>订单状态：</text>
+      <text wx:if='{{orderDetailsInfo.order_state==1}}'>正常</text>
+      <text wx:if='{{orderDetailsInfo.order_state==2}}'>退货</text>
+      <text wx:if='{{orderDetailsInfo.order_state==3}}'>已取消</text>
+      <text wx:if='{{orderDetailsInfo.order_state==4}}'>已完成</text>
+    </view>
+    <view class='orderDetailTopLine'>
+      <text>订单编号：</text>
+      <text>{{orderDetailsInfo.order_no}}</text>
+    </view>
+    <view class='orderDetailTopLine'>
+      <text>下单时间：</text>
+      <text>{{orderDetailsInfo.create_time}}</text>
+    </view>
+    <view class='goPayMoney'>去支付</view>
+    <view class='cancleOrder'>
+      <text>取消订单</text>
+      <text>重新下单</text>
+    </view>
+  </view>
+  <view class='orderDetailAddress'>
+    <view class='addressLeft'>
+     <image src='../../images/position.png'></image>
+    </view>
+    <view class='addressRight'>
+      <view>
+        <text>收货人：{{orderDetailsInfo.customer.nickname}}</text>
+        <text>{{orderDetailsInfo.customer.telephone}}</text>
+      </view>
+      <view>收货地址：（没有字段）</view>
+    </view>
+  </view>
+  <view class='productListBox'>
+    <view class='productList' wx:for='{{orderDetailsInfo.orderDetail}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+      <view class='productListLeft'>
+         <image src='{{item.mallProduct.exhibition}}'></image> 
+      </view>
+      <view class='productListRight'>
+        <view class='productName'>{{item.mallProduct.product_name}}</view>
+        <view class='productColor'>颜色分类：(没有字段)</view>
+        <view class='productInfo'>
+          <text>￥{{item.amount}}</text>
+          <text>X{{item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='productPrice'>
+    <view class='productPriceLine'>
+      <text>商品总额</text>
+      <text>￥{{orderDetailsInfo.amount}}</text>
+    </view>
+    <view class='productPriceLine'>
+      <text>蜜豆抵扣</text>
+      <text>-￥{{orderDetailsInfo.deduction}}</text>
+    </view>
+    <view class='productPriceLine'>
+      <text>运费</text>
+      <text>+￥{{orderDetailsInfo.freight}}</text>
+    </view>
+    <view class='productPriceLine'>
+      <text>总计：</text>
+      <text>￥{{orderDetailsInfo.amount-orderDetailsInfo.deduction+orderDetailsInfo.freight}}</text>
+    </view>
+  </view>
+</view>

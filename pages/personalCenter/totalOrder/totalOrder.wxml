@@ -3,7 +3,7 @@
   <view class='topNavBox'>
     <view wx:for='{{topNavInfoArr}}' wx:for-index='index' wx:for-item='item' wx:key='index' class='navigation {{index==currentID?"navigationActive":""}}' data-currentID='{{index}}' bindtap='goSelectNav'>{{item.topNavInfoName}}</view>
   </view>
-  <view class='obligationBox'  wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' wx:if='{{currentID==0}}'>
+  <view class='obligationBox' bindtap='goOrderDetail'  wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}' wx:if='{{currentID==0}}'>
     <view class='obligationTop'>
       <text class='obligationTopLeft'>待付款</text>
       <text class='obligationTopRight'>
@@ -24,7 +24,7 @@
       </view>
     </view>
   </view>
-  <view class='waitSendOutBox' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' wx:if='{{currentID==1}}'>
+  <view class='waitSendOutBox' bindtap='goOrderDetail' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}' wx:if='{{currentID==1}}'>
     <view class='obligationTop'>
       <text class='obligationTopLeft'>待发货</text>
       <text class='obligationTopRight'>
@@ -44,7 +44,7 @@
       </view>
     </view>
   </view>
-  <view class='waitReceivingBox' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' wx:if='{{currentID==2}}'>
+  <view class='waitReceivingBox' bindtap='goOrderDetail' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}' wx:if='{{currentID==2}}'>
     <view class='obligationTop'>
       <text class='obligationTopLeft'>待收货</text>
       <text class='obligationTopRight'>
@@ -64,7 +64,7 @@
       </view>
     </view>
   </view>
-  <view class='allOrdersBox' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'  wx:if='{{currentID==3}}'>
+  <view class='allOrdersBox' bindtap='goOrderDetail'  wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}'  wx:if='{{currentID==3}}'>
     <view class='obligationTop'>
       <text class='obligationTopLeft' wx:if='{{item.payment_state==1}}'>已支付</text>
        <text class='obligationTopLeft' wx:if='{{item.payment_state==2}}'>待支付</text>
