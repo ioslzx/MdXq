@@ -2,12 +2,13 @@
   "pages":[
     
     
-    
+    "pages/category/category",
+    "pages/category/productList/productList",
     "pages/homepage/homepage",
     "pages/buyNewGoods/buyNewGoods",
     "pages/submitOrder/submitOrder",
     "pages/shoppingCart/shoppingCart",
-    "pages/category/category",
+    
     "pages/productDetails/productDetails",
     
     "pages/personalCenter/personalCenter",
