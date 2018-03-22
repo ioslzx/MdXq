@@ -21,15 +21,63 @@ Page({
       circular: true,
       interval: 3000
     },
+    // 商品ID
+    product_id:0,
+    // 为你推荐数组
+    recommendGoodsInfo: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var product_id = options.product_id
-    console.log(product_id)
-    this.getProductDetail(baseUrl + '/api/product/load?product_id=' + product_id)
+    this.setData({
+      product_id:options.product_id
+    })
+    this.getProductDetail(baseUrl + '/api/product/load?product_id=' + this.data.product_id)
+    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+  },
+  //获取为你推荐数据
+  getRecommendGoods(url) {
+    var that = this
+    wx.request({
+      url: url,
+      success(res) {
+        console.log(res)
+        if (res.data.success) {
+          var data = res.data.result;
+          for (var i = 0; i < data.length; i++) {
+            data[i].exhibition = imgUrl + data[i].exhibition;
+            that.setData({
+              recommendGoodsInfo: data
+            })
+          }
+          console.log(that.data.recommendGoodsInfo)
+        }
+      }
+    })
+  },
+  // 加入购物车点击事件
+  addShopppingCart: function (e){
+    console.log(this.data.product_id)
+    var url = baseUrl + '/api/shopping/cart/add?customer_id=10030&model_id=' + '1' + '&product_id=' + this.data.product_id + '&quantity=' + '10'
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if (res.data.success){
+          wx.showToast({
+            title: '成功加入购物车',
+          })
+        }else{
+          wx.showToast({
+            title: '加入购物车失败',
+          })
+        }
+      },fail(error){
+
+      }
+    })
   },
   // 获取商品详情数据
   getProductDetail(url){
@@ -64,8 +112,8 @@ Page({
             vip_price: data.vip_price,
             sales_volume: data.sales_volume,
             // spec: data.spec,
-            detail_diagram: data.detail_diagram
-
+            detail_diagram: data.detail_diagram,
+            mallProductModels: data.mallProductModels
           }
           that.setData({
             productDetailsInfoObj:productDetailsInfoObj

@@ -14,7 +14,9 @@ Page({
     // touchStart: 0,
     // touchMove: 0,
     // touchEnd: 0,
+    // 爆品数组
     hotGoodsInfo:[],
+    // 为你推荐数组
     recommendGoodsInfo:[],
     swiperParam: {
       indicatorDots: true,
