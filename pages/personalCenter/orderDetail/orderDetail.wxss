@@ -44,10 +44,10 @@ page{
   margin-top: 50rpx;
   font-size: 34rpx;
 }
-.cancleOrder text:first-child{
+.cancleOrder view:first-child{
   margin-right: 20rpx;
 }
-.cancleOrder text{
+.cancleOrder view{
   flex: 1;
   padding: 20rpx;
   box-sizing: border-box;

@@ -6,16 +6,12 @@
   <!--头部banner  -->
   <view class='bannerBox'>
     <swiper indicator-dots="{{swiperParam.indicatorDots}}"  indicator-color="{{swiperParam.indicatorColor}}" indicator-active-color="{{swiperParam.indicatorActiveColor}}" autoplay="{{swiperParam.autoplay}}" interval="{{swiperParam.interval}}" circular="{{swiperParam.circular}}">
-    <swiper-item bindtap='goNewGoods'>
-      <image src='../images/girl.jpeg'></image>
-    </swiper-item>
-     <swiper-item>
-      <image src='../images/meinv.jpg'></image>
-    </swiper-item>
-     <swiper-item>
-      <image src='../images/girl.jpeg'></image>
-    </swiper-item>  
-  </swiper>
+      <block wx:for="{{topBannerInfo}}" wx:for-index='index' wx:for-item='item' wx:key="index">
+        <swiper-item bindtap='goNewGoods'>
+          <image src='{{item.picture}}'></image>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
   <!--优惠活动  -->
   <view class='specialOffers'>

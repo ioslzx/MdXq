@@ -18,6 +18,8 @@ Page({
     hotGoodsInfo:[],
     // 为你推荐数组
     recommendGoodsInfo:[],
+    // 头部轮播图数组
+    topBannerInfo:[],
     swiperParam: {
       indicatorDots: true,
       indicatorColor: "#aaa",
@@ -35,6 +37,27 @@ Page({
   onLoad: function (options) {
     this.getHotGoods(baseUrl +'/api/product/hot?shop_id=10000')
     this.getRecommendGoods(baseUrl +'/api/product/recommend?shop_id=10000&recommend_id=4')
+    this.getTopBanner(baseUrl +'/api/banner/load-list?shop_id=10000&state=1')  
+  },
+  // 获取顶部轮播图数据
+  getTopBanner(url){
+    var that = this;
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          var data = res.data.result;
+          for (var i = 0; i < data.length;i++){
+            data[i].picture = imgUrl + data[i].picture
+            that.setData({
+              topBannerInfo: res.data.result
+            })
+          }
+          console.log(that.data.topBannerInfo)
+        }
+      }
+    })
   },
   //获取为你推荐数据
   getRecommendGoods(url){
@@ -42,7 +65,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           var data = res.data.result;
           for(var i = 0;  i < data.length;i++){
@@ -51,7 +74,7 @@ Page({
               recommendGoodsInfo: data
             })
           }
-          console.log(that.data.recommendGoodsInfo)
+          // console.log(that.data.recommendGoodsInfo)
         }
       }
     })

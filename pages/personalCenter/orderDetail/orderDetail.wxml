@@ -16,10 +16,12 @@
       <text>下单时间：</text>
       <text>{{orderDetailsInfo.create_time}}</text>
     </view>
-    <view class='goPayMoney'>去支付</view>
-    <view class='cancleOrder'>
-      <text>取消订单</text>
-      <text>重新下单</text>
+    <view class='goPayMoney' wx:if='{{currentID==0}}'>去支付</view>
+    <view class='goPayMoney' wx:if='{{currentID==1}}' bindtap='goRemind'>提醒发货</view>
+    <view class='goPayMoney' wx:if='{{currentID==2}}' bindtap='goConfirmReceipt'>确认收货</view>
+    <view class='cancleOrder' wx:if='{{currentID==0}}'>
+      <view bindtap='cancleOrder'>取消订单</view>
+      <view bindtap='placingOrder'>重新下单</view>
     </view>
   </view>
   <view class='orderDetailAddress'>

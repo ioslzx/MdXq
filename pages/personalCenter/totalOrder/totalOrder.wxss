@@ -4,6 +4,7 @@ page{
 }
 .totalOrder{
   width: 100%;
+  padding-top: 110rpx;
 }
 /* 头部导航 */
 .topNavBox{
@@ -14,6 +15,8 @@ page{
   font-size: 30rpx;
   margin-bottom: 15rpx;
   position: fixed;
+  top: 0;
+  left: 0;
   border-top: 1rpx solid #DBDBDB;
 }
 .navigation{
@@ -24,6 +27,7 @@ page{
 .navigationActive{
   color: #902D87;
   border-bottom: 1rpx solid #902D87;
+
 }
 /* 待付款 */
 .obligationBox,.waitSendOutBox,.waitReceivingBox,.allOrdersBox{
@@ -31,6 +35,9 @@ page{
   width: 100%;
   font-size: 30rpx;
   margin-bottom: 20rpx;
+}
+.obligationBox:first-child{
+  /* margin-top: 200rpx!important; */
 }
 .obligationTop{
   width: 100%;

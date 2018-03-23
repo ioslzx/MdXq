@@ -1,9 +1,13 @@
 {
   "pages":[
 
+    
+    "pages/personalCenter/totalOrder/totalOrder",
+    
+    
+    "pages/personalCenter/orderDetail/orderDetail",
+
     "pages/homepage/homepage",
-
-
     
     "pages/productDetails/productDetails",
 
@@ -21,8 +25,8 @@
     
     "pages/personalCenter/personalCenter",
 
-    "pages/personalCenter/totalOrder/totalOrder",
-    "pages/personalCenter/orderDetail/orderDetail",
+    
+    
 
     "pages/personalCenter/discountCoupon/discountCoupon",
     "pages/personalCenter/recharge/recharge",

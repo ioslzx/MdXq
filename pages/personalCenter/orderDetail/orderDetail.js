@@ -9,7 +9,8 @@ Page({
    */
   data: {
     order_id:0,
-    orderDetailsInfo:{}
+    orderDetailsInfo:{},
+    currentID:0
   },
 
   /**
@@ -18,11 +19,74 @@ Page({
   onLoad: function (options) {
     // 获取order_id
     this.setData({
-      order_id: options.order_id
+      order_id: options.order_id,
+      currentID: options.currentID*1
     })
-    // console.log(this.data.order_id)
+    console.log(this.data.currentID)
     var orderDetailsInfoUrl = baseUrl + '/api/order/load?order_id=' + this.data.order_id;
     this.getOrderDetail(orderDetailsInfoUrl);
+  },
+  // 确认收货
+  goConfirmReceipt(e){
+    var url = baseUrl + '/api/order/confirm-receipt?order_id=' + this.data.order_id
+    wx.request({
+      url: url,
+      success(res) {
+        console.log(res)
+        if (res.data.success) {
+          wx.showToast({
+            title: '确认收货成功',
+          })
+        } else {
+          wx.showToast({
+            title: '确认收货失败',
+          })
+        }
+      }
+    })
+    wx.navigateTo({
+      url: '../totalOrder/totalOrder?orderDetailsID=2',
+    })
+    // wx.navigateBack({
+    //   url:'../totalOrder/totalOrder?orderDetailsID=2',
+    //   success: function (e) {
+    //     var page = getCurrentPages().pop();
+    //     if (page == undefined || page == null) return;
+    //     page.onLoad();
+    //   }
+    // })
+
+  },
+  // 提醒发货
+  goRemind(e){
+    wx.showToast({
+      title: '提醒发货成功',
+    })
+  },
+  // 取消订单点击事件
+  cancleOrder(e){
+    var url = baseUrl + '/api/order/cancel?order_id=' + this.data.order_id
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          wx.showToast({
+            title: '取消订单成功',
+          })
+          wx.navigateTo({
+            url: '../totalOrder/totalOrder',
+          })
+          
+        }
+      }
+    })
+  },
+  // 重新下单
+  placingOrder(e){
+    wx.switchTab({
+      url: '../../category/category',
+    })
   },
   // 获取订单详情
   getOrderDetail(url){

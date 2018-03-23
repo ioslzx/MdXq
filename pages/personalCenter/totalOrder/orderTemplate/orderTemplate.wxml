@@ -1,5 +1,5 @@
 <template name='obligationCenter'>
-  <view class='obligationCenter'>
+  <view class='obligationCenter' >
     <view class='obligationCenterLeft'>
       <image src='{{mallProduct.exhibition}}'></image>
     </view>
