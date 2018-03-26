@@ -70,12 +70,12 @@ Page({
     var that = this
     console.log(that.data.isDefault)
     var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault
-    // wx.request({
-    //   url: url,
-    //   success(res){
-    //     console.log(res)
-    //   }
-    // })
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+      }
+    })
   },
   // 获取收货人输入内容
   getReceipt_name(e){

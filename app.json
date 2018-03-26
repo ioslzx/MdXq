@@ -1,11 +1,15 @@
 {
   "pages":[
-    "pages/submitOrder/submitOrder",
-    "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
-    
+    "pages/personalCenter/personalCenter",
     
     "pages/personalCenter/totalOrder/totalOrder",
+    "pages/personalCenter/totalOrder1/totalOrder1",
+    "pages/personalCenter/totalOrder2/totalOrder2",
+    "pages/personalCenter/totalOrder3/totalOrder3","pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
     
+    
+    
+    "pages/submitOrder/submitOrder",
     
     "pages/personalCenter/orderDetail/orderDetail",
 
@@ -25,7 +29,7 @@
     
     
     
-    "pages/personalCenter/personalCenter",
+    
 
     
     

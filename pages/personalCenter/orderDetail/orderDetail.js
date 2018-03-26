@@ -46,11 +46,7 @@ Page({
         }
       }
     })
-    // wx.navigateTo({
-    //   url: '../totalOrder/totalOrder?orderDetailsID=2',
-    // })
     wx.navigateBack({
-      url:'../totalOrder/totalOrder?orderDetailsID=2',
       success: function (e) {
         var page = getCurrentPages().pop();
         if (page == undefined || page == null) return;
@@ -76,8 +72,12 @@ Page({
           wx.showToast({
             title: '取消订单成功',
           })
-          wx.navigateTo({
-            url: '../totalOrder/totalOrder',
+          wx.navigateBack({
+            success: function (e) {
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onLoad();
+            }
           })
           
         }

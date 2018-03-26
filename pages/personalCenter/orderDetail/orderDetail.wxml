@@ -58,11 +58,13 @@
     </view>
     <view class='productPriceLine'>
       <text>蜜豆抵扣</text>
-      <text>-￥{{orderDetailsInfo.deduction}}</text>
+      <text wx:if='{{orderDetailsInfo.deduction!=null}}'>-￥{{orderDetailsInfo.deduction}}</text>
+      <text wx:else>-￥0</text>
     </view>
     <view class='productPriceLine'>
       <text>运费</text>
-      <text>+￥{{orderDetailsInfo.freight}}</text>
+      <text wx:if='{{orderDetailsInfo.freight!=null}}'>+￥{{orderDetailsInfo.freight}}</text>
+      <text wx:else>+￥0</text>
     </view>
     <view class='productPriceLine'>
       <text>总计：</text>
