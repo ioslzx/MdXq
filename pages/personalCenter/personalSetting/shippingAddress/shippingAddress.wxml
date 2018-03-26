@@ -1,16 +1,16 @@
 <view class='shippingAddress'>
-  <view class='shippingAddressBox'>
+  <view class='shippingAddressBox' wx:for='{{addressListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
     <view class='shippingAddressLeft'>
       <view class='leftLineBox'>
-        <text>美圈惠</text>
-        <text>11111111111</text>
+        <text>{{item.receipt_name}}</text>
+        <text>{{item.telephone}}</text>
       </view>
       <view class='leftLineBox'>
-        <text>朝阳区</text>
-        <text>soho现代城4号楼3006</text>
+        <text class='Bottom' wx:if='{{item.is_default==1}}'>[默认地址]</text>
+        <text>{{item.city_area}}{{item.detailed_address}}</text>
       </view>
     </view>
-    <view class='shippingAddressRight' bindtap='goEditShippingAddress'>编辑</view>
+    <view class='shippingAddressRight' bindtap='goEditShippingAddress' data-address_id='{{item.address_id}}' data-is_default='{{item.is_default}}'>编辑</view>
   </view>
-  <view class='addShippingAddress'>新增地址</view>
+  <view class='addShippingAddress' bindtap='goAddShippingAddress'>新增地址</view>
 </view>

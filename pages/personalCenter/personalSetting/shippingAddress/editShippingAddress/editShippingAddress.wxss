@@ -1,3 +1,5 @@
+@import '../citySelectModel/citySelectModel.wxss';
+
 page{
   background-color: #F8F8F8;
 }
@@ -12,17 +14,47 @@ page{
   width: 100%;
   border-bottom: 1rpx solid #EEEEEE;
   overflow: hidden;
-  padding: 30rpx 20rpx 30rpx 40rpx;
+  padding: 0 20rpx 0 40rpx;
   font-size: 32rpx;
   box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  overflow: hidden;
+}
+.editInfoBoxLine text:nth-child(1){
+  height: 100rpx;
+  line-height: 100rpx;
+  display: inline-block;
+  margin-top: 0rpx;
+  float: left;
 }
 .editInfoBoxLine>text:nth-child(2){
-  margin-left: 40rpx;
+  margin-left: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
 }
-.editInfoBoxLine>image{
+.editInfoBoxLine:nth-child(2) input{
+  width: 55%;
+}
+.editInfoBoxLine:nth-child(4) input{
+  width: 75%;
+}
+.editInfoBoxLine input{ 
+  width: 45%;
+  float: left;
+  margin-left: 20rpx;
+  display: inline-block;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.editInfoBoxLine:nth-child(3) input{
+  width: 65%;
+}
+.editInfoBoxLine:nth-child(3)>image{
   width: 40rpx;
   height: 40rpx;
   float: right;
+  margin-top: 30rpx;
 }
 .radioBox{
   display: inline-block;
@@ -57,7 +89,7 @@ radio .wx-radio-input{
   border: 1rpx solid #D2D2D2;
   color: #696969;
 }
-/* 新增地址按钮 */
+/* 新增地址按钮 
 .addShippingAddress{
   width: 100%;
   padding: 25rpx 0;
@@ -70,3 +102,4 @@ radio .wx-radio-input{
   bottom: 0;
   left: 0;
 }
+*/

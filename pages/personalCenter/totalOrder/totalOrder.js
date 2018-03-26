@@ -184,10 +184,12 @@ Page({
   },
   // 点击去订单详情
   goOrderDetail(e){
+    // console.log(e)
     var order_id = e.currentTarget.dataset.order_id;
     var currentID = e.currentTarget.dataset.currentid;
+    var state = e.currentTarget.dataset.state;
     wx.navigateTo({
-      url: '../orderDetail/orderDetail?order_id=' + order_id + '&currentID=' + currentID
+      url: '../orderDetail/orderDetail?order_id=' + order_id + '&currentID=' + currentID + '&state=' + state
     })
   },
   /**

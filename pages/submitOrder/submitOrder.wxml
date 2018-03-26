@@ -3,6 +3,11 @@
 <import src='./orderInfoTemplate/orderInfoTemplate.wxml'/>
 
 <view class='submitOrderHomePage'>
+  <view class='addressBox' bindtap='goAddress'>
+    <image src='../images/location.jpg'></image>
+    <view>收货地址:北京市朝阳区建国路88号SOHO现代城4号楼3006室</view>
+    <image src='../images/rightArrow.jpg'></image>
+  </view>
   <view class='order'>订单</view>
   <view class='orderInfoBox'>
     <template is = 'orderInfoTemplate'/>

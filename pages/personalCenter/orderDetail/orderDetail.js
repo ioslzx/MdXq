@@ -10,7 +10,8 @@ Page({
   data: {
     order_id:0,
     orderDetailsInfo:{},
-    currentID:0
+    currentID:0,
+    state:''
   },
 
   /**
@@ -20,9 +21,10 @@ Page({
     // 获取order_id
     this.setData({
       order_id: options.order_id,
-      currentID: options.currentID*1
+      currentID: options.currentID*1,
+      state: options.state
     })
-    console.log(this.data.currentID)
+    console.log(options.state)
     var orderDetailsInfoUrl = baseUrl + '/api/order/load?order_id=' + this.data.order_id;
     this.getOrderDetail(orderDetailsInfoUrl);
   },
@@ -44,17 +46,17 @@ Page({
         }
       }
     })
-    wx.navigateTo({
-      url: '../totalOrder/totalOrder?orderDetailsID=2',
-    })
-    // wx.navigateBack({
-    //   url:'../totalOrder/totalOrder?orderDetailsID=2',
-    //   success: function (e) {
-    //     var page = getCurrentPages().pop();
-    //     if (page == undefined || page == null) return;
-    //     page.onLoad();
-    //   }
+    // wx.navigateTo({
+    //   url: '../totalOrder/totalOrder?orderDetailsID=2',
     // })
+    wx.navigateBack({
+      url:'../totalOrder/totalOrder?orderDetailsID=2',
+      success: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      }
+    })
 
   },
   // 提醒发货

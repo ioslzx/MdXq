@@ -70,7 +70,7 @@
       </view>
     </view>
   </view>
-  <view class='allOrdersBox' bindtap='goOrderDetail'  wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}'  wx:if='{{currentID==3}}'>
+  <view class='allOrdersBox' bindtap='goOrderDetail'  wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}' data-state='{{item.state}}'  wx:if='{{currentID==3}}'>
     <view class='obligationTop'>
       <text class='obligationTopLeft' wx:if='{{item.payment_state==1}}'>已支付</text>
        <text class='obligationTopLeft' wx:if='{{item.payment_state==2}}'>待支付</text>

@@ -16,10 +16,10 @@
       <text>下单时间：</text>
       <text>{{orderDetailsInfo.create_time}}</text>
     </view>
-    <view class='goPayMoney' wx:if='{{currentID==0}}'>去支付</view>
-    <view class='goPayMoney' wx:if='{{currentID==1}}' bindtap='goRemind'>提醒发货</view>
-    <view class='goPayMoney' wx:if='{{currentID==2}}' bindtap='goConfirmReceipt'>确认收货</view>
-    <view class='cancleOrder' wx:if='{{currentID==0}}'>
+    <view class='goPayMoney' wx:if='{{currentID==0 || state=="待付款"}}'>去支付</view>
+    <view class='goPayMoney' wx:if='{{currentID==1 || state=="待发货"}}' bindtap='goRemind'>提醒发货</view>
+    <view class='goPayMoney' wx:if='{{currentID==2 || state=="待收货"}}' bindtap='goConfirmReceipt'>确认收货</view>
+    <view class='cancleOrder' wx:if='{{currentID==0 || state=="待付款"}}'>
       <view bindtap='cancleOrder'>取消订单</view>
       <view bindtap='placingOrder'>重新下单</view>
     </view>

@@ -1,22 +1,50 @@
 // pages/personalCenter/personalSetting/shippingAddress/shippingAddress.js
+var app = getApp();
+var baseUrl = app.globalData.baseUrl;
+var imgUrl = app.globalData.imgUrl;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    addressListInfo:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var url = baseUrl + '/api/address/load-list?customer_id=10030'
+    this.getAddressList(url)
   },
+  // 获取地址列表数据
+  getAddressList(url){
+    var that = this
+    wx.request({
+      url: url,
+      success(res){
+        // console.log(res)
+        if(res.data.success){
+          that.setData({
+            addressListInfo: res.data.result
+          })
+        }
+      }
+    })
+  },
+  // 编辑地址页面
   goEditShippingAddress(e){
+    console.log(e)
     wx.navigateTo({
-      url: './editShippingAddress/editShippingAddress',
+      url: './editShippingAddress/editShippingAddress?address_id=' + e.currentTarget.dataset.address_id + '&is_default=' + e.currentTarget.dataset.is_default,
+    })
+  },
+  // 新增地址页面
+  goAddShippingAddress(e){
+    wx.navigateTo({
+      url: './addShippingAddress/addShippingAddress'
     })
   },
   /**

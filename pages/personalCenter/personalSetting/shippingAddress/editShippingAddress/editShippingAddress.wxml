@@ -1,8 +1,10 @@
+<import src='../citySelectModel/citySelectModel.wxml'/> 
+
 <view class='editShippingAddress'>
   <view class='editInfoBox'>
     <view class='editInfoBoxLine'>
       <text>联系人</text>
-      <text>美圈惠</text>
+      <input value='{{addressDetailInfoObj.receipt_name}}' bindinput='getReceipt_name'></input>
       <view class='radioBox'>
         <radio></radio>
         <text>女士</text>
@@ -14,24 +16,26 @@
     </view>
     <view class='editInfoBoxLine'>
       <text>手机号码</text>
-      <text>11111111111</text>
+      <input value='{{addressDetailInfoObj.telephone}}' bindinput='getTelephone'></input>
     </view>
-    <view class='editInfoBoxLine'>
+    <!-- <view class='editInfoBoxLine'>
       <text>所在城市</text>
-      <text>北京市</text>
+      <text>{{addressDetailInfoObj.city_area0}}</text>
       <image src='../../../../images/leftArrow.png'></image>
-    </view>
-    <view class='editInfoBoxLine'>
+    </view> -->
+    <view class='editInfoBoxLine' bindtap='locationAddress'>
       <text>所在地区</text>
-      <text>朝阳区</text>
+      <input wx:if='{{!isCity_areaChange}}' value='{{addressDetailInfoObj.city_area}}' bindinput='getMorenAddress'></input>
+      <input wx:else value='{{province}} {{city}} {{county}}' bindinput='getLocationAddress'></input>
+      <template is="areaData" data="{{...item}}"/>
       <image src='../../../../images/leftArrow.png'></image>
     </view>
     <view class='editInfoBoxLine'>
       <text>详细地址</text>
-      <text>soho现代城4号楼</text>
+      <input value='{{addressDetailInfoObj.detailed_address}}' bindinput='getDetailAddress'></input>
     </view>
   </view>
-  <view class='saveBtn'>保存</view>
-  <view class='deleteBtn'>删除</view>
-  <view class='addShippingAddress'>新增地址</view>
+  <view class='saveBtn' bindtap='saveAddress'>保存</view>
+  <view class='deleteBtn' bindtap='deleteAddress'>删除</view>
+  <!-- <view class='addShippingAddress'>新增地址</view> -->
 </view>

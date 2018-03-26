@@ -1,6 +1,8 @@
 {
   "pages":[
-
+    "pages/submitOrder/submitOrder",
+    "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
+    
     
     "pages/personalCenter/totalOrder/totalOrder",
     
@@ -17,7 +19,7 @@
     "pages/category/productList/productList",
     
     "pages/buyNewGoods/buyNewGoods",
-    "pages/submitOrder/submitOrder",
+    
     
     "pages/shoppingCart/shoppingCart",
     
@@ -33,9 +35,9 @@
     "pages/personalCenter/personalSetting/personalSetting",
     "pages/personalCenter/myCollect/myCollect",
     "pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully",
-    "pages/personalCenter/personalSetting/shippingAddress/shippingAddress",
+    
     "pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
-    "pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
+    
    
     "pages/captain/captain",
     "pages/captain/inputID/inputID",

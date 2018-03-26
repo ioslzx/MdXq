@@ -1,4 +1,6 @@
 
+ @import '../citySelectModel/citySelectModel.wxss';  
+
 page{
   background-color: #F8F8F8;
 }
@@ -23,26 +25,55 @@ page{
   line-height: 125rpx;
   border: 0;
 }
-.addShoppingInputLine input{
+.addShoppingInputLine>input{
   float: right;
   width: 80%;
   height: 100%;
 }
+.location{
+  overflow: hidden; 
+  position: relative
+}
+.location text{
+  float: left;
+}
+.location input{
+  float: left!important;
+  width: 65%;
+  height: 100%;
+}
+.location image{
+  width: 50rpx;
+  height: 50rpx;
+  /* float: right;
+  margin-right: 90rpx;
+  margin-top: 25rpx;  */
+  position: absolute;
+  left: 85%;
+  top: 30rpx;
+}
+ /* .infoText{
+  height: 125rpx;
+  width: 100%;
+  float: left;
+}  */
 /* 设置默认地址 */
 .setDefaultAddress{
   width: 100%;
-  padding: 30rpx;
+  /* padding: 20rpx; */
   overflow: hidden;
   box-sizing: border-box;
   background-color: white;
   font-size: 30rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  padding-left: 20rpx;
 }
-.setDefaultAddress>image{
-  width: 70rpx;
-  height: 40rpx;
-  border-radius: 20rpx;
+.setDefaultAddress>switch{
+  /* width: 70rpx;
+  height: 40rpx; */
   float: right;
-  margin-right: 30rpx;
+  margin-right: 20rpx;
 }
 /* 保存地址 */
 .saveAddressBtn{

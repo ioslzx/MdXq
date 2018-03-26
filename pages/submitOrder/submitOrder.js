@@ -14,7 +14,12 @@ Page({
   onLoad: function (options) {
   
   },
-
+  // 选择地址
+  goAddress(e){
+    wx.navigateTo({
+      url: '../personalCenter/personalSetting/shippingAddress/shippingAddress',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
