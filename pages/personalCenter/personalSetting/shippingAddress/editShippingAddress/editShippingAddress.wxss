@@ -13,7 +13,6 @@ page{
 .editInfoBoxLine{
   width: 100%;
   border-bottom: 1rpx solid #EEEEEE;
-  overflow: hidden;
   padding: 0 20rpx 0 40rpx;
   font-size: 32rpx;
   box-sizing: border-box;
@@ -50,7 +49,7 @@ page{
 .editInfoBoxLine:nth-child(3) input{
   width: 72%;
 }
-.editInfoBoxLine:nth-child(3)>image{
+.editInfoBoxLine:nth-child(3) image{
   width: 40rpx;
   height: 40rpx;
   float: right;

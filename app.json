@@ -1,5 +1,6 @@
 {
   "pages":[
+
     
    
     "pages/homepage/homepage",
@@ -7,7 +8,16 @@
     
     
     
+
+    "pages/personalCenter/totalOrder1/totalOrder1",
+    "pages/personalCenter/totalOrder2/totalOrder2",
+
     
+    
+    
+    
+
+
 
     
     
@@ -25,9 +35,15 @@
     
     
     
+
     "pages/personalCenter/personalCenter",
 "pages/personalCenter/personalSetting/shippingAddress/shippingAddress",
 "pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
+
+    
+
+    
+
     
     "pages/personalCenter/totalOrder/totalOrder",
     "pages/personalCenter/orderDetail/orderDetail",
