@@ -21,7 +21,7 @@ Page({
     receipt_name:'',
     telephone:'',
     fullAddress:'',
-    city_area:'',
+    city_area:'北京市 市辖区 东城区',
     isDefault:2,
     province:'',
     county:'',
@@ -58,9 +58,7 @@ Page({
       city: item.citys[item.value[1]].name,
       county: item.countys[item.value[2]].name,
       isScroll:true,
-      // city_area: item.provinces[item.value[0]].name + item.provinces[item.value[1]].name + item.provinces[item.value[2]].name
     });
-
     var city_area = this.data.province + this.data.city + this.data.county;
     this.setData({
       city_area: city_area
@@ -80,14 +78,26 @@ Page({
   // 保存地址
   saveAddress(e){
     var that = this
-    console.log(that.data.isDefault)
-    debugger
-    console.log(that.data.city_area)
-    var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault
+    // console.log(that.data.isDefault)
+    // debugger
+    // console.log(that.data.city_area)
+    var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault;
+    // console.log(url)
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
+        if(res.data.success){
+          wx.navigateBack({
+            success: function (res) {
+              console.log(res)
+              var page = getCurrentPages().pop();
+              console.log(page)
+              if (page == undefined || page == null) return;
+              page.onShow();
+            }
+          })
+        }
       }
     })
   },

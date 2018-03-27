@@ -54,11 +54,10 @@ Page({
               setTimeout(function () {
                 //要延时执行的代码  
                 wx.navigateBack({
-                  url: '../totalOrder/totalOrder?orderDetailsID=2',
                   success: function (e) {
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
-                    page.onLoad();
+                    page.onShow();
                   }
                 })
               }, 700) 
@@ -79,11 +78,10 @@ Page({
         // console.log(res)
         if (res.data.success) {
           wx.navigateBack({
-            url:'../totalOrder/totalOrder?orderDetailsID=2',
             success: function (e) {
-            var page = getCurrentPages().pop();
-            if (page == undefined || page == null) return;
-            page.onLoad();
+              var page = getCurrentPages().pop();
+              if (page == undefined || page == null) return;
+              page.onShow();
             }
           })
         }
@@ -182,6 +180,7 @@ Page({
     })
   },
   getDetailAddress(e) {
+    console.log(e)
     var addressDetailInfoObj = this.data.addressDetailInfoObj
     addressDetailInfoObj.detailed_address = e.detail.value
     this.setData({

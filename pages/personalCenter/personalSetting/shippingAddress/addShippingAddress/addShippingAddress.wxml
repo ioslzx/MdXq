@@ -8,7 +8,7 @@
     </view>
     <view class='addShoppingInputLine'>
       <text>手机号码：</text>
-      <input bindinput='getTelephone'></input>
+      <input bindinput='getTelephone' class='telephoneInput'></input>
     </view>
     <view class='addShoppingInputLine location' bindtap='locationAddress'>
       <text>所在地区：</text> 
@@ -19,7 +19,7 @@
     </view>
     <view class='addShoppingInputLine' >
       <text>详细地址：</text>
-      <input bindinput='getFullAddress'></input> 
+      <input bindinput='getFullAddress' class='AddressInput'></input> 
     </view>
   </view>
 </view>

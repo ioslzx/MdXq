@@ -1,61 +1,31 @@
 {
   "pages":[
-
-    
    
     "pages/homepage/homepage",
     "pages/submitOrder/submitOrder",
     
-    
-    
-
-    "pages/personalCenter/totalOrder1/totalOrder1",
-    "pages/personalCenter/totalOrder2/totalOrder2",
-
-    
-    
-    
-    
-
-
-
-    
-    
     "pages/productDetails/productDetails",
-
-
-    
     "pages/category/category",
     "pages/category/productList/productList",
     
     "pages/buyNewGoods/buyNewGoods",
     
-    
     "pages/shoppingCart/shoppingCart",
-    
-    
-    
 
     "pages/personalCenter/personalCenter",
-"pages/personalCenter/personalSetting/shippingAddress/shippingAddress",
-"pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress",
 
-    
-
-    
-
-    
     "pages/personalCenter/totalOrder/totalOrder",
+    "pages/personalCenter/totalOrder1/totalOrder1",
+    "pages/personalCenter/totalOrder2/totalOrder2",
+    "pages/personalCenter/totalOrder3/totalOrder3",
     "pages/personalCenter/orderDetail/orderDetail",
 
     "pages/personalCenter/discountCoupon/discountCoupon",
     "pages/personalCenter/recharge/recharge",
-    "pages/personalCenter/personalSetting/personalSetting",
     "pages/personalCenter/myCollect/myCollect",
     "pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully",
-    
-    "pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
-    
+
+    "pages/personalCenter/personalSetting/personalSetting","pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress","pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
    
     "pages/captain/captain",
     "pages/captain/inputID/inputID",

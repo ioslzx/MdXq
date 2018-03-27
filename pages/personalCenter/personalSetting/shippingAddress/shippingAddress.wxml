@@ -7,10 +7,10 @@
       </view>
       <view class='leftLineBox'>
         <text class='Bottom' wx:if='{{item.is_default==1}}'>[默认地址]</text>
-        <text>{{item.city_area}}{{item.detailed_address}}</text>
+        <view>{{item.city_area}}{{item.detailed_address}}</view>
       </view>
     </view>
-    <view class='shippingAddressRight' bindtap='goEditShippingAddress' data-address_id='{{item.address_id}}' data-is_default='{{item.is_default}}'>编辑</view>
+    <view class='shippingAddressRight {{item.is_default==1?"newShippingAddressRight":""}}' bindtap='goEditShippingAddress' data-address_id='{{item.address_id}}' data-is_default='{{item.is_default}}'>编辑</view>
   </view>
   <view class='addShippingAddress' bindtap='goAddShippingAddress'>新增地址</view>
 </view>

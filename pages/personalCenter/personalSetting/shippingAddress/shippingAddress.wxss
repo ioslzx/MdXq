@@ -35,9 +35,12 @@ page{
   text-align: center;
   color: #FF6E6E;
   padding: 20rpx 40rpx;
-  border-left: 1rpx solid #EAEAEA;
   margin-top: 10rpx;
   font-size: 34rpx;
+  border-left: 1rpx solid #EAEAEA;
+}
+.newShippingAddressRight{
+  padding: 40rpx 40rpx;
 }
 /* 新增地址按钮 */
 .addShippingAddress{

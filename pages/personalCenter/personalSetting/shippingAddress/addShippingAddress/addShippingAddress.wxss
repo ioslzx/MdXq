@@ -21,6 +21,7 @@ page{
   height: 100rpx;
   line-height: 100rpx;
   overflow: hidden;
+  position: relative;
 }
 .addShoppingInputLine:nth-child(4){
   height: 125rpx;
@@ -32,10 +33,20 @@ page{
   width: 80%;
   height: 100%;
 }
-/* .location{
-  overflow: hidden; 
-  position: relative
-} */
+.addShoppingInputLine>.telephoneInput{
+  position: absolute;
+  top: 0rpx;
+  left: 150rpx;
+  background-color: res;
+  width: 80%;
+}
+.addShoppingInputLine>.AddressInput{
+  position: absolute;
+  top: 0rpx;
+  left: 150rpx;
+  background-color: res;
+  width: 80%;
+}
 .location text{
   float: left;
 }
@@ -47,16 +58,11 @@ page{
 .location image{
   width: 50rpx;
   height: 50rpx;
- 
   position: absolute;
   left: 85%;
   top: 235rpx;
 }
- /* .infoText{
-  height: 125rpx;
-  width: 100%;
-  float: left;
-}  */
+
 /* 设置默认地址 */
 .setDefaultAddress{
   width: 100%;

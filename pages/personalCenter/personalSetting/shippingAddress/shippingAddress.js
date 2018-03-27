@@ -16,8 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var url = baseUrl + '/api/address/load-list?customer_id=10030'
-    this.getAddressList(url)
+    
   },
   // 获取地址列表数据
   getAddressList(url){
@@ -25,10 +24,16 @@ Page({
     wx.request({
       url: url,
       success(res){
-        // console.log(res)
+        console.log(res)
         if(res.data.success){
+          var result = res.data.result;
+          for (var i = 0; i < result.length;i++){
+            if (result[i].detailed_address.length>7){
+              result[i].detailed_address=result[i].detailed_address.substr(0,7)+"..."
+            }
+          }
           that.setData({
-            addressListInfo: res.data.result
+            addressListInfo: result
           })
         }
       }
@@ -58,7 +63,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var url = baseUrl + '/api/address/load-list?customer_id=10030'
+    this.getAddressList(url)
   },
 
   /**
