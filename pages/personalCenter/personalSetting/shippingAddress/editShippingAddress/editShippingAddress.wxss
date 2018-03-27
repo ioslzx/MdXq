@@ -48,7 +48,7 @@ page{
   line-height: 100rpx;
 }
 .editInfoBoxLine:nth-child(3) input{
-  width: 65%;
+  width: 72%;
 }
 .editInfoBoxLine:nth-child(3)>image{
   width: 40rpx;

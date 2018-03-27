@@ -9,6 +9,7 @@ page{
   padding-left: 30rpx;
   background-color: white;
   width: 100%;
+  box-sizing: border-box;
 }
 .addShoppingInputBox{
   font-size: 30rpx;
@@ -19,6 +20,7 @@ page{
   border-bottom: 1rpx solid #EEEEEE;
   height: 100rpx;
   line-height: 100rpx;
+  overflow: hidden;
 }
 .addShoppingInputLine:nth-child(4){
   height: 125rpx;
@@ -30,10 +32,10 @@ page{
   width: 80%;
   height: 100%;
 }
-.location{
+/* .location{
   overflow: hidden; 
   position: relative
-}
+} */
 .location text{
   float: left;
 }
@@ -45,12 +47,10 @@ page{
 .location image{
   width: 50rpx;
   height: 50rpx;
-  /* float: right;
-  margin-right: 90rpx;
-  margin-top: 25rpx;  */
+ 
   position: absolute;
   left: 85%;
-  top: 30rpx;
+  top: 235rpx;
 }
  /* .infoText{
   height: 125rpx;

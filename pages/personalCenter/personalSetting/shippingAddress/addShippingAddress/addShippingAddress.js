@@ -22,7 +22,10 @@ Page({
     telephone:'',
     fullAddress:'',
     city_area:'',
-    isDefault:2
+    isDefault:2,
+    province:'',
+    county:'',
+    city:''
   },
 
   /**
@@ -54,8 +57,17 @@ Page({
       province: item.provinces[item.value[0]].name,
       city: item.citys[item.value[1]].name,
       county: item.countys[item.value[2]].name,
-      isScroll:true
+      isScroll:true,
+      // city_area: item.provinces[item.value[0]].name + item.provinces[item.value[1]].name + item.provinces[item.value[2]].name
     });
+
+    var city_area = this.data.province + this.data.city + this.data.county;
+    this.setData({
+      city_area: city_area
+    })
+    console.log(this.data.city_area)
+    // debugger
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -69,17 +81,18 @@ Page({
   saveAddress(e){
     var that = this
     console.log(that.data.isDefault)
+    debugger
+    console.log(that.data.city_area)
     var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault
-    // wx.request({
-    //   url: url,
-    //   success(res){
-    //     console.log(res)
-    //   }
-    // })
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+      }
+    })
   },
   // 获取收货人输入内容
   getReceipt_name(e){
-    // console.log(e)
     this.setData({
       receipt_name: e.detail.value
     })
@@ -90,16 +103,22 @@ Page({
     })
   },
   getFullAddress(e){
+    // debugger
+    console.log(e)
     this.setData({
       fullAddress: e.detail.value
     })
   },
   getLocationAddress(e){
+  //  debugger
+    console.log(e)
     this.setData({
       city_area: e.detail.value
     })
   },
   getMorenAddress(e){
+    // debugger
+    console.log(e)
     this.setData({
       city_area: e.detail.value
     })

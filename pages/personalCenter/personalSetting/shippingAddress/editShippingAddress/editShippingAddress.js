@@ -22,6 +22,9 @@ Page({
     addressDetailInfoObj:{},
     city_area:'',
     isCity_areaChange:false,
+    province: '',
+    county: '',
+    city: ''
   },
 
   /**
@@ -93,7 +96,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        // console.log(res)
+        console.log(res)
         if(res.data.success){
           res.data.result.city_area0 = res.data.result.city_area.split(' ')[0]
           res.data.result.city_area1 = res.data.result.city_area.split(' ')[1]
@@ -130,6 +133,13 @@ Page({
       county: item.countys[item.value[2]].name,
       isCity_areaChange:true
     });
+    var city_area = this.data.province + this.data.city + this.data.county;
+    var addressDetailInfoObj = this.data.addressDetailInfoObj;
+    addressDetailInfoObj.city_area = city_area
+    
+    this.setData({
+      addressDetailInfoObj: addressDetailInfoObj
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

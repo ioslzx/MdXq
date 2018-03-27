@@ -25,14 +25,14 @@
     </view> -->
     <view class='editInfoBoxLine' bindtap='locationAddress'>
       <text>所在地区</text>
-      <input wx:if='{{!isCity_areaChange}}' value='{{addressDetailInfoObj.city_area}}' bindinput='getMorenAddress'></input>
-      <input wx:else value='{{province}} {{city}} {{county}}' bindinput='getLocationAddress'></input>
+      <input wx:if='{{!isCity_areaChange}}' value='{{addressDetailInfoObj.city_area}}'></input>
+      <input wx:else value='{{province}} {{city}} {{county}}' ></input>
       <template is="areaData" data="{{...item}}"/>
       <image src='../../../../images/leftArrow.png'></image>
     </view>
     <view class='editInfoBoxLine'>
       <text>详细地址</text>
-      <input value='{{addressDetailInfoObj.detailed_address}}' bindinput='getDetailAddress'></input>
+      <input value='{{addressDetailInfoObj.detailed_address}}' ></input>
     </view>
   </view>
   <view class='saveBtn' bindtap='saveAddress'>保存</view>
