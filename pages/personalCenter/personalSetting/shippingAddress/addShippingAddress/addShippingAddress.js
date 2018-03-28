@@ -25,7 +25,8 @@ Page({
     isDefault:2,
     province:'',
     county:'',
-    city:''
+    city:'',
+    gender:0
   },
 
   /**
@@ -75,14 +76,21 @@ Page({
     //请求数据
     model.updateAreaData(that, 0, e);
   },
+  // 改变性别
+  radioChange(e) {
+    // console.log(e.detail.value)
+    var gender = e.detail.value;
+    this.setData({
+      gender: gender
+    })
+  },
   // 保存地址
   saveAddress(e){
     var that = this
     // console.log(that.data.isDefault)
     // debugger
     // console.log(that.data.city_area)
-    var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault;
-    // console.log(url)
+    var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault + '&gender=' + that.data.gender;
     wx.request({
       url: url,
       success(res){

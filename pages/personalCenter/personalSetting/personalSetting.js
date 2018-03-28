@@ -1,19 +1,64 @@
-// pages/personalCenter/personalSetting/personalSetting.js
+var app = getApp();
+var imgUrl = app.globalData.imgUrl;
+var baseUrl = app.globalData.baseUrl;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    picture: '',
+    nickname: '',
+    level: '',
+    customer_id:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    // 获取个人信息
+    wx.getStorage({
+      key: 'picture',
+      success: function (res) {
+        that.setData({
+          picture: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'nickname',
+      success: function (res) {
+        that.setData({
+          nickname: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'level',
+      success: function (res) {
+        that.setData({
+          level: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'customer_id',
+      success: function (res) {
+        that.setData({
+          customer_id: res.data
+        })
+      },
+    })
   },
+  // 点击去修改电话号码
+  alterTelephone(e){
+    wx.navigateTo({
+      url: './alterTelephne/alterTelephne',
+    })
+  },
+  // 点击去收货地址
   goShippingAddress(e){
     wx.navigateTo({
       url: './shippingAddress/shippingAddress',

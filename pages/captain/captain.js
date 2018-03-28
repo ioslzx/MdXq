@@ -1,4 +1,7 @@
 // pages/captain/captain.js
+var app = getApp();
+var imgUrl = app.globalData.imgUrl;
+var baseUrl = app.globalData.baseUrl;
 Page({
 
   /**
@@ -6,19 +9,78 @@ Page({
    */
   data: {
     // 默认不是堡主
-    isCaptain:true
+    isCaptain:true,
+    captainInfo:{},
+    totalEarnings:0,//总收益,
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    // 获取堡主信息
+    var captainInfoUrl = baseUrl +'/api/fort/hostess/load-info?customer_id='+10030;
+    that.getCaptainInfo(captainInfoUrl);
+
+    // 获取用户微信信息
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          userInfo:res.data
+        })
+      },
+    })
+  },
+  // 堡主信息方法
+  getCaptainInfo(url){
+    var that=this;
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          var totalEarnings = res.data.result.love_honey_bean + res.data.result.shopping_bonus + res.data.result.sign_honey_bean;
+          res.data.result.picture =imgUrl+ res.data.result.picture
+          that.setData({
+            captainInfo:res.data.result,
+            totalEarnings: totalEarnings
+          })
+          wx.setStorage({
+            key: 'fort_id',
+            data: that.data.captainInfo.fort_id,
+          })
+          wx.setStorage({
+            key: 'customer_id',
+            data: that.data.captainInfo.customer_id,
+          })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '数据获取失败',
+          })
+        }
+      }
+    })
   },
   // 点击成为堡主
   becomeCaptain(e){
     wx.navigateTo({
       url: './inputID/inputID',
+    })
+  },
+  // 点击去工厂分红收益
+  goFactoryDividendEarnings(e){
+    var navid = e.currentTarget.dataset.navid;
+    wx.setStorage({
+      key: 'navid',
+      data: navid,
+    })
+    wx.navigateTo({
+      url: './factoryDividendEarnings/factoryDividendEarnings'
     })
   },
   // 点击去我的礼包
@@ -32,6 +94,12 @@ Page({
   goTopPage(e){
     wx.navigateTo({
       url: './topPage/topPage',
+    })
+  },
+  // 点击客服管理
+  goPartner(e){
+    wx.navigateTo({
+      url: './partner/partner',
     })
   },
   /**

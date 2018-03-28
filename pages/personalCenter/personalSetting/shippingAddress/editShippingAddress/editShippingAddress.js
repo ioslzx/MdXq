@@ -39,9 +39,18 @@ Page({
     var url = baseUrl + '/api/address/load?address_id=' + this.data.address_id
     this.getAddressDetail(url)
   },
+  // 改变性别
+  radioChange(e){
+    // console.log(e.detail.value)
+    var addressDetailInfoObj = this.data.addressDetailInfoObj;
+    addressDetailInfoObj.gender=e.detail.value;
+    this.setData({
+      addressDetailInfoObj: addressDetailInfoObj
+    })
+  },
   // 保存编辑完的地址
   saveAddress(e){
-    var url = baseUrl + '/api/address/edit?address_id=' + this.data.addressDetailInfoObj.address_id + '&receipt_name=' + this.data.addressDetailInfoObj.receipt_name + '&city_area=' + this.data.addressDetailInfoObj.city_area + '&detailed_address=' + this.data.addressDetailInfoObj.detailed_address + '&telephone=' + this.data.addressDetailInfoObj.telephone + '&is_default=' + this.data.is_default
+    var url = baseUrl + '/api/address/edit?address_id=' + this.data.addressDetailInfoObj.address_id + '&receipt_name=' + this.data.addressDetailInfoObj.receipt_name + '&city_area=' + this.data.addressDetailInfoObj.city_area + '&detailed_address=' + this.data.addressDetailInfoObj.detailed_address + '&telephone=' + this.data.addressDetailInfoObj.telephone + '&is_default=' + this.data.is_default + '&gender=' + this.data.addressDetailInfoObj.gender;
     wx.request({
       url: url,
       success(res){

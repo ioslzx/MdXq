@@ -2,16 +2,18 @@
   <view class='personalCenterTopBox'>
     <view class='personalCenterTop'>
       <view class='personalCenterTopLeft'>
-        <image src='../images/demo1.png'></image>
+        <image src='{{picture}}'></image>
       </view>
       <view class='personalCenterTopCenter'>
         <view class='centerLine'>
           <text>昵称：</text>
-          <text>我的钱钱</text>
+          <text>{{nickname}}</text>
         </view>
         <view class='centerLine'>
           <text>等级：</text>
-          <text>我的钱钱是初级堡主</text>
+          <text wx:if='{{level==1}}'>普通用户</text>
+          <text wx:if='{{level==2}}'>黑钻会员</text>
+          <text wx:if='{{level==3}}'>天使堡主</text>
         </view>
       </view>
       <view class='personalCenterTopRight' bindtap='goSettingsPage'>

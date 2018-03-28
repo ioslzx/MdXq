@@ -141,6 +141,9 @@ page{
   font-size: 40rpx;
   margin-left: 20rpx;
 }
+.chooseAll checkbox-group{
+  display: inline-block;
+}
 .totalDeleteImg{
   width: 40rpx;
   height: 40rpx;

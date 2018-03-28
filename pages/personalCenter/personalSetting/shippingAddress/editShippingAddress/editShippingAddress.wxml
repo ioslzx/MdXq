@@ -5,14 +5,16 @@
     <view class='editInfoBoxLine'>
       <text>联系人</text>
       <input value='{{addressDetailInfoObj.receipt_name}}' bindinput='getReceipt_name'></input>
-      <view class='radioBox'>
-        <radio></radio>
-        <text>女士</text>
-      </view>
-      <view class='radioBox'>
-        <radio></radio>
-        <text>先生</text>
-      </view>
+        <radio-group bindchange='radioChange'>
+          <view class='radioBox'>
+            <radio value='2' checked='{{addressDetailInfoObj.gender==2}}'></radio>
+            <text>先生</text>
+          </view>
+          <view class='radioBox'>
+            <radio value='1' checked='{{addressDetailInfoObj.gender==1}}'></radio>
+            <text>女士</text>
+          </view>
+        </radio-group>
     </view>
     <view class='editInfoBoxLine'>
       <text>手机号码</text>

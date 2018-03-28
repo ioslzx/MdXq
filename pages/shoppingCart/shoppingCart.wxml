@@ -32,7 +32,9 @@
   </view>
   <view class='price'>
     <view class='chooseAll'>
-      <radio></radio>
+       <checkbox-group>
+        <checkbox></checkbox>
+      </checkbox-group> 
       <text>全选</text>
     </view>
     <view class='totalDeleteImg' bindtap='deleteShoppingCart' data-cart_id='{{item.cart_id}}'>

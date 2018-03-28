@@ -3,37 +3,39 @@
     <view class='captainContentBox' wx:else>
       <view class='captainContentTop'>
         <view class='topLeft'>
-          <image src='../images/demo1.png'></image>
+           <image wx:if='{{captainInfo.picture!=null}}'  src='{{captainInfo.picture}}'></image>
+           <image wx:else src='{{userInfo.avatarUrl}}'></image> 
         </view>
         <view class='topCenter'>
           <view class='lineBox lineBox1'>
             <text>昵称：</text>
-            <text>我的钱钱</text>
+            <text>{{captainInfo.nick_name}}</text>
           </view>
           <view class='lineBox lineBox2'>
             <text>ID：</text>
-            <text>123456</text>
+            <text>{{captainInfo.customer_id}}</text>
           </view>
-          <view class='lineBox lineBox3'>我的钱钱成为初级堡主</view>
+          <view class='lineBox lineBox3'>{{captainInfo.grade_name}}</view>
         </view>
         <view class='topRight'>
           <image src='../images/demo1.png'></image>
+          <!-- <image src='{{captainInfo.code_url}}'></image> -->
         </view>
       </view>
       <view class='dividendBox'>
         <view class='dividendBoxName'>工厂分红收益（元）</view>
-        <view class='dividendAmount'>43</view>
+        <view class='dividendAmount'>{{totalEarnings}}</view>
         <view class='dividendProject'>
-          <view class='dividendProjectNum'>
-            <view>3</view>
+          <view class='dividendProjectNum' bindtap='goFactoryDividendEarnings' data-navid='{{0}}'>
+            <view>{{captainInfo.sign_honey_bean}}</view>
             <view>签到蜜豆币</view>
           </view>
-        <view class='dividendProjectNum'>
-            <view>3</view>
+          <view class='dividendProjectNum' bindtap='goFactoryDividendEarnings' data-navid='{{1}}'>
+            <view>{{captainInfo.shopping_bonus}}</view>
             <view>购物分红</view>
           </view>
-          <view class='dividendProjectNum'>
-            <view>3</view>
+          <view class='dividendProjectNum' bindtap='goFactoryDividendEarnings' data-navid='{{2}}'>
+            <view>{{captainInfo.love_honey_bean}}</view>
             <view>爱心蜜豆币</view>
           </view>
         </view>
@@ -47,7 +49,7 @@
           <image src='../images/demo1.png'></image>
           <view>排行榜</view>
         </view>
-        <view class='captainBottomRow'>
+        <view class='captainBottomRow' bindtap='goPartner'>
           <image src='../images/demo1.png'></image>
           <view>客户管理</view>
         </view>

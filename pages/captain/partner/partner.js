@@ -7,9 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fort_id:0,
-    topPageInfo:[],
-    msg:''
+    customer_id: 0,
+    partnerInfo:[]
   },
 
   /**
@@ -17,40 +16,46 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // 获取fort_id
     wx.getStorage({
-      key: 'fort_id',
-      success: function(res) {
+      key: 'customer_id',
+      success: function (res) {
         // console.log(res)
         that.setData({
-          fort_id:res.data
+          customer_id: res.data
         })
-        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?fort_id=' + that.data.fort_id;
-        that.getTopPageInfo(topPageInfoUrl)
+          // + that.data.customer_id
+        var partnerInfoUrl = baseUrl + '/api/fort/hostess/partner?customer_id=10000' ;
+        that.getPartnerInfo(partnerInfoUrl)
       },
     })
   },
-  // 排行榜信息
-  getTopPageInfo(url){
+  getPartnerInfo(url){
     var that=this;
     wx.request({
       url: url,
       success(res){
         console.log(res)
         if(res.data.success){
-          var result=res.data.result;
-          for (var i = 0; i < result.rankingList.length;i++){
-            result.rankingList[i].picture = imgUrl+ result.rankingList[i].picture
+          var result = res.data.result;
+          for (var i = 0; i < result.length;i++){
+            result[i].picture = imgUrl + result[i].picture
           }
           that.setData({
-            topPageInfo: result,
-            msg: res.data.msg
+            partnerInfo: result
           })
         }else{
-          wx.showModal({
-            title: '提示',
-            content: '数据获取失败',
-          })
+          if (res.data.msg == "尚未进行分享"){
+            wx.showModal({
+              title: '提示',
+              content: '尚未进行分享',
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '数据获取失败',
+            })
+          }
+          
         }
       }
     })

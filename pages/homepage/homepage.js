@@ -28,6 +28,7 @@ Page({
       circular: true,
       interval: 3000
     },
+    openid:''
     
   },
 
@@ -35,6 +36,64 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
+    // 用户登录
+    // 获取用户信息
+    wx.getUserInfo({
+      success: function (res) {
+        // console.log(res)
+        var userInfo = res.userInfo;
+        // 登录
+        wx.login({
+          success: res => {
+            // console.log(res)
+            if (res.code) {
+              // console.log(res.code)
+              var url = baseUrl + '/api/customer/login?code=' + res.code
+                + '&appid=wxb27dd17f341dc468' + '&secret=fd3882c51618812dbc90b687345e30b8' + '&nickname=' + userInfo.nickName + '&picture=' + userInfo.avatarUrl;
+                wx.request({
+                  url: url,
+                  success(res) {
+                    // console.log(res)
+                    var data=res.data.result;
+                    if(res.data.success){
+                      //性别 0：未知、1：男、2：女
+                      wx.setStorage({
+                        key: 'picture',
+                        data: data.picture,
+                      })
+                      wx.setStorage({
+                        key: 'nickname',
+                        data: data.nickname,
+                      })
+                      wx.setStorage({
+                        key: 'customer_id',
+                        data: data.customer_id,
+                      })
+                      wx.setStorage({
+                        key: 'level',
+                        data: data.level,
+                      })
+                      wx.setStorage({
+                        key: 'referee_id',
+                        data: data.referee_id,
+                      })
+                    }else{
+                      wx.showModal({
+                        title: '提示',
+                        content: '登录失败',
+                      })
+                    }
+                  }
+                })
+            } else {
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        })
+      }
+    })
+    
     this.getHotGoods(baseUrl +'/api/product/hot?shop_id=10000')
     this.getRecommendGoods(baseUrl +'/api/product/recommend?shop_id=10000&recommend_id=4')
     this.getTopBanner(baseUrl +'/api/banner/load-list?shop_id=10000&state=1')  
@@ -45,7 +104,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           var data = res.data.result;
           for (var i = 0; i < data.length;i++){
@@ -54,7 +113,7 @@ Page({
               topBannerInfo: res.data.result
             })
           }
-          console.log(that.data.topBannerInfo)
+          // console.log(that.data.topBannerInfo)
         }
       }
     })

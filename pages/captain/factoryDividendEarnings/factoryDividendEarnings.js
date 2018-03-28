@@ -7,9 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navid:0,
+    topNavInfoArr: [
+      {
+        topNavInfoName: '签到收益'
+      },
+      {
+        topNavInfoName: '购物分红'
+      },
+      {
+        topNavInfoName: '爱心传递'
+      }
+    ],
+    dividendDetailList:[],
     fort_id:0,
-    topPageInfo:[],
-    msg:''
   },
 
   /**
@@ -17,34 +28,38 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // 获取fort_id
+    // 获取navid
     wx.getStorage({
-      key: 'fort_id',
+      key: 'navid',
       success: function(res) {
-        // console.log(res)
         that.setData({
-          fort_id:res.data
+          navid: res.data
         })
-        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?fort_id=' + that.data.fort_id;
-        that.getTopPageInfo(topPageInfoUrl)
       },
     })
+    wx.getStorage({
+      key: 'fort_id',
+      success: function (res) {
+        // console.log(res)
+        that.setData({
+          fort_id: res.data
+        })
+        var dividendDetailUrl = baseUrl + '/api/fort/hostess/factory/count?fort_id=' + that.data.fort_id;
+        that.getDividendDetail(dividendDetailUrl)
+      },
+    })
+    
   },
-  // 排行榜信息
-  getTopPageInfo(url){
+  // 工厂分红明细方法
+  getDividendDetail(url){
     var that=this;
     wx.request({
       url: url,
       success(res){
         console.log(res)
         if(res.data.success){
-          var result=res.data.result;
-          for (var i = 0; i < result.rankingList.length;i++){
-            result.rankingList[i].picture = imgUrl+ result.rankingList[i].picture
-          }
           that.setData({
-            topPageInfo: result,
-            msg: res.data.msg
+            dividendDetailList :res.data.result
           })
         }else{
           wx.showModal({
@@ -53,6 +68,13 @@ Page({
           })
         }
       }
+    })
+  },
+  // 点击导航
+  selectNav(e){
+    var navid = e.currentTarget.dataset.navid;
+    this.setData({
+      navid: navid
     })
   },
   /**

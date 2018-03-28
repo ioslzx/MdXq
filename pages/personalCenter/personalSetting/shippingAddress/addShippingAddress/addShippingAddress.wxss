@@ -33,6 +33,17 @@ page{
   width: 80%;
   height: 100%;
 }
+.addShoppingInputLine:nth-child(1) text{
+  float: left;
+}
+.addShoppingInputLine:nth-child(1) input{
+  width: 55%;
+  float: left;
+}
+.addShoppingInputLine:nth-child(1) radio-group{
+  position: absolute;
+  right: 0rpx;
+}
 .addShoppingInputLine>.telephoneInput{
   position: absolute;
   top: 0rpx;
@@ -61,6 +72,19 @@ page{
   position: absolute;
   left: 85%;
   top: 235rpx;
+}
+.radioBox{
+  display: inline-block;
+  float: right;
+  margin-right: 20rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked {
+background-color:#7F0373!important;
+border-color:#7F0373!important;
+}
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
 }
 
 /* 设置默认地址 */
