@@ -1,6 +1,7 @@
 /* pages/productDetails/productDetails.wxss */
 
 @import '../homepage/recommendTemplate/recommendTemplate.wxss';
+@import './sizeQuantityTemplate/sizeQuantityTemplate.wxss';
 
 page{
   background-color: rgb(245, 246, 247);
@@ -263,6 +264,8 @@ page{
   left: 0;
   height: 110rpx;
   line-height: 110rpx;
+  /*如果不写这句话，购买数量那个数字就会在上面  */
+  z-index: 666
 }
 .collection{
   flex: 1;

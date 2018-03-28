@@ -1,6 +1,7 @@
 <!--pages/productDetails/productDetails.wxml-->
 
 <import src='../homepage/recommendTemplate/recommendTemplate.wxml'/>
+<import src='./sizeQuantityTemplate/sizeQuantityTemplate.wxml'/>
 
 <view class='productDetailsPage'>
   <view class='productImagesBox'>
@@ -62,9 +63,13 @@
       <text>正品保证</text>
     </view>
   </view>
-  <view class='amount'>
+  <view class='amount' bindtap='isShow'>
     <text>规格数量选择</text>
-    <image src='../images/rightArrow.jpg'></image>
+    <image wx:if='{{!isShowSizeAndAmount}}' src='../images/rightArrow.jpg'></image>
+    <image wx:else src='../images/xiala.png'></image>
+  </view>
+  <view class='sizeQuantityTemplateBox' wx:if='{{isShowSizeAndAmount}}'>
+    <template is='sizeQuantityTemplate' data='{{mallProductModels,currentId,quantity,productDetailsInfoObj}}'></template>
   </view>
   <view class='productDetailImg'>
     <text>商品详情</text>

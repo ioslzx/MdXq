@@ -25,6 +25,13 @@ Page({
     product_id:0,
     // 为你推荐数组
     recommendGoodsInfo: [],
+    // 规格数量选择是否弹出
+    isShowSizeAndAmount:false,
+    quantity:1,
+    model_id:1,
+    mallProductModels:[],
+    currentId:0,
+    minusStatus: 'disabled',
   },
 
   /**
@@ -37,13 +44,55 @@ Page({
     this.getProductDetail(baseUrl + '/api/product/load?product_id=' + this.data.product_id)
     this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
   },
+  // 点击减号按钮函数
+  bindMinus: function (e) {
+    // console.log(e)
+    var quantity = this.data.quantity;
+    if (quantity > 1) {
+      quantity--;
+    }
+    var minusStatus = quantity <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      quantity: quantity,
+      minusStatus: minusStatus
+    });
+  },
+  // 点击增加按钮函数
+  bindPlus: function (e) {
+    var quantity = this.data.quantity;
+    quantity++;
+    // 只有大于一件的时候，才能normal状态，否则disable状态  
+    var minusStatus = quantity <= 1 ? 'disabled' : 'normal';
+    // 将数值与状态写回  
+    this.setData({
+      quantity: quantity,
+      minusStatus: minusStatus
+    });
+  },
+  // 改变选中的规格背景颜色
+  chooseSize(e) {
+    console.log(e)
+    var currendID = e.currentTarget.dataset.id
+    var model_ID = e.currentTarget.dataset.model_id
+    this.setData({
+      currentId: currendID,
+      model_id: model_ID
+    })
+  },
+  // 弹出规格数量选择窗口
+  isShow(e){
+    this.setData({
+      isShowSizeAndAmount: !this.data.isShowSizeAndAmount
+    })
+  },
   //获取为你推荐数据
   getRecommendGoods(url) {
     var that = this
     wx.request({
       url: url,
       success(res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.success) {
           var data = res.data.result;
           for (var i = 0; i < data.length; i++) {
@@ -52,19 +101,19 @@ Page({
               recommendGoodsInfo: data
             })
           }
-          console.log(that.data.recommendGoodsInfo)
+          // console.log(that.data.recommendGoodsInfo)
         }
       }
     })
   },
   // 加入购物车点击事件
   addShopppingCart: function (e){
-    console.log(this.data.product_id)
-    var url = baseUrl + '/api/shopping/cart/add?customer_id=10030&model_id=' + '1' + '&product_id=' + this.data.product_id + '&quantity=' + '10'
+    // console.log(this.data.product_id)
+    var url = baseUrl + '/api/shopping/cart/add?customer_id=10030&model_id=' + this.data.model_id + '&product_id=' + this.data.product_id + '&quantity=' + this.data.quantity
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if (res.data.success){
           wx.showToast({
             title: '成功加入购物车',
@@ -113,12 +162,14 @@ Page({
             sales_volume: data.sales_volume,
             // spec: data.spec,
             detail_diagram: data.detail_diagram,
-            mallProductModels: data.mallProductModels
+            mallProductModels: data.mallProductModels,
+            stock_count: data.stock_count
           }
           that.setData({
-            productDetailsInfoObj:productDetailsInfoObj
+            productDetailsInfoObj:productDetailsInfoObj,
+            mallProductModels: data.mallProductModels
           })
-          console.log(that.data.productDetailsInfoObj)
+          // console.log(that.data.productDetailsInfoObj)
         }
       },
       fail(error) {
