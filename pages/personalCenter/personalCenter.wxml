@@ -23,11 +23,11 @@
   </view>
   <view class='orderManagement'>
    <view class='orderManagementRow' bindtap='goOrderDetails' data-orderDetailsID='{{0}}'>
-    <image src='../images/orderImg/order1.png'></image>
+    <image src='../images/orderImg/order2.png'></image>
     <view>待付款</view>
    </view>
    <view class='orderManagementRow' bindtap='goOrderDetails' data-orderDetailsID='{{1}}'>
-    <image src='../images/orderImg/order4.png'></image>
+    <image src='../images/orderImg/order1.png'></image>
     <view>待发货</view>
    </view>
    <view class='orderManagementRow' bindtap='goOrderDetails' data-orderDetailsID='{{2}}'>
@@ -35,7 +35,7 @@
     <view>待收货</view>
    </view>
    <view class='orderManagementRow' bindtap='goOrderDetails' data-orderDetailsID='{{3}}'>
-    <image src='../images/orderImg/order2.png'></image>
+    <image src='../images/orderImg/order4.png'></image>
     <view>全部订单</view>
    </view>
   </view>

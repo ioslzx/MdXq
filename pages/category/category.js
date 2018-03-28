@@ -43,7 +43,6 @@ Page({
         if(res.data.success){
           var data = res.data.result;
           for(var i = 0;i < data.length;i++){
-            console.log(data[categoryindex])
             that.setData({ 
               secondCatagoryInfo: data[categoryindex].childMallProject
             })
@@ -52,7 +51,7 @@ Page({
             that.setData({
               thirdCatagoryInfo: that.data.secondCatagoryInfo[i].childMallProject
             })
-            console.log(that.data.thirdCatagoryInfo)
+            // console.log(that.data.thirdCatagoryInfo)
           }
           that.setData({
             sideBarInfo:data

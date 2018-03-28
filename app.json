@@ -48,32 +48,32 @@
     "list": [{
       "pagePath": "pages/homepage/homepage",
       "text": "首页",
-      "iconPath": "pages/images/tabbarImages/homepage.png",
-      "selectedIconPath": "pages/images/tabbarImages/homepageSelect.png"
+      "iconPath": "pages/images/tabbarImages/tabbar9.png",
+      "selectedIconPath": "pages/images/tabbarImages/tabbar10.png"
     },
     {
       "pagePath": "pages/category/category",
       "text": "分类",
-      "iconPath": "pages/images/tabbarImages/category.png",
-      "selectedIconPath": "pages/images/tabbarImages/categorySelect.png"
+      "iconPath": "pages/images/tabbarImages/tabbar2.png",
+      "selectedIconPath": "pages/images/tabbarImages/tabbar1.png"
     },
     {
       "pagePath": "pages/shoppingCart/shoppingCart",
       "text": "购物车",
-      "iconPath": "pages/images/tabbarImages/shoppingCart.png",
-      "selectedIconPath": "pages/images/tabbarImages/shoppingCartSelect.png"
+      "iconPath": "pages/images/tabbarImages/tabbar6.png",
+      "selectedIconPath": "pages/images/tabbarImages/tabbar5.png"
     },
     {
       "pagePath": "pages/personalCenter/personalCenter",
       "text": "个人中心",
-      "iconPath": "pages/images/tabbarImages/personalCenter.png",
-      "selectedIconPath": "pages/images/tabbarImages/personalCenterSelect.png"
+      "iconPath": "pages/images/tabbarImages/tabbar4.png",
+      "selectedIconPath": "pages/images/tabbarImages/tabbar3.png"
     },
     {
       "pagePath": "pages/captain/captain",
       "text": "堡主",
-      "iconPath": "pages/images/tabbarImages/captain.png",
-      "selectedIconPath": "pages/images/tabbarImages/captainSelect.png"
+      "iconPath": "pages/images/tabbarImages/tabbar7.png",
+      "selectedIconPath": "pages/images/tabbarImages/tabbar8.png"
     }]
   }
 }
