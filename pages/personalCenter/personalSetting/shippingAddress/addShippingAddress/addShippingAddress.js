@@ -26,14 +26,15 @@ Page({
     province:'',
     county:'',
     city:'',
-    gender:0
+    gender:0,
+    customer_id:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
   // 获取三级城市列表
   locationAddress(e){
@@ -87,27 +88,33 @@ Page({
   // 保存地址
   saveAddress(e){
     var that = this
-    // console.log(that.data.isDefault)
-    // debugger
-    // console.log(that.data.city_area)
-    var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=10030' + '&is_default=' + that.data.isDefault + '&gender=' + that.data.gender;
-    wx.request({
-      url: url,
-      success(res){
-        // console.log(res)
-        if(res.data.success){
-          wx.navigateBack({
-            success: function (res) {
-              console.log(res)
-              var page = getCurrentPages().pop();
-              console.log(page)
-              if (page == undefined || page == null) return;
-              page.onShow();
+    wx.getStorage({
+      key: 'customer_id',
+      success: function (res) {
+        that.setData({
+          customer_id: res.data
+        })
+        var url = baseUrl + '/api/address/edit?receipt_name=' + that.data.receipt_name + '&telephone=' + that.data.telephone + '&detailed_address=' + that.data.fullAddress + '&city_area=' + that.data.city_area + '&customer_id=' + that.data.customer_id + '&is_default=' + that.data.isDefault + '&gender=' + that.data.gender;
+        wx.request({
+          url: url,
+          success(res) {
+            // console.log(res)
+            if (res.data.success) {
+              wx.navigateBack({
+                success: function (res) {
+                  console.log(res)
+                  var page = getCurrentPages().pop();
+                  console.log(page)
+                  if (page == undefined || page == null) return;
+                  page.onShow();
+                }
+              })
             }
-          })
-        }
-      }
+          }
+        })
+      },
     })
+    
   },
   // 获取收货人输入内容
   getReceipt_name(e){

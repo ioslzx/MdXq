@@ -23,8 +23,7 @@ Page({
         that.setData({
           customer_id: res.data
         })
-          // + that.data.customer_id
-        var partnerInfoUrl = baseUrl + '/api/fort/hostess/partner?customer_id=10000' ;
+        var partnerInfoUrl = baseUrl + '/api/fort/hostess/partner?customer_id=' + that.data.customer_id ;
         that.getPartnerInfo(partnerInfoUrl)
       },
     })

@@ -10,6 +10,7 @@ Page({
    */
   data: {
     addressListInfo:[],
+    customer_id:0
   },
 
   /**
@@ -63,8 +64,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var url = baseUrl + '/api/address/load-list?customer_id=10030'
-    this.getAddressList(url)
+    var that=this;
+    wx.getStorage({
+      key: 'customer_id',
+      success: function(res) {
+        that.setData({
+          customer_id:res.data
+        })
+        var url = baseUrl + '/api/address/load-list?customer_id=' + that.data.customer_id;
+        that.getAddressList(url);
+      },
+    })
+    
   },
 
   /**

@@ -12,7 +12,8 @@ Page({
     isCaptain:true,
     captainInfo:{},
     totalEarnings:0,//总收益,
-    userInfo:{}
+    userInfo:{},
+    customer_id:0,
   },
 
   /**
@@ -20,20 +21,21 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // 获取堡主信息
-    var captainInfoUrl = baseUrl +'/api/fort/hostess/load-info?customer_id='+10030;
-    that.getCaptainInfo(captainInfoUrl);
-
-    // 获取用户微信信息
+    // 获取用户id
     wx.getStorage({
-      key: 'userInfo',
-      success: function(res) {
+      key: 'customer_id',
+      success: function (res) {
         console.log(res)
         that.setData({
-          userInfo:res.data
+          customer_id: res.data
         })
+        // 获取堡主信息
+        var captainInfoUrl = baseUrl + '/api/fort/hostess/load-info?customer_id=' + that.data.customer_id;
+        that.getCaptainInfo(captainInfoUrl);
       },
     })
+   
+
   },
   // 堡主信息方法
   getCaptainInfo(url){
@@ -53,15 +55,13 @@ Page({
             key: 'fort_id',
             data: that.data.captainInfo.fort_id,
           })
-          wx.setStorage({
-            key: 'customer_id',
-            data: that.data.captainInfo.customer_id,
-          })
         }else{
-          wx.showModal({
-            title: '提示',
-            content: '数据获取失败',
-          })
+          if (res.data.msg = "请先成为堡主"){
+            that.setData({
+              isCaptain:true
+            })
+            console.log(that.data.isCaptain)
+          }
         }
       }
     })

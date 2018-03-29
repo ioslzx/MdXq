@@ -34,7 +34,6 @@ Page({
             referee_id: res.data
           })
         }
-        
       },
     })
     wx.getStorage({

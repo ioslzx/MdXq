@@ -32,6 +32,7 @@ Page({
     mallProductModels:[],
     currentId:0,
     minusStatus: 'disabled',
+    customer_id:0
   },
 
   /**
@@ -109,24 +110,34 @@ Page({
   // 加入购物车点击事件
   addShopppingCart: function (e){
     // console.log(this.data.product_id)
-    var url = baseUrl + '/api/shopping/cart/add?customer_id=10030&model_id=' + this.data.model_id + '&product_id=' + this.data.product_id + '&quantity=' + this.data.quantity
-    wx.request({
-      url: url,
-      success(res){
-        // console.log(res)
-        if (res.data.success){
-          wx.showToast({
-            title: '成功加入购物车',
-          })
-        }else{
-          wx.showToast({
-            title: '加入购物车失败',
-          })
-        }
-      },fail(error){
+    var that=this;
+    wx.getStorage({
+      key: 'customer_id',
+      success: function(res) {
+        that.setData({
+          customer_id:res.data
+        })
+        var url = baseUrl + '/api/shopping/cart/add?customer_id=' + that.data.customer_id+'&model_id=' + this.data.model_id + '&product_id=' + this.data.product_id + '&quantity=' + this.data.quantity
+        wx.request({
+          url: url,
+          success(res) {
+            // console.log(res)
+            if (res.data.success) {
+              wx.showToast({
+                title: '成功加入购物车',
+              })
+            } else {
+              wx.showToast({
+                title: '加入购物车失败',
+              })
+            }
+          }, fail(error) {
 
-      }
+          }
+        })
+      },
     })
+    
   },
   // 获取商品详情数据
   getProductDetail(url){

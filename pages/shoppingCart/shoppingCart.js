@@ -14,7 +14,8 @@ Page({
     shoppingCartListInfo:[],
     cart_ids:'',
     // 为你推荐数组
-    recommendGoodsInfo: []
+    recommendGoodsInfo: [],
+    customer_id:0
 
   },
 
@@ -22,11 +23,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     // 获取购物车列表
-    var shoppingCartListUrl = baseUrl +'/api/shopping/cart/load-list?customer_id='+10030;
-    this.getShoppingCartList(shoppingCartListUrl);
-    // 获取为你推荐数据
-    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+    wx.getStorage({
+      key: 'customer_id',
+      success: function(res) {
+        that.setData({
+          customer_id:res.data
+        })
+        var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + that.data.customer_id;
+        that.getShoppingCartList(shoppingCartListUrl);
+        // 获取为你推荐数据
+        that.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+      },
+    })
   },
   // 跳转到商品详情
   goProductDetail(e) {
@@ -43,7 +53,7 @@ Page({
     wx.request({
       url: url,
       success(res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.success) {
           var data = res.data.result;
           for (var i = 0; i < data.length; i++) {
@@ -52,7 +62,7 @@ Page({
               recommendGoodsInfo: data
             })
           }
-          console.log(that.data.recommendGoodsInfo)
+          // console.log(that.data.recommendGoodsInfo)
         }
       }
     })
@@ -63,7 +73,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           var data=res.data.result;
           for(var i=0;i<data.length;i++){
@@ -160,8 +170,16 @@ Page({
         console.log(res)
         if(res.data.success){
           // 获取购物车列表
-          var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + 10030;
-          that.getShoppingCartList(shoppingCartListUrl);
+          wx.getStorage({
+            key: 'customer_id',
+            success: function(res) {
+              that.setData({
+                customer_id:res.data
+              })
+              var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + that.data.customer_id;
+              that.getShoppingCartList(shoppingCartListUrl);
+            },
+          })
         }else{
 
         }

@@ -23,7 +23,7 @@ Page({
       }
     ],
     currentID:0,
-    customer_id:null,
+    customer_id:0,
     orderListInfo:[],
     orderDetail:[],
     orderDetailLength:0
@@ -40,30 +40,38 @@ Page({
           that.setData({
             currentID:res.data
           })
-          if (that.data.currentID==0){
-            // 获取待付款
-            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
-            that.getOrderListInfo(orderListUrl)
-          } else if (that.data.currentID == 1){
-            // 获取待发货
-            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=3';
-            that.getOrderListInfo(orderListUrl)
-          } else if (that.data.currentID == 2) {
-            // 获取待收货
-            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=1';
-            that.getOrderListInfo(orderListUrl)
-          }else{
-            // 获取全部订单列表
-            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030;
-            that.getOrderListInfo(orderListUrl)
-          }
+          wx.getStorage({
+            key: 'customer_id',
+            success: function (res) {
+              that.setData({
+                customer_id: res.data
+              })
+              if (that.data.currentID == 0) {
+                // 获取待付款
+                var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=2' + '&_query.order_state=1';
+                that.getOrderListInfo(orderListUrl)
+              } else if (that.data.currentID == 1) {
+                // 获取待发货
+                var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=1&_query.logistics_state=3';
+                that.getOrderListInfo(orderListUrl)
+              } else if (that.data.currentID == 2) {
+                // 获取待收货
+                var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=1&_query.logistics_state=1';
+                that.getOrderListInfo(orderListUrl)
+              } else {
+                // 获取全部订单列表
+                var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id;
+                that.getOrderListInfo(orderListUrl)
+              }
+            },
+          })
         },
       })
-     
   },
   // 待付款页面取消订单
   cancleOrder(e){
     console.log(e)
+    var that=this;
     var order_id = e.currentTarget.dataset.order_id
     var url = baseUrl + '/api/order/cancel?order_id=' + order_id
     wx.request({
@@ -71,9 +79,9 @@ Page({
       success(res) {
         console.log(res)
         if (res.data.success) {
-          wx.showToast({
-            title: '取消订单成功',
-          })
+          // 获取待付款
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=2' + '&_query.order_state=1';
+          that.getOrderListInfo(orderListUrl)
         } else {
           wx.showToast({
             title: '取消订单失败',
@@ -81,9 +89,7 @@ Page({
         }
       }
     })
-    // 获取待付款
-    var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
-    this.getOrderListInfo(orderListUrl)
+    
   },
   // 提醒发货点击事件
   goRemind(e){
@@ -96,7 +102,7 @@ Page({
         console.log(res)
         if (res.data.success) {
             // 获取待发货
-            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=3';
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=1&_query.logistics_state=3';
             that.getOrderListInfo(orderListUrl)
         }
       }
@@ -118,7 +124,7 @@ Page({
         console.log(res)
         if(res.data.success){
           // 获取待收货
-          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=1';
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=1&_query.logistics_state=1';
           that.getOrderListInfo(orderListUrl)
         }else{
           wx.showToast({
@@ -131,25 +137,26 @@ Page({
   // 点击导航事件
   goSelectNav: function (e) {
     var currentID = e.currentTarget.dataset.currentid;
+    var that=this;
     this.setData({
       currentID: currentID,
       orderListInfo:[]
     })
     if (this.data.currentID==3){
       // 获取全部订单列表
-      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030;
+      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id;
       this.getOrderListInfo(orderListUrl)
     } else if (this.data.currentID == 2){
       // 获取待收货
-      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 +'&_query.payment_state=1&_query.logistics_state=1';
+      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id +'&_query.payment_state=1&_query.logistics_state=1';
       this.getOrderListInfo(orderListUrl)
     } else if (this.data.currentID == 1) {
       // 获取待发货
-      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=3';
+      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=1&_query.logistics_state=3';
       this.getOrderListInfo(orderListUrl)
     }else{
       // 获取待付款
-      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
+      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=2' + '&_query.order_state=1';
       console.log(orderListUrl)
       this.getOrderListInfo(orderListUrl)
     }
@@ -200,7 +207,7 @@ Page({
         console.log(res)
         if (res.data.success) {
           // 获取待付款
-          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=2' + '&_query.order_state=1';
           that.getOrderListInfo(orderListUrl)
         }
       }

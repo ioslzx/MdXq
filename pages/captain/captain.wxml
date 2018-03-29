@@ -1,5 +1,5 @@
 <view class='captain'>
-    <view class='captainNull' wx:if='{{!isCaptain}}' bindtap='becomeCaptain'>成为堡主</view> 
+    <view class='captainNull' wx:if='{{isCaptain}}' bindtap='becomeCaptain'>成为堡主</view> 
     <view class='captainContentBox' wx:else>
       <view class='captainContentTop'>
         <view class='topLeft'>
