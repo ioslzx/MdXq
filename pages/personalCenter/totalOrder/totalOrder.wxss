@@ -17,7 +17,6 @@ page{
   position: fixed;
   top: 0;
   left: 0;
-  border-top: 1rpx solid #DBDBDB;
 }
 .navigation{
   flex: 1;

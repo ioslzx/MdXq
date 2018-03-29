@@ -10,7 +10,7 @@
         <text>{{item.create_time}}</text>
       </text>
     </view>
-    <view bindtap='goOrderDetail' data-order_id='{{item.order_id}}' data-currentID='{{0}}'>
+    <view bindtap='goOrderDetail' data-order_id='{{item.order_id}}' data-currentID='{{0}}' data-state='{{item.state}}'>
       <block  wx:for='{{orderDetail}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
         <template is='obligationCenter' data='{{...item,orderDetailLength}}'></template>
       </block>
@@ -27,7 +27,7 @@
     </view>
   </view>
   <view class='waitSendOutBox' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' data-order_id='{{item.order_id}}' wx:if='{{currentID==1}}'>
-    <view bindtap='goOrderDetail' data-order_id='{{item.order_id}}' data-currentID='{{1}}'>
+    <view bindtap='goOrderDetail' data-state='{{item.state}}' data-order_id='{{item.order_id}}' data-currentID='{{1}}'>
       <view class='obligationTop'>
       <text class='obligationTopLeft'>待发货</text>
       <text class='obligationTopRight'>
@@ -44,12 +44,13 @@
         <text>￥{{item.amount}}</text>
       </view>
       <view class='obligationCenterBottomLine2'>
-        <text style='border: 1rpx solid #BEBEBE;color:black' bindtap='goRemind'>提醒发货</text>
+        <text wx:if='{{item.remind_deliver_goods==1}}' style='border: 1rpx solid #BEBEBE;color:black'  bindtap='goRemind' data-order_id='{{item.order_id}}'>提醒发货</text>
+         <text wx:if='{{item.remind_deliver_goods==2}}'  style='border: 1rpx solid #BEBEBE;color:black;width:300rpx;color:red' >已经提醒发货</text>
       </view>
     </view>
   </view>
   <view class='waitReceivingBox' wx:for='{{orderListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' wx:if='{{currentID==2}}'>
-    <view bindtap='goOrderDetail' data-order_id='{{item.order_id}}' data-currentID='{{2}}'>
+    <view bindtap='goOrderDetail' data-state='{{item.state}}' data-order_id='{{item.order_id}}' data-currentID='{{2}}'>
       <view class='obligationTop'>
       <text class='obligationTopLeft'>待收货</text>
       <text class='obligationTopRight'>

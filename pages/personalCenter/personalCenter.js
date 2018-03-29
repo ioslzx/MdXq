@@ -53,23 +53,13 @@ Page({
   // 点击去订单详情
   goOrderDetails(e){
     var orderDetailsID=e.currentTarget.dataset.orderdetailsid;
-    if (orderDetailsID==0){
+    wx.setStorage({
+      key: 'orderDetailsID',
+      data: orderDetailsID,
+    })
       wx.navigateTo({
         url: './totalOrder/totalOrder'
       })
-    } else if (orderDetailsID==1){
-      wx.navigateTo({
-        url: './totalOrder1/totalOrder1'
-      })
-    } else if (orderDetailsID==2){
-      wx.navigateTo({
-        url: './totalOrder2/totalOrder2'
-      })
-    }else{
-      wx.navigateTo({
-        url: './totalOrder3/totalOrder3'
-      })
-    }
   },
   // 点击去优惠券
   goDiscountCoupon(e){

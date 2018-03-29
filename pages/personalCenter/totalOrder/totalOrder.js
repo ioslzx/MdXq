@@ -33,10 +33,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
-      // 获取待付款
-      var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
-      this.getOrderListInfo(orderListUrl)
+      var that=this;
+      wx.getStorage({
+        key: 'orderDetailsID',
+        success: function(res) {
+          that.setData({
+            currentID:res.data
+          })
+          if (that.data.currentID==0){
+            // 获取待付款
+            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
+            that.getOrderListInfo(orderListUrl)
+          } else if (that.data.currentID == 1){
+            // 获取待发货
+            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=3';
+            that.getOrderListInfo(orderListUrl)
+          } else if (that.data.currentID == 2) {
+            // 获取待收货
+            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=1';
+            that.getOrderListInfo(orderListUrl)
+          }else{
+            // 获取全部订单列表
+            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030;
+            that.getOrderListInfo(orderListUrl)
+          }
+        },
+      })
+     
   },
   // 待付款页面取消订单
   cancleOrder(e){
@@ -64,8 +87,19 @@ Page({
   },
   // 提醒发货点击事件
   goRemind(e){
-    wx.showToast({
-      title: '提醒发货成功',
+    var that=this;
+    var order_id = e.currentTarget.dataset.order_id
+    var RemindUrl = baseUrl + '/api/order/remind?order_id=' + order_id;
+    wx.request({
+      url: RemindUrl,
+      success(res) {
+        console.log(res)
+        if (res.data.success) {
+            // 获取待发货
+            var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=3';
+            that.getOrderListInfo(orderListUrl)
+        }
+      }
     })
   },
   // 待付款页面付款点击事件
@@ -75,6 +109,7 @@ Page({
   // 待收货确认收货点击事件
   confirmReceipt(e){
     console.log(e)
+    var that=this;
     var order_id = e.currentTarget.dataset.order_id
     var url = baseUrl + '/api/order/confirm-receipt?order_id=' + order_id
     wx.request({
@@ -82,9 +117,9 @@ Page({
       success(res){
         console.log(res)
         if(res.data.success){
-          wx.showToast({
-            title: '确认收货成功',
-          })
+          // 获取待收货
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=1';
+          that.getOrderListInfo(orderListUrl)
         }else{
           wx.showToast({
             title: '确认收货失败',
@@ -92,9 +127,6 @@ Page({
         }
       }
     })
-    // 获取待收货
-    var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=1&_query.logistics_state=1';
-    this.getOrderListInfo(orderListUrl)
   },
   // 点击导航事件
   goSelectNav: function (e) {
@@ -129,7 +161,7 @@ Page({
       url: url,
       success(res){
         if(res.data.success){
-          console.log(res.data)
+          // console.log(res.data)
           var data = res.data.result.rows;
           for(var i=0;i<data.length;i++){
             for (var j = 0; j < data[i].orderDetail.length;j++){
@@ -146,14 +178,31 @@ Page({
           })
           // console.log(that.data.orderListInfo)
         }else{
-          wx.showModal({
-            title: '提示',
-            content: '暂无数据',
-          })
+          // wx.showModal({
+          //   title: '提示',
+          //   content: '暂无数据',
+          // })
         }
       },
       fail(error){
         console.log(error)
+      }
+    })
+  },
+  // 取消订单点击事件
+  cancleOrder(e) {
+    var that=this;
+    var order_id = e.currentTarget.dataset.order_id
+    var url = baseUrl + '/api/order/cancel?order_id=' + order_id
+    wx.request({
+      url: url,
+      success(res) {
+        console.log(res)
+        if (res.data.success) {
+          // 获取待付款
+          var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + 10030 + '&_query.payment_state=2' + '&_query.order_state=1';
+          that.getOrderListInfo(orderListUrl)
+        }
       }
     })
   },
@@ -163,6 +212,7 @@ Page({
     var order_id = e.currentTarget.dataset.order_id;
     var currentID = e.currentTarget.dataset.currentid;
     var state = e.currentTarget.dataset.state;
+    // console.log(currentID)
     wx.navigateTo({
       url: '../orderDetail/orderDetail?order_id=' + order_id + '&currentID=' + currentID + '&state=' + state
     })

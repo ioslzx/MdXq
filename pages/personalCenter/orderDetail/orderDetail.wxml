@@ -1,4 +1,10 @@
 <view class='orderDetail'>
+
+<view class='countDownBox'   wx:if='{{currentID==0 || state=="待付款"}}'wx:if='{{currentID==0 || state=="待付款"}}' >
+  <image src='../../images/Countdown.png'></image>
+  <view>等待买家付款</view>
+  <view>剩{{countDownDay}}天{{countDownHour}}小时{{countDownMinute}}分{{countDownSecond}}秒自动关闭</view>
+</view>
   <view class='orderDetailTop'>
     <view class='orderDetailTopLine'>
     <!-- 1-正常，2-退货，3-已取消，4-已完成 -->
@@ -16,10 +22,11 @@
       <text>下单时间：</text>
       <text>{{orderDetailsInfo.create_time}}</text>
     </view>
-    <view class='goPayMoney' wx:if='{{currentID==0 || state=="待付款"}}'>去支付</view>
-    <view class='goPayMoney' wx:if='{{currentID==1 || state=="待发货"}}' bindtap='goRemind'>提醒发货</view>
-    <view class='goPayMoney' wx:if='{{currentID==2 || state=="待收货"}}' bindtap='goConfirmReceipt'>确认收货</view>
-    <view class='cancleOrder' wx:if='{{currentID==0 || state=="待付款"}}'>
+    <view class='goPayMoney' wx:if='{{currentID==0&&state=="待付款"}}'>去支付</view>
+    <view class='goPayMoney' wx:if='{{currentID==1&&state=="待发货"&&orderDetailsInfo.remind_deliver_goods==1}}' bindtap='goRemind'>提醒发货</view>
+     <view class='goPayMoney' wx:if='{{currentID==1&&state=="待发货"&&orderDetailsInfo.remind_deliver_goods==2}}'>已经提醒发货</view>
+    <view class='goPayMoney' wx:if='{{currentID==2&&state=="待收货"}}' bindtap='goConfirmReceipt'>确认收货</view>
+    <view class='cancleOrder' wx:if='{{currentID==0&&state=="待付款"}}'>
       <view bindtap='cancleOrder'>取消订单</view>
       <view bindtap='placingOrder'>重新下单</view>
     </view>
