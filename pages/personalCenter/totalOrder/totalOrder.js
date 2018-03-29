@@ -157,7 +157,7 @@ Page({
     }else{
       // 获取待付款
       var orderListUrl = baseUrl + '/api/order/query-list?_query.customer_id=' + that.data.customer_id + '&_query.payment_state=2' + '&_query.order_state=1';
-      console.log(orderListUrl)
+      // console.log(orderListUrl)
       this.getOrderListInfo(orderListUrl)
     }
   },

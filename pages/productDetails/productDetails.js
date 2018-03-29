@@ -2,7 +2,7 @@
 var app = getApp();
 var imgUrl = app.globalData.imgUrl;
 var baseUrl = app.globalData.baseUrl;
-
+var model_idArr=[];//为提交订单做准备
 Page({
 
   /**
@@ -73,9 +73,9 @@ Page({
   },
   // 改变选中的规格背景颜色
   chooseSize(e) {
-    console.log(e)
-    var currendID = e.currentTarget.dataset.id
-    var model_ID = e.currentTarget.dataset.model_id
+    // console.log(e)
+    var currendID = e.currentTarget.dataset.id;
+    var model_ID = e.currentTarget.dataset.model_id;
     this.setData({
       currentId: currendID,
       model_id: model_ID
@@ -110,14 +110,20 @@ Page({
   // 加入购物车点击事件
   addShopppingCart: function (e){
     // console.log(this.data.product_id)
-    var that=this;
+    var that = this;
+    model_idArr.push(that.data.model_id);
+    wx.setStorage({
+      key: 'model_idArr',
+      data: model_idArr,
+    })
     wx.getStorage({
       key: 'customer_id',
       success: function(res) {
         that.setData({
           customer_id:res.data
         })
-        var url = baseUrl + '/api/shopping/cart/add?customer_id=' + that.data.customer_id + '&model_id=' + that.data.model_id + '&product_id=' + that.data.product_id + '&quantity=' + that.data.quantity
+        var url = baseUrl + '/api/shopping/cart/add?customer_id=' + that.data.customer_id + '&model_id=' + that.data.model_id + '&product_id=' + that.data.product_id + '&quantity=' + that.data.quantity;
+        // console.log(url)
         wx.request({
           url: url,
           success(res) {
@@ -145,7 +151,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           var data = res.data.result;
 
@@ -179,8 +185,12 @@ Page({
           that.setData({
             productDetailsInfoObj:productDetailsInfoObj,
             mallProductModels: data.mallProductModels,
-            model_id: data.mallProductModels[0].model_id
           })
+          if (data.mallProductModels.length!=0){
+            that.setData({
+              model_id: data.mallProductModels[0].model_id
+            })
+          }
           // console.log(that.data.productDetailsInfoObj)
         }
       },

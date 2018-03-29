@@ -15,23 +15,26 @@ page{
   font-size: 30rpx;
   color: rgb(95, 95, 95);
   border-top: 2rpx solid rgb(245, 246, 247);
+  position: relative;
 }
 .addressBox image:nth-child(1){
   display: inline-block;
   width: 55rpx;
   height: 55rpx;
-  margin-right: 25rpx;
+  position: absolute;
+  left: 30rpx;
 }
 .addressBox view{
-  margin-top: 15rpx;
   display: inline-block;
   width: 80%;
+  margin-left: 70rpx;
 }
 .addressBox image:nth-child(3){
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
-  /* margin-left: 20rpx;  */
+ position: absolute;
+ right: 30rpx;
 }
 /*订单+优惠减免+支付方式*/
 .order,.discount,.payType{

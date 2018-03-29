@@ -23,9 +23,13 @@
 .productName view:nth-child(1){
   color: rgb(95, 95, 95);
   font-size: 38rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
 }
 .productName view:nth-child(2){
+  color: rgb(194, 195, 196);
+  font-size: 35rpx;
+}
+.productName view:nth-child(3){
   color: rgb(194, 195, 196);
   font-size: 35rpx;
 }

@@ -1,16 +1,17 @@
 {
   "pages":[
-    
+   "pages/submitOrder/submitOrder",
+    "pages/shoppingCart/shoppingCart",
     
     "pages/homepage/homepage",
-    "pages/submitOrder/submitOrder",
+    
     "pages/buyNewGoods/buyNewGoods",
     "pages/productDetails/productDetails",
 
     "pages/category/category",
     "pages/category/productList/productList",
     
-    "pages/shoppingCart/shoppingCart",
+    
 
     "pages/personalCenter/personalCenter",
     "pages/personalCenter/personalSetting/personalSetting",

@@ -10,7 +10,8 @@ Page({
    */
   data: {
     addressListInfo:[],
-    customer_id:0
+    customer_id:0,
+    defaultAddress:''
   },
 
   /**
@@ -29,6 +30,16 @@ Page({
         if(res.data.success){
           var result = res.data.result;
           for (var i = 0; i < result.length;i++){
+            
+            if (result[i].is_default==1){
+              that.setData({
+                defaultAddress: result[i].address_id
+              })
+              wx.setStorage({
+                key: 'defaultAddress',
+                data: that.data.defaultAddress,
+              })
+            }
             if (result[i].detailed_address.length>7){
               result[i].detailed_address=result[i].detailed_address.substr(0,7)+"..."
             }

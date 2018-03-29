@@ -5,13 +5,14 @@
 <view class='submitOrderHomePage'>
   <view class='addressBox' bindtap='goAddress'>
     <image src='../images/location.jpg'></image>
-    <view>收货地址:北京市朝阳区建国路88号SOHO现代城4号楼3006室</view>
+    <view>收货地址:{{addressDetailInfo.city_area}}{{addressDetailInfo.detailed_address}}</view>
     <image src='../images/rightArrow.jpg'></image>
   </view>
   <view class='order'>订单</view>
   <view class='orderInfoBox'>
-    <template is = 'orderInfoTemplate'/>
-    <template is = 'orderInfoTemplate'/>
+    <block wx:for='{{ProductInfoArr}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+      <template is = 'orderInfoTemplate' data='{{...item}}'/>
+    </block>
   </view>
   <view class='deliverMode'>
     <view>发货方式</view>
@@ -44,6 +45,6 @@
   <view class='payBox'>
     <view class='choosePayType'>微信支付</view>
     <view class='payTotalPrice'>总计：¥0.00</view>
-    <view class='pay'>付款</view>
+    <view class='pay' bindtap='payClick'>付款</view>
   </view>
 </view>
