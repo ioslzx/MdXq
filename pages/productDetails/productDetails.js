@@ -117,7 +117,7 @@ Page({
         that.setData({
           customer_id:res.data
         })
-        var url = baseUrl + '/api/shopping/cart/add?customer_id=' + that.data.customer_id+'&model_id=' + this.data.model_id + '&product_id=' + this.data.product_id + '&quantity=' + this.data.quantity
+        var url = baseUrl + '/api/shopping/cart/add?customer_id=' + that.data.customer_id + '&model_id=' + that.data.model_id + '&product_id=' + that.data.product_id + '&quantity=' + that.data.quantity
         wx.request({
           url: url,
           success(res) {
@@ -178,7 +178,8 @@ Page({
           }
           that.setData({
             productDetailsInfoObj:productDetailsInfoObj,
-            mallProductModels: data.mallProductModels
+            mallProductModels: data.mallProductModels,
+            model_id: data.mallProductModels[0].model_id
           })
           // console.log(that.data.productDetailsInfoObj)
         }
