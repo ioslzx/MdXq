@@ -31,7 +31,7 @@
     </view>
     <view class='goodsInfo'>
       <text>{{item.product_name}}</text>
-      <text>{{item.content}}{{unit}}</text>
+      <text>{{item.content}}{{item.unit}}</text>
       <text>¥{{item.member_price}}</text>
     </view>
     <view class="stepper">  

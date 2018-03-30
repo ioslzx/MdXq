@@ -5,7 +5,6 @@
     </view>
     <view class='productName'>
       <view>{{product_name}}</view>
-      <view>{{model_name}}</view>
       <view>{{content}}{{unit}}</view>
     </view>
     <view class='priceAndAmount'>

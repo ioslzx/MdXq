@@ -3,6 +3,7 @@ var baseUrl = app.globalData.baseUrl;
 var imgUrl = app.globalData.imgUrl;
 var ProductInfoArr = [];
 var product_infoArr=[];
+var data=[];
 Page({
 
   /**
@@ -17,7 +18,8 @@ Page({
     product_infoArr:[],//传参
     level:'',
     shop_id:'',
-    model_idArr:[]
+    model_idArr:[],
+    cart_idArr:''
   },
 
   /**
@@ -47,12 +49,13 @@ Page({
       }
     })
   },
-  // 获取商品信息
-  getProductInfo(url){
-    var that=this;
+  // 获取购物车列表
+  getShoppingCartList(url) {
+    var that = this;
     wx.getStorage({
       key: 'level',
       success: function(res) {
+        // console.log(res.data)
         that.setData({
           level:res.data
         })
@@ -61,66 +64,42 @@ Page({
           success(res) {
             console.log(res)
             if (res.data.success) {
+              // debugger
               var data = res.data.result;
-              var ProductInfoObj = {};
-              var product_infoObj={};
-              wx.getStorage({
-                key: 'model_idArr',
-                success: function (res) {
-                  that.setData({
-                    model_idArr: res.data
-                  })
-                  console.log(that.data.model_idArr)
-                  for (var j = 0; j < that.data.model_idArr.length; j++) {
-                    for (var i = 0; i < data.mallProductModels.length; i++) {
-                      if (that.data.model_idArr[j] == data.mallProductModels[i].model_id){
-                        product_infoObj = {
-                          product_id: data.product_id,
-                          quantity: data.mallProductModels[i].quantity,
-                        }
-                        ProductInfoObj = {
-                          exhibition: imgUrl + data.exhibition,
-                          product_name: data.product_name,
-                          quantity: data.mallProductModels[i].quantity,
-                          model_name: data.mallProductModels[i].model_name,
-                          content: data.mallProductModels[i].content,
-                          unit: data.mallProductModels[i].unit
-                        }
-                        if (that.data.level == 1) {
-                          ProductInfoObj.price = data.mallProductModels[i].market_price;
-                          product_infoObj.price = data.mallProductModels[i].market_price;
-                        } else if (that.data.level == 2) {
-                          ProductInfoObj.price = data.mallProductModels[i].member_price;
-                          product_infoObj.price = data.mallProductModels[i].member_price;
-                        } else {
-                          ProductInfoObj.price = data.mallProductModels[i].vip_price;
-                          product_infoObj.price = data.mallProductModels[i].vip_price;
-                        }
-                        ProductInfoArr.push(ProductInfoObj);
-                        product_infoArr.push(product_infoObj)
-                      }
-                    }
-                  }
-                  that.setData({
-                    ProductInfoArr: ProductInfoArr,
-                    shop_id: data.shop_id,
-                    product_infoArr: product_infoArr
-                  })
-                  console.log(that.data.ProductInfoArr)
-                },
+              var product_infoObj = {};
+              for (var i = 0; i < data.length; i++) {
+                data[i].exhibition = imgUrl + data[i].exhibition;
+                product_infoObj = {
+                  product_id: data[i].product_id,
+                  quantity: data[i].quantity,
+                }
+                if (that.data.level==1){
+                  product_infoObj.price =data[i].market_price
+                  data[i].price = data[i].market_price
+                } else if (that.data.level ==2){
+                  product_infoObj.price = data[i].member_price
+                  data[i].price = data[i].member_price
+                }else{
+                  product_infoObj.price = data[i].vip_price
+                  data[i].price = data[i].vip_price
+                }
+                product_infoArr.push(product_infoObj)
+              }
+              that.setData({
+                ProductInfoArr: data,
+                product_infoArr: product_infoArr
               })
             }
           }
         })
       },
     })
-    
   },
   // 点击提交订单
   payClick(e){
     var that=this;
     var product_infos = JSON.stringify(that.data.product_infoArr)
-    var payClickUrl = baseUrl +'/api/order/save?shop_id='+that
+    var payClickUrl = baseUrl +'/api/order/save?shop_id='+10000
       + '&customer_id=' + that.data.customer_id + '&address_id=' + that.data.defaultAddress + '&product_infos=' + product_infos;
     console.log(payClickUrl)
   },
@@ -155,31 +134,26 @@ Page({
         that.setData({
           customer_id:res.data
         })
+        var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + that.data.customer_id;
+        that.getShoppingCartList(shoppingCartListUrl);
       },
     })
-    // 获取商品id
+    // 获取购物车id
     wx.getStorage({
-      key: 'product_ids',
+      key: 'cart_ids',
       success: function(res) {
-        var product_idArr=res.data.split(',');
+        var cart_idArr=res.data.split(',');
         var tempArr = [];
-        for (var i = 0; i < product_idArr.length; i++) {
-          if (tempArr.indexOf(product_idArr[i]) == -1) {
-            tempArr.push(product_idArr[i]);
+        for (var i = 0; i < cart_idArr.length; i++) {
+          if (tempArr.indexOf(cart_idArr[i]) == -1) {
+            tempArr.push(cart_idArr[i]);
           }
         }
         that.setData({
-          product_idArr: tempArr
+          cart_idArr: tempArr
         })
-        console.log(that.data.product_idArr)
-        for (var i=0;i<that.data.product_idArr.length;i++){
-          var productInfoUrl = baseUrl + '/api/product/load?product_id=' + product_idArr[i];
-          that.getProductInfo(productInfoUrl)
-        }
-        
       },
     })
-    
   },
 
   /**

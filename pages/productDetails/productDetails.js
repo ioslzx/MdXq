@@ -111,10 +111,13 @@ Page({
   addShopppingCart: function (e){
     // console.log(this.data.product_id)
     var that = this;
-    model_idArr.push(that.data.model_id);
+    var model_idObj={};
+    model_idObj.model_id = that.data.model_id;
+    // model_idObj.num=1;
+    model_idArr.push(model_idObj);
     wx.setStorage({
       key: 'model_idArr',
-      data: model_idArr,
+      data: JSON.stringify(model_idArr),
     })
     wx.getStorage({
       key: 'customer_id',
