@@ -1,5 +1,5 @@
 <template name = 'productListTemplate'>
-  <view class='productListTemplateBox'>
+  <view class='productListTemplateBox' bindtap='recommendGoProductDetail' data-product_id='{{product_id}}'>
   <!-- //bindtap='recommendGoProductDetail' -->
     <image class='recommendProductImage' src='{{exhibition}}'></image> 
     <view class='productListName'>{{product_name}}</view>

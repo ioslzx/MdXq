@@ -8,7 +8,7 @@
         </view>
         <view class='topCenter'>
           <view class='lineBox lineBox1'>
-            <text>昵称：</text>
+            <text>昵称：{{isCaptain}}</text>
             <text>{{captainInfo.nick_name}}</text>
           </view>
           <view class='lineBox lineBox2'>
@@ -53,7 +53,7 @@
           <image src='../images/demo1.png'></image>
           <view>客户管理</view>
         </view>
-        <view class='captainBottomRow'>
+        <view class='captainBottomRow' bindtap='withdrawClick'>
           <image src='../images/demo1.png'></image>
           <view>提现</view>
         </view>

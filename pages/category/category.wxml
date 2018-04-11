@@ -1,5 +1,6 @@
 <import src='./categoryTemplate/categoryTemplate.wxml'/>
-<view class='category'>
+ <import src='./productList/productListTemplate/productListTemplate.wxml'/>
+<view class='category' wx:if='{{isSearchResultNull}}'>
   <view class='sideBarBox'>
     <view class='sideBarList {{categoryindex==index?"activeSideBar":""}}'wx:for='{{sideBarInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' bindtap='selectCategory' data-categoryIndex='{{index}}'>
     {{item.project_name}} 
@@ -7,9 +8,9 @@
   </view>
   <view class='categoryRightBox'>
     <view class='searchBox'>
-       <image src='../images/search.png'></image> 
-      <input placeholder='搜索商品名称'></input>
-        <text>搜索</text>  
+      <image src='../images/search.png'></image> 
+      <input placeholder='搜索商品名称' bindinput='searchInput'></input>
+      <text bindtap='searchButton'>搜索</text>  
     </view>
     <view class='categorySecondLevel1' wx:for='{{secondCatagoryInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
       <view class='categorySecondLevelTop'>{{item.project_name}}</view>
@@ -19,4 +20,9 @@
     </view>
 
   </view>
+</view>
+<view class='searchResultBox' wx:else>
+  <block wx:for='{{searchProductList}}' wx:for-index='{{index}}' wx:for-item='item' wx:key='index'>
+    <template is='productListTemplate' data='{{...item}}'/>
+  </block>
 </view>

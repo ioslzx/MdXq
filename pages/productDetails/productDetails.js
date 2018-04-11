@@ -2,7 +2,10 @@
 var app = getApp();
 var imgUrl = app.globalData.imgUrl;
 var baseUrl = app.globalData.baseUrl;
+var shop_id = app.globalData.shop_id;
 var model_idArr=[];//为提交订单做准备
+var product_infos = [];//商品和规格id
+var amount = 0;//订单总价
 Page({
 
   /**
@@ -32,7 +35,13 @@ Page({
     mallProductModels:[],
     currentId:0,
     minusStatus: 'disabled',
-    customer_id:0
+    customer_id:0,
+    level:0,
+    vip_price:0,
+    market_price:0,
+    member_price:0,
+    customer_id: 0,
+    isShopCartPage:false
   },
 
   /**
@@ -42,8 +51,17 @@ Page({
     this.setData({
       product_id:options.product_id
     })
-    this.getProductDetail(baseUrl + '/api/product/load?product_id=' + this.data.product_id)
-    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+    if (options.isShopCartPage){
+      this.setData({
+        model_id: options.model_id,
+        quantity: options.quantity,
+        isShopCartPage: options.isShopCartPage
+      })
+    }
+    // console.log(this.data.model_id)
+    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=' + shop_id+'&recommend_id=4')
+
+    
   },
   // 点击减号按钮函数
   bindMinus: function (e) {
@@ -74,8 +92,25 @@ Page({
   // 改变选中的规格背景颜色
   chooseSize(e) {
     // console.log(e)
+    var that=this;
     var currendID = e.currentTarget.dataset.id;
     var model_ID = e.currentTarget.dataset.model_id;
+    var vip_price = e.currentTarget.dataset.vip_price;
+    var market_price = e.currentTarget.dataset.market_price;
+    var member_price = e.currentTarget.dataset.member_price;
+    if(that.data.level==1){
+      that.setData({
+        market_price: market_price
+      })
+    } else if (that.data.level == 2){
+      that.setData({
+        member_price: member_price
+      })
+    }else{
+      that.setData({
+        vip_price: vip_price
+      })
+    }
     this.setData({
       currentId: currendID,
       model_id: model_ID
@@ -146,7 +181,6 @@ Page({
         })
       },
     })
-    
   },
   // 获取商品详情数据
   getProductDetail(url){
@@ -157,8 +191,13 @@ Page({
         // console.log(res)
         if(res.data.success){
           var data = res.data.result;
-
-          // console.log(that.data.imgUrlInfo)
+          // console.log(that.data.model_id)
+          // console.log(that.data.isShopCartPage)
+          that.setData({
+            vip_price: data.mallProductModels[0].vip_price,
+            member_price: data.mallProductModels[0].member_price,
+            market_price: data.mallProductModels[0].market_price
+          })
           // 轮播图
           var imgUrlInfo = [];
           for (var i = 0; i < data.banner_diagram.split(',').length;i++){
@@ -183,7 +222,24 @@ Page({
             // spec: data.spec,
             detail_diagram: data.detail_diagram,
             mallProductModels: data.mallProductModels,
-            stock_count: data.stock_count
+            stock_count: data.stock_count,
+            is_collection: data.is_collection
+          }
+          if (that.data.isShopCartPage) {
+            that.setData({
+              model_id: that.data.model_id
+            })
+            for (var j = 0; j < data.mallProductModels.length; j++) {
+              if (data.mallProductModels[j].model_id == that.data.model_id) {
+                that.setData({
+                  currentId: j
+                })
+              }
+            }
+          } else {
+            that.setData({
+              model_id: data.mallProductModels[0].model_id
+            })
           }
           that.setData({
             productDetailsInfoObj:productDetailsInfoObj,
@@ -202,6 +258,52 @@ Page({
       }
     })
   },
+  // 点击立即购买
+  buyNowTap(e){
+    var product_infosObj={};
+    product_infosObj.model_id = this.data.model_id;
+    product_infosObj.quantity = this.data.quantity;
+    product_infosObj.product_id = this.data.product_id;
+    product_infos.push(product_infosObj)
+    if (this.data.level == 1) {
+      amount = this.data.quantity *this.data.market_price;
+    } else if (this.data.level == 2 ) {
+      amount = this.data.quantity * this.data.member_price;
+    } else {
+      amount = this.data.quantity * this.data.vip_price;
+    }
+    // console.log(product_infos)
+    wx.navigateTo({
+      url: '../submitOrder/submitOrder?product_infos=' + JSON.stringify(product_infos)+ '&amount=' + amount + '&isShopCart=false',
+    })
+  },
+  // 点击收藏商品
+  collectTab(e){
+    // console.log(e)
+    var that = this;
+    var product_id = that.data.product_id;
+    var productDetailsInfoObj = that.data.productDetailsInfoObj;
+    wx.request({
+      url: baseUrl + '/api/collection/save?product_id=' + product_id + '&customer_id=' + that.data.customer_id,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          wx.showToast({
+            title: '收藏成功',
+          })
+          productDetailsInfoObj.is_collection = true;
+          that.setData({
+            productDetailsInfoObj: productDetailsInfoObj
+          })
+        } else if (res.data.msg == "该商品已经收藏"){
+          wx.showToast({
+            title: "该商品已经收藏",
+          })
+        }
+      }
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -213,7 +315,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that=this;
+    // 获取level
+    wx.getStorage({
+      key: 'level',
+      success: function(res) {
+        that.setData({
+          level:res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'customer_id',
+      success: function(res) {
+        that.setData({
+          customer_id:res.data
+        })
+        that.getProductDetail(baseUrl + '/api/product/load?product_id=' + that.data.product_id + '&customer_id=' + that.data.customer_id)
+      },
+    })
+    // 分享
+    // wx.showShareMenu({
+    //   withShareTicket: true,
+    //   success: function (res) {
+    //     // 分享成功
+    //     // console.log('shareMenu share success')
+    //     // console.log('分享' + res)
+    //   },
+    //   fail: function (res) {
+    //     // 分享失败
+    //     // console.log(res)
+    //   }
+    // })
   },
 
   /**
@@ -247,7 +380,65 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  // showShareMenu() {
+  //   wx.showShareMenu();
+  //   console.log("显示了当前页面的转发按钮");
+  // },
+  // hideShareMenu() {
+  //   wx.hideShareMenu();
+  //   console.log("隐藏了当前页面的转发按钮");
+  // },
+  // onShareAppMessage: (res) => {
+  //   if (res.from === 'button') {
+  //     console.log("来自页面内转发按钮");
+  //     console.log(res.target);
+  //   }
+  //   else {
+  //     console.log("来自右上角转发菜单")
+  //   }
+  //   return {
+  //     title: '图片',
+  //     path: '/pages/productDetails/productDetails?custormerId=10037',
+  //     imageUrl: "../images/demo1.png",
+  //     success: (res) => {
+  //       console.log("转发成功", res);
+  //     },
+  //     fail: (res) => {
+  //       console.log("转发失败", res);
+  //     }
+  //   }
+  // }
+  onShareAppMessage: function (res) {
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   console.log(res.target)
+    // }
+    // wx.showShareMenu({
+    //   withShareTicket: true
+    // })
+    return {
+      title: '发给老安',
+      path: '/pages/productDetails/productDetails?custormerId=10037',
+      success: function (res) {
+        console.log('/pages/productDetails/productDetails?custormerId=10037')
+        // console.log(res.shareTickets[0])
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: function (res) { 
+            // console.log(res) 
+          },
+          // fail: function (res) {
+          //    console.log(res) 
+          // },
+          // complete: function (res) { 
+          //   console.log(res) 
+          // }
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+        // console.log(res)
+      }
+    }
   }
 })

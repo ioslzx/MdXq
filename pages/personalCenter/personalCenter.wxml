@@ -55,7 +55,7 @@
     <view class='bottomLineBox' bindtap='rechargeClick'>
       <text>充值蜜豆币</text>
       <image src='../images/leftArrow.png'></image>
-      <text class='residueMoney'>余2000币</text>
+      <text class='residueMoney'>余{{recharge_balance}}</text>
     </view>
     <view class='bottomLineBox' bindtap='contactCustomerService'>
       <text>联系客服</text>

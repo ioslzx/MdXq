@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.project_id)
+    // console.log(options.project_id)
     this.getProductListInfo(baseUrl + productListBaseUrl + '_query.project_id=' + options.project_id)
   },
   getProductListInfo(url){
@@ -24,7 +24,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.result){
           var data = res.data.result;
           for(var i = 0;i < data.rows.length;i++){
@@ -41,6 +41,13 @@ Page({
       fail(error) {
 
       }
+    })
+  },
+  // 点击去商品详情
+  recommendGoProductDetail(e){
+    var product_id = e.currentTarget.dataset.product_id;
+    wx.navigateTo({
+      url: '../../productDetails/productDetails?product_id=' + product_id,
     })
   },
   /**

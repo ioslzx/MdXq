@@ -5,13 +5,13 @@
   </view>
   <view class='rechargeContent'>
     <view class='rechargeContentTop'>
-      <input placeholder='输入ID号'></input>
+      <input placeholder='输入ID号' bindinput='customerIdInput'></input>
       <image src='../../images/mine.png'></image>
     </view>
     <view class='rechargeContentBottom'>
       <view style='font-size=30rpx;color:#C4C4C4'>充值蜜币</view>
       <view class='rechargeNumBox'>
-        <view class='rechargeNumList' wx:for='{{rechargeNumInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+        <view class='rechargeNumList' bindtap='rechargeClick' wx:for='{{rechargeNumInfo}}' data-rechargeNum='{{item.content1}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
           <view>{{item.content1}}</view>
           <view>{{item.content2}}</view>
         </view>

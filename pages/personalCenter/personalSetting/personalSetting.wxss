@@ -32,6 +32,11 @@ page{
   float: right;
   margin-right: 25rpx;
 }
+.personalCenterTopLine:nth-child(3) text:last-child{
+  float: right!important;
+  margin-top: 0!important;
+  padding-right: 10rpx;
+}
 .headerBox{
   display: inline-block;
   width: 100rpx;

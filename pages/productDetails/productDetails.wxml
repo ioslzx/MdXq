@@ -69,19 +69,21 @@
     <image wx:else src='../images/xiala.png'></image>
   </view>
   <view class='sizeQuantityTemplateBox' wx:if='{{isShowSizeAndAmount}}'>
-    <template is='sizeQuantityTemplate' data='{{mallProductModels,currentId,quantity,productDetailsInfoObj}}'></template>
+    <template is='sizeQuantityTemplate' data='{{mallProductModels,currentId,quantity,productDetailsInfoObj,level}}'></template>
   </view>
   <view class='productDetailImg'>
     <text>商品详情</text>
     <image src='../images/meinv.jpg'></image>
   </view>
    <view class='bottomShoppingCart'>
-    <view class='collection'>
-      <image src='../images/beautyCare.png'></image>
+    <view class='collection' bindtap='collectTab' data-product_id='{{productDetailsInfoObj.product_id}}'>
+    <image src='../images/demo1.png' wx:if='{{productDetailsInfoObj.is_collection}}'></image>
+      <image src='../images/beautyCare.png' wx:else></image>
+      
       <view>收藏</view>
     </view>
     <view class='inShopppingCart' bindtap='addShopppingCart'>加入购物车</view>
-    <view class='buyNow'>立即购买</view>
+    <view class='buyNow' bindtap='buyNowTap'>立即购买</view>
   </view> 
   <view class='productDetailRecommand'>
       <image src='../images/beautyCare.png'></image>

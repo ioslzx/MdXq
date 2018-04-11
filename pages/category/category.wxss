@@ -1,4 +1,5 @@
 @import './categoryTemplate/categoryTemplate.wxss';
+@import './productList/productListTemplate/productListTemplate.wxss';
 .sideBarBox{
    width: 27%;
    position: fixed;
@@ -72,4 +73,10 @@
 .categorySecondLevelTop{
   padding: 29rpx;
   font-size: 36rpx;
+}
+.searchResultBox{
+  /* background-color: #F8F8F8; */
+  border-top: 1rpx solid #DBDBDB;
+  width: 100%;
+  overflow: hidden;
 }

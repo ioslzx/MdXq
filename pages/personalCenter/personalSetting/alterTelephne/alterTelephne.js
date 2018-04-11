@@ -19,6 +19,14 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.getStorage({
+      key: 'telephone',
+      success: function (res) {
+        that.setData({
+          telephone: res.data
+        })
+      },
+    })
+    wx.getStorage({
       key: 'customer_id',
       success: function (res) {
         that.setData({
@@ -60,6 +68,10 @@ Page({
         success(res){
           // console.log(res)
           if(res.data.success){
+            wx.setStorage({
+              key: 'telephone',
+              data: res.data.result.telephone,
+            })
             wx.showModal({
               title: '提示',
               content: '保存成功',
@@ -67,7 +79,11 @@ Page({
                 // console.log(res)
                 if (res.confirm){
                   wx.navigateBack({
-
+                    success: function (e) {
+                      var page = getCurrentPages().pop();
+                      if (page == undefined || page == null) return;
+                      page.onShow();
+                    }
                   })
                 }
               }

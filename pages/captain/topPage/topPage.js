@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fort_id:0,
+    customer_id:0,
     topPageInfo:[],
     msg:''
   },
@@ -19,13 +19,13 @@ Page({
     var that=this;
     // 获取fort_id
     wx.getStorage({
-      key: 'fort_id',
+      key: 'customer_id',
       success: function(res) {
         // console.log(res)
         that.setData({
-          fort_id:res.data
+          customer_id:res.data
         })
-        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?fort_id=' + that.data.fort_id;
+        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?customer_id=' + that.data.customer_id;
         that.getTopPageInfo(topPageInfoUrl)
       },
     })

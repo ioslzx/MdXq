@@ -4,6 +4,10 @@
   overflow: hidden;
   box-sizing: border-box;
    position: relative;
+   margin-bottom: 20rpx;
+}
+.discountCouponListActive{
+  border: 1rpx solid red;
 }
 .discountCouponListLeft{
   font-size: 46rpx;
@@ -43,4 +47,14 @@
 }
 .newCircleBox{
   right: -20rpx;
+}
+.reasonBox{
+  font-size: 30rpx;
+  color: #BEBEBE;
+  float: left;
+  padding-bottom: 25rpx;
+  padding-left: 30rpx;
+}
+.reasonBox text:first-child{
+  color: red;
 }

@@ -19,6 +19,7 @@
     <view class='personalCenterTopLine' bindtap='alterTelephone'>
       <text>绑定手机号</text>
       <image src='../../images/leftArrow.png'></image>
+      <text>{{telephone}}</text>
     </view>
     <view class='personalCenterTopLine' bindtap='goShippingAddress'>
       <text>收货地址</text>

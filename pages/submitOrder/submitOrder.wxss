@@ -17,24 +17,30 @@ page{
   border-top: 2rpx solid rgb(245, 246, 247);
   position: relative;
 }
-.addressBox image:nth-child(1){
+.addIcon{
+  width: 45rpx!important;
+  height: 45rpx!important;
+}
+.addressBox .positionIcon{
   display: inline-block;
   width: 55rpx;
   height: 55rpx;
   position: absolute;
   left: 30rpx;
+  top:30%;
 }
 .addressBox view{
   display: inline-block;
   width: 80%;
-  margin-left: 70rpx;
+  margin-left: 40rpx;
 }
 .addressBox image:nth-child(3){
   display: inline-block;
   width: 50rpx;
   height: 50rpx;
- position: absolute;
- right: 30rpx;
+  position: absolute;
+  right: 30rpx;
+  top:30%;
 }
 /*订单+优惠减免+支付方式*/
 .order,.discount,.payType{
@@ -98,7 +104,6 @@ page{
 }
 .couponBox view:nth-child(2){
   float: left;
-  margin-left: 320rpx;
 }
 .couponBox image{
   width: 45rpx;
@@ -150,12 +155,12 @@ switch{
 .choosePayType{
   float: left;
   color: rgb(95, 95, 95);
-  font-size: 40rpx;
   margin-left: 20rpx;
+  font-size: 36rpx;
 }
 .payTotalPrice{
   float: left;
-  margin-left: 25%;
+  margin-left: 18%;
   color: #8F178B;
   font-size: 35rpx;
 }

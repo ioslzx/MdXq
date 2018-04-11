@@ -2,6 +2,11 @@
 var app = getApp();
 var baseUrl = app.globalData.baseUrl;
 var imgUrl = app.globalData.imgUrl;
+var shop_id = app.globalData.shop_id;
+var product_infos = [];//商品和规格id
+var amount=0;//订单总价
+var newAmount = 0;//先点击全选后在点击单选
+var quantity=0;
 Page({
 
   /**
@@ -12,20 +17,23 @@ Page({
     minusStatus: [],
     isShoppingCartNull:false,
     shoppingCartListInfo:[],
-    cart_ids:'',
+    cart_idsArr:[],
     // 为你推荐数组
     recommendGoodsInfo: [],
     customer_id:0,
     totalDelete:false,
-    product_ids:''
-
+    product_ids:'',
+    level:0,
+    amount:0.00,
+    isTotalOrSignal:false,
+    isSignalOrTotal:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+   
   },
   // 跳转到商品详情
   goProductDetail(e) {
@@ -62,7 +70,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           var data=res.data.result;
           for(var i=0;i<data.length;i++){
@@ -134,20 +142,100 @@ Page({
   },
   // 单选
   checkedClick(e){
-    console.log(e)
-    var cart_id = e.currentTarget.dataset.cart_id;
+    // console.log(e)
     var product_id = e.currentTarget.dataset.product_id;
-    var checked=e.currentTarget.dataset.checked;
-    var cart_ids='';
+    var cart_id = e.currentTarget.dataset.cart_id;
+    var model_id = e.currentTarget.dataset.model_id;
+    var market_price = e.currentTarget.dataset.market_price;
+    var member_price = e.currentTarget.dataset.member_price;
+    var vip_price = e.currentTarget.dataset.vip_price;
+    var quantity = e.currentTarget.dataset.quantity;
     var product_ids='';
-    if (checked==2){
-      cart_ids = this.data.cart_ids +','+ cart_id;
-      product_ids = this.data.product_ids + ',' + product_id;
+    var product_infosObj={}
+    var checked = e.detail.value;
+    var cart_idsArr = this.data.cart_idsArr;
+    
+    
+    if (this.data.totalDelete){
+      this.setData({
+        isTotalOrSignal:true
+      })
+      for (var i = 0; i < cart_idsArr.length; i++) {
+        if (cart_idsArr[i] == cart_id) {
+          if (this.data.level == 1) {
+            newAmount = quantity * market_price;
+            this.setData({
+              amount: (this.data.amount - newAmount).toFixed(2)
+            })
+          } else if (this.data.level == 2) {
+            newAmount = quantity * member_price;
+            this.setData({
+              amount: (this.data.amount - newAmount).toFixed(2)
+            })
+          } else {
+            newAmount = quantity * vip_price;
+            this.setData({
+              amount: (this.data.amount - newAmount).toFixed(2)
+            })
+          }
+          cart_idsArr.splice(i, 1)
+        }
+      }
+      for (var j = 0; j < product_infos.length; j++) {
+        if (product_infos[j].model_id == model_id) {
+          product_infos.splice(j, 1)
+        }
+      }
+      this.setData({
+        cart_idsArr: cart_idsArr,
+      })
+    }else{
+      if (checked != '') {
+        cart_idsArr.push(cart_id);
+        product_infosObj.product_id = product_id;
+        product_infosObj.model_id = model_id;
+        product_infosObj.quantity = quantity;
+        if (this.data.level == 1) {
+          amount = amount + quantity * market_price;
+        } else if (this.data.level == 2) {
+          amount = amount + quantity * member_price;
+        } else {
+          amount = amount + quantity * vip_price;
+        }
+        product_infos.push(product_infosObj)
+      } else {
+        if (this.data.level == 1) {
+          amount = amount - quantity * market_price;
+        } else if (this.data.level == 2) {
+          amount = amount - quantity * member_price;
+        } else {
+          amount = amount - quantity * vip_price;
+        }
+        for (var i = 0; i < cart_idsArr.length; i++) {
+          if (cart_idsArr[i] == cart_id) {
+            cart_idsArr.splice(i, 1)
+          }
+        }
+        for (var j = 0; j < product_infos.length; j++) {
+          if (product_infos[j].model_id == model_id) {
+            product_infos.splice(j, 1)
+          }
+        }
+      }
+      this.setData({
+        cart_idsArr: cart_idsArr,
+        amount: amount.toFixed(2),
+        isSignalOrTotal:true
+      })
     }
-    this.setData({
-      cart_ids: cart_ids,
-      product_ids: product_ids
-    })
+    // 当所有的都选择时，全选按钮选中状态
+    if (this.data.cart_idsArr.length == this.data.shoppingCartListInfo.length) {
+      this.setData({
+        totalDelete: true,
+        isTotalOrSignal:false
+      })
+    }
+    
   },
   // 全选
   totalSelect(e){
@@ -155,25 +243,92 @@ Page({
     var cart_ids = that.data.cart_ids;
     var product_ids = that.data.product_ids;
     var shoppingCartListInfo = that.data.shoppingCartListInfo;
-    for (var i = 0; i < shoppingCartListInfo.length; i++) {
-      cart_ids = cart_ids+','+ shoppingCartListInfo[i].cart_id;
-      product_ids = product_ids + ',' + shoppingCartListInfo[i].product_id;
-      shoppingCartListInfo[i].checked=1;
+    var cart_idsArr = that.data.cart_idsArr;
+    var amount=0;
+    if (that.data.isSignalOrTotal){
+      cart_idsArr=[];
+      that.setData({
+        cart_idsArr: cart_idsArr
+      })
+      product_infos=[];
+      for (var i = 0; i < shoppingCartListInfo.length; i++) {
+        var product_infosObj = {};
+        product_infosObj.product_id = shoppingCartListInfo[i].product_id;
+        product_infosObj.model_id = shoppingCartListInfo[i].model_id;
+        product_infosObj.quantity = shoppingCartListInfo[i].quantity;
+        product_infos.push(product_infosObj)
+        cart_idsArr.push(shoppingCartListInfo[i].cart_id);
+        shoppingCartListInfo[i].checked = !shoppingCartListInfo[i].checked;
+        if (that.data.level == 1) {
+          // console.log(shoppingCartListInfo)
+          amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].market_price;
+        } else if (that.data.level == 2) {
+          amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].member_price;
+        } else {
+          amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].vip_price;
+        }
+      }
+      that.setData({
+        cart_idsArr: cart_idsArr,
+        shoppingCartListInfo: shoppingCartListInfo
+      })
+    }else{
+      if (that.data.totalDelete){
+        for (var i = 0; i < shoppingCartListInfo.length; i++){
+          shoppingCartListInfo[i].checked=false;
+        }
+        that.setData({
+          cart_idsArr: [],
+          shoppingCartListInfo: shoppingCartListInfo
+        })
+        product_infos=[];
+      }else{
+        for (var i = 0; i < shoppingCartListInfo.length; i++) {
+          var product_infosObj = {};
+          product_infosObj.product_id = shoppingCartListInfo[i].product_id;
+          product_infosObj.model_id = shoppingCartListInfo[i].model_id;
+          product_infosObj.quantity = shoppingCartListInfo[i].quantity;
+          product_infos.push(product_infosObj)
+          cart_idsArr.push(shoppingCartListInfo[i].cart_id);
+          shoppingCartListInfo[i].checked = !shoppingCartListInfo[i].checked;
+          if (that.data.level == 1) {
+            console.log(shoppingCartListInfo)
+            amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].market_price;
+          } else if (that.data.level == 2) {
+            amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].member_price;
+          } else {
+            amount = amount + shoppingCartListInfo[i].quantity * shoppingCartListInfo[i].vip_price;
+          }
+
+        }
+        that.setData({
+          cart_idsArr: cart_idsArr,
+          shoppingCartListInfo: shoppingCartListInfo
+        })
+      }
     }
+    
     that.setData({
-      cart_ids: cart_ids,
-      product_ids: product_ids,
-      shoppingCartListInfo: shoppingCartListInfo,
-      totalDelete:true
+      totalDelete: !that.data.totalDelete
     })
+    if (that.data.totalDelete){
+      that.setData({
+        amount: amount.toFixed(2)
+      })
+    }else{
+      that.setData({
+        amount: 0.00
+      })
+    }
   },
   // 删除购物车内容
   deleteShoppingCart(e){
     var that=this;
-    var cart_ids = this.data.cart_ids.substring(1);
+    var cart_ids = this.data.cart_idsArr.join(',');
+    console.log(cart_ids)
     var deleteShoppingCartUrl = baseUrl + '/api/shopping/cart/delete?cart_ids=' + cart_ids;
     var shoppingCartListInfo = that.data.shoppingCartListInfo;
-    var cart_idsArr = cart_ids.split(',');
+    var cart_idsArr = this.data.cart_idsArr;
     var isShoppingCartNull = that.data.isShoppingCartNull;
     var totalDelete = that.data.totalDelete;
     wx.request({
@@ -186,7 +341,7 @@ Page({
                 isShoppingCartNull:true,
                 shoppingCartListInfo:[]
               })
-              console.log(that.data.isShoppingCartNull)
+              // console.log(that.data.isShoppingCartNull)
             }else{
               for (var i = 0; i < shoppingCartListInfo.length; i++) {
                 for (var j = 0; j < cart_idsArr.length; j++) {
@@ -203,7 +358,7 @@ Page({
                   isShoppingCartNull: true,
                 })
               }
-              console.log(that.data.shoppingCartListInfo)
+              // console.log(that.data.shoppingCartListInfo)
             }
           }
         },
@@ -219,13 +374,24 @@ Page({
   },
   // 点击去提交订单
   goSubmitOrder(e){
-    var product_ids = this.data.product_ids.substring(1);
-    wx.setStorage({
-      key: 'product_ids',
-      data: product_ids,
-    })
+    console.log()
+    var cart_idsArr = this.data.cart_idsArr;
+    var cart_ids = cart_idsArr.join(',');
+    // console.log(product_infos)
     wx.navigateTo({
-      url: '../submitOrder/submitOrder',
+      url: '../submitOrder/submitOrder?product_infos=' + JSON.stringify(product_infos) + '&cart_ids=' + cart_ids + '&amount=' + this.data.amount+'&isShopCart=true',
+      success(res){
+        product_infos=[]
+      }
+    })
+  },
+  // 点击去购物车详情
+  shopCartDetail(e){
+    var product_id = e.currentTarget.dataset.product_id;
+    var model_id = e.currentTarget.dataset.model_id;
+    var quantity = e.currentTarget.dataset.quantity;
+    wx.navigateTo({
+      url: '../productDetails/productDetails?product_id=' + product_id + '&isShopCartPage=' + true + '&model_id=' + model_id + '&quantity=' + quantity,
     })
   },
   /**
@@ -250,8 +416,24 @@ Page({
         var shoppingCartListUrl = baseUrl + '/api/shopping/cart/load-list?customer_id=' + that.data.customer_id;
         that.getShoppingCartList(shoppingCartListUrl);
         // 获取为你推荐数据
-        that.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=10000&recommend_id=4')
+        that.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=' + shop_id+'&recommend_id=4')
       },
+    })
+    wx.getStorage({
+      key: 'level',
+      success: function(res) {
+        that.setData({
+          level:res.data
+        })
+      },
+    })
+    that.setData({
+      totalDelete:false,
+      amount:0
+    })
+    wx.setStorage({
+      key: 'product_infos',
+      data: '',
     })
   },
 

@@ -2,7 +2,7 @@
 var app = getApp();
 var imgUrl = app.globalData.imgUrl;
 var baseUrl = app.globalData.baseUrl;
-
+var shop_id = app.globalData.shop_id;
 Page({
   /**
    * 页面的初始数据
@@ -66,6 +66,7 @@ Page({
                         key: 'nickname',
                         data: data.nickname,
                       })
+                      
                       wx.setStorage({
                         key: 'customer_id',
                         data: data.customer_id,
@@ -77,6 +78,10 @@ Page({
                       wx.setStorage({
                         key: 'referee_id',
                         data: data.referee_id,
+                      })
+                      wx.setStorage({
+                        key: 'recharge_balance',
+                        data: data.recharge_balance,
                       })
                     }else{
                       wx.showModal({
@@ -94,9 +99,9 @@ Page({
       }
     })
     
-    this.getHotGoods(baseUrl +'/api/product/hot?shop_id=10000')
-    this.getRecommendGoods(baseUrl +'/api/product/recommend?shop_id=10000&recommend_id=4')
-    this.getTopBanner(baseUrl +'/api/banner/load-list?shop_id=10000&state=1')  
+    this.getHotGoods(baseUrl + '/api/product/hot?shop_id=' + shop_id)
+    this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=' + shop_id+'&recommend_id=4')
+    this.getTopBanner(baseUrl + '/api/banner/load-list?shop_id=' + shop_id+'&state=1')  
   },
   // 获取顶部轮播图数据
   getTopBanner(url){
@@ -166,7 +171,7 @@ Page({
       })
   },
   goProductDetail(e){
-    console.log(e);
+    // console.log(e);
     var product_id = e.currentTarget.dataset.product_id;
     wx.navigateTo({
       url: '../productDetails/productDetails?product_id=' + product_id,

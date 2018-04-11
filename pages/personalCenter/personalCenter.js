@@ -10,7 +10,9 @@ Page({
   data: {
     picture:'',
     nickname:'',
-    level:''
+    level:'',
+    recharge_balance:0,
+    telephone:''
   },
 
   /**
@@ -18,31 +20,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    // 获取个人信息
-    wx.getStorage({
-      key: 'picture',
-      success: function(res) {
-        that.setData({
-          picture: res.data
-        })
-      },
-    })
-    wx.getStorage({
-      key: 'nickname',
-      success: function (res) {
-        that.setData({
-          nickname: res.data
-        })
-      },
-    })
-    wx.getStorage({
-      key: 'level',
-      success: function (res) {
-        that.setData({
-          level: res.data
-        })
-      },
-    })
+    
   },
   // 点击去设置页
   goSettingsPage(e){
@@ -98,6 +76,38 @@ Page({
       }
     })
   },
+  getUserInfo(url){
+    var that=this;
+    wx.request({
+      url: url,
+      success(res){
+        console.log(res)
+        if(res.data.success){
+          that.setData({
+            nickname: res.data.result.nickname,
+            recharge_balance: res.data.result.recharge_balance,
+            telephone: res.data.result.telephone,
+            picture: res.data.result.picture
+          })
+          wx.setStorage({
+            key: 'picture',
+            data: that.data.picture,
+          })
+          wx.setStorage({
+            key: 'nickname',
+            data: that.data.nickname,
+          })
+          wx.setStorage({
+            key: 'telephone',
+            data: that.data.telephone,
+          })
+        }else{
+
+        }
+      }
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -109,7 +119,42 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that=this;
+    // 获取个人信息
+    wx.getStorage({
+      key: 'picture',
+      success: function (res) {
+        that.setData({
+          picture: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'nickname',
+      success: function (res) {
+        that.setData({
+          nickname: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'level',
+      success: function (res) {
+        that.setData({
+          level: res.data
+        })
+      },
+    })
+    wx.getStorage({
+      key: 'customer_id',
+      success: function(res) {
+        that.setData({
+          customer_id:res.data
+        })
+        var userInfoUrl = baseUrl + '/api/customer/load-info?customer_id=' + that.data.customer_id;
+        that.getUserInfo(userInfoUrl)
+      },
+    })
   },
 
   /**

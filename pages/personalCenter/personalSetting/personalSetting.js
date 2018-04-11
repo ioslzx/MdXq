@@ -10,7 +10,8 @@ Page({
     picture: '',
     nickname: '',
     level: '',
-    customer_id:''
+    customer_id:'',
+    telephone:'',
   },
 
   /**
@@ -75,7 +76,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that=this;
+    wx.getStorage({
+      key: 'telephone',
+      success: function(res) {
+        that.setData({
+          telephone:res.data
+        })
+        // console.log(res.data)
+      },
+    })
+    
   },
 
   /**

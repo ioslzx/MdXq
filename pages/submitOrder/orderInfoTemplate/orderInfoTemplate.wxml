@@ -8,7 +8,9 @@
       <view>{{content}}{{unit}}</view>
     </view>
     <view class='priceAndAmount'>
-      <view>¥{{price}}</view>
+      <view wx:if='{{level==1}}'>¥{{market_price}}</view>
+      <view wx:if='{{level==2}}'>¥{{member_price}}</view>
+      <view wx:if='{{level==3}}'>¥{{vip_price}}</view>
       <view>x{{quantity}}</view>
     </view>
   </view>

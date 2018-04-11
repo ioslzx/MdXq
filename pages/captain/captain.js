@@ -20,20 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    // 获取用户id
-    wx.getStorage({
-      key: 'customer_id',
-      success: function (res) {
-        console.log(res)
-        that.setData({
-          customer_id: res.data
-        })
-        // 获取堡主信息
-        var captainInfoUrl = baseUrl + '/api/fort/hostess/load-info?customer_id=' + that.data.customer_id;
-        that.getCaptainInfo(captainInfoUrl);
-      },
-    })
+    
    
 
   },
@@ -49,7 +36,8 @@ Page({
           res.data.result.picture =imgUrl+ res.data.result.picture
           that.setData({
             captainInfo:res.data.result,
-            totalEarnings: totalEarnings
+            totalEarnings: totalEarnings,
+            isCaptain:false
           })
           wx.setStorage({
             key: 'fort_id',
@@ -60,7 +48,6 @@ Page({
             that.setData({
               isCaptain:true
             })
-            console.log(that.data.isCaptain)
           }
         }
       }
@@ -85,9 +72,8 @@ Page({
   },
   // 点击去我的礼包
   myGiftBag(e){
-    wx.showModal({
-      title: '提示',
-      content: '暂未开通',
+    wx.navigateTo({
+      url: './myGiftBag/myGiftBag',
     })
   },
   // 点击去排行榜
@@ -102,6 +88,13 @@ Page({
       url: './partner/partner',
     })
   },
+  // 点击去提现
+  withdrawClick(e){
+    wx.showModal({
+      title: '提示',
+      content: '暂未开通',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -113,7 +106,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    // 获取用户id
+    wx.getStorage({
+      key: 'customer_id',
+      success: function (res) {
+        // console.log(res)
+        that.setData({
+          customer_id: res.data
+        })
+        // 获取堡主信息
+        var captainInfoUrl = baseUrl + '/api/fort/hostess/load-info?customer_id=' + that.data.customer_id;
+        that.getCaptainInfo(captainInfoUrl);
+      },
+    })
+
+    
   },
 
   /**

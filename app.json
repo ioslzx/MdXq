@@ -1,6 +1,6 @@
 {
   "pages":[
-   
+    
     
     "pages/homepage/homepage",
     
@@ -11,11 +11,12 @@
     "pages/category/productList/productList",
     
     "pages/shoppingCart/shoppingCart",
+   
     "pages/submitOrder/submitOrder",
 
     "pages/personalCenter/personalCenter",
     "pages/personalCenter/personalSetting/personalSetting",
-"pages/personalCenter/personalSetting/alterTelephne/alterTelephne",
+"pages/personalCenter/personalSetting/alterTelephne/alterTelephne","pages/test/test",
     "pages/personalCenter/totalOrder/totalOrder",
     "pages/personalCenter/orderDetail/orderDetail",
     "pages/personalCenter/discountCoupon/discountCoupon",
@@ -28,7 +29,8 @@
 "pages/captain/factoryDividendEarnings/factoryDividendEarnings",
 "pages/captain/inputID/inputID",
 "pages/captain/topPage/topPage",
-"pages/captain/partner/partner"
+"pages/captain/partner/partner",
+"pages/captain/myGiftBag/myGiftBag"
     
    
     
