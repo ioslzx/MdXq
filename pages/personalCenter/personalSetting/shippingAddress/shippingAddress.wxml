@@ -1,6 +1,6 @@
 <view class='shippingAddress'>
-  <view class='shippingAddressBox' wx:for='{{addressListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
-    <view class='shippingAddressLeft'>
+  <view class='shippingAddressBox {{defaultAddress==item.address_id?"defaultAddressActive":""}}'  wx:for='{{addressListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index' >
+    <view class='shippingAddressLeft' data-address_id='{{item.address_id}}' bindtap='selectAddress'>
       <view class='leftLineBox'>
         <text>{{item.receipt_name}}</text>
         <text>{{item.telephone}}</text>

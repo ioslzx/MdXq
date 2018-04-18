@@ -17,6 +17,7 @@ page{
   overflow: hidden;
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#CF03FA), to(#84047B)); 
   border-radius: 20rpx;
+  position: relative;
 }
 .personalCenterTopLeft{
   float: left;
@@ -52,6 +53,15 @@ page{
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+.signInBox{
+  position: absolute;
+  right: 7%;
+  top: 18%; 
+}
+.signInBox>image{
+  width: 130rpx;
+  height: 130rpx;
 }
 /* 订单管理开始 */
   .orderManagement{

@@ -1,0 +1,10 @@
+<import src='./newProductsTemplate/newProductsTemplate.wxml'/>
+<view class='newProducts'>
+  <view class='newProductsTop'>
+    <image src='../images/demo1.png'></image>
+  </view>
+  <view class='newProductsGoodsBox'>
+    <template is='newProductsTemplate'/>
+    <template is='newProductsTemplate'/>
+  </view>
+</view>

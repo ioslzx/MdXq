@@ -22,7 +22,7 @@
   <view class='goodsListBox' wx:for='{{shoppingCartListInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'  >
     <view class='shoppingCartGoodsTemplateBox'>
     <view class='choose'>
-       <checkbox-group bindchange='checkedClick' data-cart_id='{{item.cart_id}}' data-product_id='{{item.product_id}}' data-model_id='{{item.model_id}}' data-market_price='{{item.market_price}}' data-member_price='{{item.member_price}}' data-vip_price='{{item.vip_price}}' data-quantity='{{item.quantity}}'>
+       <checkbox-group bindchange='checkedClick' data-cart_id='{{item.cart_id}}' data-product_id='{{item.product_id}}' data-model_id='{{item.model_id}}' data-market_price='{{item.market_price}}' data-member_price='{{item.member_price}}' data-index='{{index}}' data-vip_price='{{item.vip_price}}' data-quantity='{{item.quantity}}'>
         <checkbox  checked='{{item.checked}}' value='{{item.product_name}}'></checkbox>
       </checkbox-group>
     </view>

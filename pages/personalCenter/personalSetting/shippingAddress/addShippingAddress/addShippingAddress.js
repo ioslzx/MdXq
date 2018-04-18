@@ -102,9 +102,9 @@ Page({
             if (res.data.success) {
               wx.navigateBack({
                 success: function (res) {
-                  console.log(res)
+                  // console.log(res)
                   var page = getCurrentPages().pop();
-                  console.log(page)
+                  // console.log(page)
                   if (page == undefined || page == null) return;
                   page.onShow();
                 }
@@ -129,21 +129,21 @@ Page({
   },
   getFullAddress(e){
     // debugger
-    console.log(e)
+    // console.log(e)
     this.setData({
       fullAddress: e.detail.value
     })
   },
   getLocationAddress(e){
   //  debugger
-    console.log(e)
+    // console.log(e)
     this.setData({
       city_area: e.detail.value
     })
   },
   getMorenAddress(e){
     // debugger
-    console.log(e)
+    // console.log(e)
     this.setData({
       city_area: e.detail.value
     })

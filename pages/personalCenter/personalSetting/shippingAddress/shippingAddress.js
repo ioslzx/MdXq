@@ -11,7 +11,8 @@ Page({
   data: {
     addressListInfo:[],
     customer_id:0,
-    defaultAddress:''
+    defaultAddress:'',
+
   },
 
   /**
@@ -62,6 +63,20 @@ Page({
   goAddShippingAddress(e){
     wx.navigateTo({
       url: './addShippingAddress/addShippingAddress'
+    })
+  },
+  // 选中地址
+  selectAddress(e){
+    var address_id = e.currentTarget.dataset.address_id;
+    this.setData({
+      defaultAddress: address_id
+    })
+    wx.setStorage({
+      key: 'defaultAddress',
+      data: this.data.defaultAddress,
+    })
+    wx.navigateBack({
+      
     })
   },
   /**

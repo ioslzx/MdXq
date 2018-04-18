@@ -1,20 +1,18 @@
 {
   "pages":[
-    
-    
+   "pages/captain/captain",
+   
     "pages/homepage/homepage",
-    
+    "pages/newProducts/newProducts",
+    "pages/timeUp/timeUp",
     "pages/buyNewGoods/buyNewGoods",
     "pages/productDetails/productDetails",
-
+    "pages/submitOrder/submitOrder",
     "pages/category/category",
     "pages/category/productList/productList",
     
     "pages/shoppingCart/shoppingCart",
-   
-    "pages/submitOrder/submitOrder",
-
-    "pages/personalCenter/personalCenter",
+    
     "pages/personalCenter/personalSetting/personalSetting",
 "pages/personalCenter/personalSetting/alterTelephne/alterTelephne","pages/test/test",
     "pages/personalCenter/totalOrder/totalOrder",
@@ -22,18 +20,15 @@
     "pages/personalCenter/discountCoupon/discountCoupon",
     "pages/personalCenter/recharge/recharge",
     "pages/personalCenter/myCollect/myCollect",
-    "pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully",
-   "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress","pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
+    "pages/personalCenter/personalCenter",
+    "pages/personalCenter/signInPage/signInPage",
+    "pages/personalCenter/myGiftBag/myGiftBag",
+    "pages/personalCenter/webViewTest/webViewTest",  "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress","pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
 
-"pages/captain/captain",
-"pages/captain/factoryDividendEarnings/factoryDividendEarnings",
-"pages/captain/inputID/inputID",
-"pages/captain/topPage/topPage",
-"pages/captain/partner/partner",
-"pages/captain/myGiftBag/myGiftBag"
-    
-   
-    
+  
+  "pages/captain/inputID/inputID",
+  "pages/captain/topPage/topPage",
+  "pages/captain/partner/partner","pages/captain/factoryDividendEarnings/factoryDividendEarnings"
   ],
   "window":{
     "backgroundTextStyle":"light",

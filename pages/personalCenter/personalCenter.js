@@ -28,6 +28,12 @@ Page({
       url: './personalSetting/personalSetting',
     })
   },
+  // 点击去签到
+  goSignIn(e){
+    wx.navigateTo({
+      url: './signInPage/signInPage',
+    })
+  },
   // 点击去订单详情
   goOrderDetails(e){
     var orderDetailsID=e.currentTarget.dataset.orderdetailsid;
@@ -58,6 +64,17 @@ Page({
       url: './myCollect/myCollect',
     })
   },
+  // 点击去我的礼包
+  myGiftBag(e) {
+    wx.navigateTo({
+      url: './myGiftBag/myGiftBag',
+    })
+  },
+  webView(e){
+    wx.navigateTo({
+      url: './webViewTest/webViewTest',
+    })
+  },
   // 点击重置蜜豆币
   rechargeClick(e){
     wx.navigateTo({
@@ -81,7 +98,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           that.setData({
             nickname: res.data.result.nickname,

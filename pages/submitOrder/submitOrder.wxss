@@ -17,9 +17,15 @@ page{
   border-top: 2rpx solid rgb(245, 246, 247);
   position: relative;
 }
+addIconView.{
+  position: relative;
+}
 .addIcon{
   width: 45rpx!important;
   height: 45rpx!important;
+  position: absolute;
+  top: 20rpx;
+  left: 2%;
 }
 .addressBox .positionIcon{
   display: inline-block;

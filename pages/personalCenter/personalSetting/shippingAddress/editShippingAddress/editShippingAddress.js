@@ -35,6 +35,7 @@ Page({
       address_id: options.address_id,
       is_default: options.is_default
     })
+    console.log(this.data.address_id)
     // 获取地址详情数据
     var url = baseUrl + '/api/address/load?address_id=' + this.data.address_id
     this.getAddressDetail(url)
@@ -84,7 +85,7 @@ Page({
     wx.request({
       url: url,
       success(res) {
-        // console.log(res)
+        console.log(res)
         if (res.data.success) {
           wx.navigateBack({
             success: function (e) {

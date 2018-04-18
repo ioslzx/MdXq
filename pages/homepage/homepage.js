@@ -8,12 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // touchMovingLeft: false,
-    // touchMovingRight: false,
-    // moveLeft: 0,
-    // touchStart: 0,
-    // touchMove: 0,
-    // touchEnd: 0,
+    touchMovingLeft: false,
+    touchMovingRight: false,
+    moveLeft: 0,
+    touchStart: 0,
+    touchMove: 0,
+    touchEnd: 0,
     // 爆品数组
     hotGoodsInfo:[],
     // 为你推荐数组
@@ -123,6 +123,18 @@ Page({
       }
     })
   },
+  // 点击去新品推荐
+  goNewProducts(e){
+    wx.navigateTo({
+      url: '../newProducts/newProducts',
+    })
+  },
+  // 点击去限时秒杀
+  goTimeUp(e){
+    wx.navigateTo({
+      url: '../goTimeUp/goTimeUp',
+    })
+  },
   //获取为你推荐数据
   getRecommendGoods(url){
     var that = this
@@ -189,7 +201,7 @@ Page({
     this.setData({
       touchStart: touchStart
     })
-    console.log(event)
+    // console.log(event)
   },
   // 触摸结束
   touchend: function (event) {

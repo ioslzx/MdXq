@@ -33,7 +33,7 @@ Page({
         console.log(res)
         if(res.data.success){
           var totalEarnings = res.data.result.love_honey_bean + res.data.result.shopping_bonus + res.data.result.sign_honey_bean;
-          res.data.result.picture =imgUrl+ res.data.result.picture
+          res.data.result.picture =res.data.result.picture
           that.setData({
             captainInfo:res.data.result,
             totalEarnings: totalEarnings,
@@ -70,12 +70,7 @@ Page({
       url: './factoryDividendEarnings/factoryDividendEarnings'
     })
   },
-  // 点击去我的礼包
-  myGiftBag(e){
-    wx.navigateTo({
-      url: './myGiftBag/myGiftBag',
-    })
-  },
+  
   // 点击去排行榜
   goTopPage(e){
     wx.navigateTo({

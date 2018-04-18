@@ -41,7 +41,8 @@ Page({
     market_price:0,
     member_price:0,
     customer_id: 0,
-    isShopCartPage:false
+    isShopCartPage:false,
+    pathStr:''
   },
 
   /**
@@ -58,7 +59,15 @@ Page({
         isShopCartPage: options.isShopCartPage
       })
     }
-    // console.log(this.data.model_id)
+    console.log(decodeURIComponent(options.customer_id))
+    
+    if (options.customer_id){
+      this.setData({
+        customer_id: options.customer_id
+      })
+    }
+    console.log(this.data.pathStr)
+    console.log(options.customer_id)
     this.getRecommendGoods(baseUrl + '/api/product/recommend?shop_id=' + shop_id+'&recommend_id=4')
 
     
@@ -286,7 +295,7 @@ Page({
     wx.request({
       url: baseUrl + '/api/collection/save?product_id=' + product_id + '&customer_id=' + that.data.customer_id,
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.success){
           wx.showToast({
             title: '收藏成功',
@@ -328,6 +337,7 @@ Page({
     wx.getStorage({
       key: 'customer_id',
       success: function(res) {
+        // console.log(res)
         that.setData({
           customer_id:res.data
         })
@@ -335,18 +345,18 @@ Page({
       },
     })
     // 分享
-    // wx.showShareMenu({
-    //   withShareTicket: true,
-    //   success: function (res) {
-    //     // 分享成功
-    //     // console.log('shareMenu share success')
-    //     // console.log('分享' + res)
-    //   },
-    //   fail: function (res) {
-    //     // 分享失败
-    //     // console.log(res)
-    //   }
-    // })
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (res) {
+        // 分享成功
+        // console.log('shareMenu share success')
+        // console.log('分享' + res)
+      },
+      fail: function (res) {
+        // 分享失败
+        // console.log(res)
+      }
+    })
   },
 
   /**
@@ -380,64 +390,31 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  // showShareMenu() {
-  //   wx.showShareMenu();
-  //   console.log("显示了当前页面的转发按钮");
-  // },
-  // hideShareMenu() {
-  //   wx.hideShareMenu();
-  //   console.log("隐藏了当前页面的转发按钮");
-  // },
-  // onShareAppMessage: (res) => {
-  //   if (res.from === 'button') {
-  //     console.log("来自页面内转发按钮");
-  //     console.log(res.target);
-  //   }
-  //   else {
-  //     console.log("来自右上角转发菜单")
-  //   }
-  //   return {
-  //     title: '图片',
-  //     path: '/pages/productDetails/productDetails?custormerId=10037',
-  //     imageUrl: "../images/demo1.png",
-  //     success: (res) => {
-  //       console.log("转发成功", res);
-  //     },
-  //     fail: (res) => {
-  //       console.log("转发失败", res);
-  //     }
-  //   }
-  // }
+  
   onShareAppMessage: function (res) {
-    // if (res.from === 'button') {
-    //   // 来自页面内转发按钮
-    //   console.log(res.target)
-    // }
-    // wx.showShareMenu({
-    //   withShareTicket: true
-    // })
+    var that=this;
+    var pathStr = '/pages/productDetails/productDetails?product_id=' + that.data.product_id + '&customer_id=' + that.data.customer_id;
+    that.setData({
+      pathStr: pathStr
+    })
     return {
       title: '发给老安',
-      path: '/pages/productDetails/productDetails?custormerId=10037',
+      path: pathStr,
       success: function (res) {
-        console.log('/pages/productDetails/productDetails?custormerId=10037')
-        // console.log(res.shareTickets[0])
+        console.log(res)
         wx.getShareInfo({
           shareTicket: res.shareTickets[0],
-          success: function (res) { 
-            // console.log(res) 
-          },
-          // fail: function (res) {
-          //    console.log(res) 
-          // },
-          // complete: function (res) { 
-          //   console.log(res) 
-          // }
+          success: function (res) { console.log(res) },
+          fail: function (res) { console.log(res) },
+          complete: function (res) { console.log(res) }
         })
       },
       fail: function (res) {
         // 分享失败
         // console.log(res)
+      },
+      complete(res){
+        console.log
       }
     }
   }

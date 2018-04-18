@@ -6,7 +6,7 @@
       <span>¥{{member_price}}</span>
       <span>¥{{market_price}}</span>
       <view class='shoppingCart'> 
-      <image src='../images/girl.jpeg'></image>
+      <!-- <image src='../images/girl.jpeg'></image> -->
       </view> 
     </view>
   </view>

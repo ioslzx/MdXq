@@ -353,7 +353,7 @@ Page({
         that.getCouponInfo(couponUrl)
         // 确认商品信息
         var SureProductInfoUrl = baseUrl + '/api/order/confirm-info?customer_id=' + that.data.customer_id + '&amount=' + that.data.amount + '&product_infos=' + that.data.product_infos ;
-        
+        console.log(SureProductInfoUrl)
         if (that.data.isShopCart==true){
           console.log(that.data.isShopCart)
           SureProductInfoUrl = SureProductInfoUrl+'&cart_ids=' + that.data.cart_ids;

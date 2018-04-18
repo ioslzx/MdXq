@@ -19,13 +19,13 @@
     <text class='discountText'>分享首单商品即可享受85折优惠！</text>
   </view>
   <!--活动图  -->
-  <!-- <view class='activity ' >
+   <view class='activity ' >
     <view class='imgBox {{touchMovingLeft?"redPacketBottomLeft":"redPacketBottomRight"}}' bind:touchstart='touchstart' bind='click' bind:touchmove='touchmove' bind:touchend='touchend'  style='width:150%'>
-      <image src='../images/redpack1.jpg' bindtap='goNewGoods'></image>
-      <image src='../images/redpack2.jpg' bindtap='goSales'></image>
+      <image src='../images/redpack1.jpg' bindtap='goNewGoods' bindtap='goNewProducts'></image>
+      <image src='../images/redpack2.jpg' bindtap='goSales' bindtap='goTimeUp'></image>
     </view>
     
-  </view> -->
+  </view> 
   <!--今日爆品  -->
   <view class='hotSale'>
       <text>今日爆品</text>

@@ -1,4 +1,4 @@
-// pages/captain/myGiftBag/myGiftBag.js
+// pages/timeUp/timeUp.js
 Page({
 
   /**

@@ -1,15 +1,15 @@
 <template name='myGiftBagTemplate'>
   <view class='myGiftBagTemplate'>
     <view class='GiftBagImg'>
-      <image src='../../images/demo1.png'></image>
+      <image src='{{exhibition}}'></image>
     </view>
     <view class='GiftBagLine'>
       <text>【限时秒杀】</text>
-      <text>BC可卸底妆200ml</text>
+      <text>{{product_name}}</text>
     </view>
     <view class='GiftBagLine'>
-      <text>￥398.00</text>
-      <text>￥398.00</text>
+      <text>￥{{member_price}}.00</text>
+      <!-- <text>￥398.00</text> -->
     </view>
     <view class='buyButton'>立即购买</view>
   </view>

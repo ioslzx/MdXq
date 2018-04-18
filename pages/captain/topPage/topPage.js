@@ -16,19 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    // 获取fort_id
-    wx.getStorage({
-      key: 'customer_id',
-      success: function(res) {
-        // console.log(res)
-        that.setData({
-          customer_id:res.data
-        })
-        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?customer_id=' + that.data.customer_id;
-        that.getTopPageInfo(topPageInfoUrl)
-      },
-    })
+    
   },
   // 排行榜信息
   getTopPageInfo(url){
@@ -66,7 +54,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    // 获取fort_id
+    wx.getStorage({
+      key: 'customer_id',
+      success: function (res) {
+        // console.log(res)
+        that.setData({
+          customer_id: res.data
+        })
+        var topPageInfoUrl = baseUrl + '/api/fort/hostess/ranking-list?customer_id=' + that.data.customer_id;
+        console.log(topPageInfoUrl)
+        that.getTopPageInfo(topPageInfoUrl)
+      },
+    })
   },
 
   /**

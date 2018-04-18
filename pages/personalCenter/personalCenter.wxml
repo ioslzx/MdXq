@@ -1,7 +1,7 @@
 <view class='personalCenter'>
   <view class='personalCenterTopBox'>
     <view class='personalCenterTop'>
-      <view class='personalCenterTopLeft'>
+      <view class='personalCenterTopLeft' bindtap='goSettingsPage'>
         <image src='{{picture}}'></image>
       </view>
       <view class='personalCenterTopCenter'>
@@ -15,10 +15,13 @@
           <text wx:if='{{level==2}}'>黑钻会员</text>
           <text wx:if='{{level==3}}'>天使堡主</text>
         </view>
+        <view class='signInBox' bindtap='goSignIn'>
+          <image src='../images/signIn.png'></image>
+        </view>
       </view>
-      <view class='personalCenterTopRight' bindtap='goSettingsPage'>
+      <!-- <view class='personalCenterTopRight' bindtap='goSettingsPage'>
         <image src='../images/setting.png'></image>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class='orderManagement'>
@@ -52,10 +55,19 @@
       <text>我的收藏</text>
       <image src='../images/leftArrow.png'></image>
     </view>
+    <view class='bottomLineBox' bindtap='myGiftBag'>
+      <text>我的礼包</text>
+      <image src='../images/leftArrow.png'></image>
+    </view>
+    <!-- <view class='bottomLineBox' bindtap='webView'>
+      <text>我的webView</text>
+      <image src='../images/leftArrow.png'></image>
+    </view> -->
     <view class='bottomLineBox' bindtap='rechargeClick'>
       <text>充值蜜豆币</text>
       <image src='../images/leftArrow.png'></image>
-      <text class='residueMoney'>余{{recharge_balance}}</text>
+      <text class='residueMoney' wx:if='{{recharge_balance!=null}}'>余{{recharge_balance}}</text>
+       <text class='residueMoney' wx:else>余0</text>
     </view>
     <view class='bottomLineBox' bindtap='contactCustomerService'>
       <text>联系客服</text>

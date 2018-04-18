@@ -1,0 +1,12 @@
+<template name='newProductsTemplate'>
+  <view class='newProductsTemplate'>
+    <image class='productImage' src='../images/demo1.png'></image> 
+    <view class='productName'>【限时秒杀】BC可卸底妆胶15ml</view>
+    <view class='discountPrice'>
+      <span>¥30</span>
+    </view>
+    <view class='salesAmount'>
+      立即购买
+    </view>
+  </view>
+</template>

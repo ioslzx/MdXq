@@ -4,7 +4,7 @@
 
 <view class='submitOrderHomePage'>
   <view class='addressBox' bindtap='goAddress'>
-    <view wx:if='{{!isDefaultAddress}}'>
+    <view wx:if='{{!isDefaultAddress}}' class='addIconView'>
       <image class='addIcon' src='../images/add.png'></image>
       填写收货地址
     </view>
