@@ -1,12 +1,15 @@
 <template name='newProductsTemplate'>
   <view class='newProductsTemplate'>
-    <image class='productImage' src='../images/demo1.png'></image> 
-    <view class='productName'>【限时秒杀】BC可卸底妆胶15ml</view>
-    <view class='discountPrice'>
-      <span>¥30</span>
+    <view bindtap='goProductDetail' data-product_id='{{product_id}}'>
+      <image class='productImage' src='{{exhibition}}'></image> 
+      <view class='productName'>【限时秒杀】{{product_name}}</view>
+      <view class='discountPrice'>
+        <span>¥{{market_price}}</span>
+      </view>
     </view>
-    <view class='salesAmount'>
+    <view class='salesAmount' bindtap='buyNow'>
       立即购买
     </view>
   </view>
 </template>
+

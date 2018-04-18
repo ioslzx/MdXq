@@ -98,7 +98,7 @@ Page({
     wx.request({
       url: url,
       success(res){
-        // console.log(res)
+        console.log(res)
         if(res.data.success){
           that.setData({
             nickname: res.data.result.nickname,

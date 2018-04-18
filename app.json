@@ -1,7 +1,7 @@
 {
   "pages":[
-   "pages/captain/captain",
    
+   "pages/shoppingCart/shoppingCart",
     "pages/homepage/homepage",
     "pages/newProducts/newProducts",
     "pages/timeUp/timeUp",
@@ -11,7 +11,7 @@
     "pages/category/category",
     "pages/category/productList/productList",
     
-    "pages/shoppingCart/shoppingCart",
+    
     
     "pages/personalCenter/personalSetting/personalSetting",
 "pages/personalCenter/personalSetting/alterTelephne/alterTelephne","pages/test/test",
@@ -25,7 +25,7 @@
     "pages/personalCenter/myGiftBag/myGiftBag",
     "pages/personalCenter/webViewTest/webViewTest",  "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress","pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
 
-  
+  "pages/captain/captain",
   "pages/captain/inputID/inputID",
   "pages/captain/topPage/topPage",
   "pages/captain/partner/partner","pages/captain/factoryDividendEarnings/factoryDividendEarnings"

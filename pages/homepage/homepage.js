@@ -123,13 +123,13 @@ Page({
       }
     })
   },
-  // 点击去新品推荐
+  // 点击去加入会员
   goNewProducts(e){
     wx.navigateTo({
       url: '../newProducts/newProducts',
     })
   },
-  // 点击去限时秒杀
+  // 点击去加入股东
   goTimeUp(e){
     wx.navigateTo({
       url: '../goTimeUp/goTimeUp',
@@ -177,10 +177,19 @@ Page({
       }
     })
   },
+  // 限时秒杀+新品推荐
   goNewGoods(e){
+    console.log(e)
+    var tapId = e.currentTarget.dataset.tapid
+    if (tapId == 0) {//新品推荐
       wx.navigateTo({
-        url: '../buyNewGoods/buyNewGoods',
+        url: '../newProducts/newProducts',
       })
+    } else if (tapId == 1) { // 限时秒杀
+      wx.navigateTo({
+        url: '../timeUp/timeUp',
+      })
+    }
   },
   goProductDetail(e){
     // console.log(e);

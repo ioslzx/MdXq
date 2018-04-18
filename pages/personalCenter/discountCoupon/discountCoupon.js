@@ -24,9 +24,13 @@ Page({
     if (options.submitOrderStatus){
       that.setData({
         pageStatus: options.submitOrderStatus,
-        total_deduction: JSON.parse(options.total_deduction),
         totalAmount: options.totalAmount
       })
+      if (options.total_deduction){
+        that.setData({
+          total_deduction: JSON.parse(options.total_deduction),
+        })
+      }
     }
     
     

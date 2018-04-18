@@ -12,14 +12,18 @@ Page({
     addressListInfo:[],
     customer_id:0,
     defaultAddress:'',
-
+    product_infos:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if (options.product_infos){
+      this.setData({
+        product_infos: options.product_infos
+      })
+    }
   },
   // 获取地址列表数据
   getAddressList(url){
@@ -76,8 +80,15 @@ Page({
       data: this.data.defaultAddress,
     })
     wx.navigateBack({
-      
+      success: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onShow();
+      }
     })
+  //  wx.navigateTo({
+  //    url: '../../../submitOrder/submitOrder'
+  //  })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

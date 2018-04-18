@@ -7,7 +7,7 @@
   <view class='bannerBox'>
     <swiper indicator-dots="{{swiperParam.indicatorDots}}"  indicator-color="{{swiperParam.indicatorColor}}" indicator-active-color="{{swiperParam.indicatorActiveColor}}" autoplay="{{swiperParam.autoplay}}" interval="{{swiperParam.interval}}" circular="{{swiperParam.circular}}">
       <block wx:for="{{topBannerInfo}}" wx:for-index='index' wx:for-item='item' wx:key="index">
-        <swiper-item bindtap='goNewGoods'>
+        <swiper-item bindtap='goNewGoods' data-tapId='{{index}}'>
           <image src='{{item.picture}}'></image>
         </swiper-item>
       </block>

@@ -9,12 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    defaultAddress:'',
+    defaultAddress:0,
     addressDetailInfo:'',
     customer_id:'',
     product_idArr:[],
     level:'',
-    // shop_id:'',
     model_idArr:[],
     cart_idArr:'',
     isDefaultAddress:false,
@@ -42,6 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     wx.setStorage({
       key: 'deduction',
       data: 0,
@@ -51,17 +51,39 @@ Page({
       data: 0,
     })
     // 获取商品信息
-    this.setData({
-      product_infos: options.product_infos,
-      cart_ids: options.cart_ids,
-      amount: options.amount,
-      isShopCart: options.isShopCart
+    if (options.isShopCart){
+      that.setData({
+        product_infos: options.product_infos,
+        cart_ids: options.cart_ids,
+        amount: options.amount,
+        isShopCart: options.isShopCart
+      })
+    }
+    // 获取customer_id
+    wx.getStorage({
+      key: 'customer_id',
+      success: function (res) {
+        that.setData({
+          customer_id: res.data
+        })
+        var couponUrl = baseUrl + '/api/customer/coupon/load-list?customer_id=' + that.data.customer_id;
+        that.getCouponInfo(couponUrl)
+        // 确认商品信息
+        // console.log(that.data.product_infos)
+        var SureProductInfoUrl = baseUrl + '/api/order/confirm-info?customer_id=' + that.data.customer_id + '&amount=' + that.data.amount + '&product_infos=' + that.data.product_infos;
+        // console.log(SureProductInfoUrl)
+        if (that.data.isShopCart == true) {
+          console.log(that.data.isShopCart)
+          SureProductInfoUrl = SureProductInfoUrl + '&cart_ids=' + that.data.cart_ids;
+        }
+        that.getSureProductInfo(SureProductInfoUrl)
+      },
     })
   },
   // 选择地址
   goAddress(e){
     wx.navigateTo({
-      url: '../personalCenter/personalSetting/shippingAddress/shippingAddress',
+      url: '../personalCenter/personalSetting/shippingAddress/shippingAddress?product_infos=' + this.data.product_infos,
     })
   },
   // 获取地址详情数据
@@ -70,7 +92,7 @@ Page({
     wx.request({
       url: url,
       success(res) {
-        // console.log(res)
+        console.log(res)
         if (res.data.success) {
           that.setData({
             addressDetailInfo: res.data.result
@@ -82,11 +104,15 @@ Page({
   // 获取商品信息
   getSureProductInfo(url){
     var that=this;
+    console.log(that.data.level)
     wx.getStorage({
       key: 'level',
       success: function(res) {
-        that.setData({
-          level:res.data
+        // that.setData({
+        //   level:3
+        // })
+        that.setData({                                      
+          level: res.data
         })
         wx.request({
           url: url,
@@ -115,7 +141,8 @@ Page({
                 freight: res.data.result.freight,
                 totalAmount: res.data.result.freight + res.data.result.amount,
                 product_infos: product_infos,
-                fortHostess: fortHostess
+                fortHostess: fortHostess,
+                SugarSnapPeasDeduction: fortHostess.love_honey_bean
               })
               wx.setStorage({
                 key: 'isCouponTotal',
@@ -135,7 +162,7 @@ Page({
     wx.request({
       url: url,
       success(res) {
-        // console.log(res);
+        console.log(res);
         if (res.data.success) {
           var data = res.data.result;
           var total_deduction = [];
@@ -192,11 +219,15 @@ Page({
     })
   },
   goCouponPage(e){
-    var total_deduction = JSON.stringify(this.data.total_deduction);
+    var total_deduction=''
+    if (this.data.total_deduction){
+      var total_deduction = JSON.stringify(this.data.total_deduction);
+      wx.navigateTo({
+        url: '../personalCenter/discountCoupon/discountCoupon?total_deduction=' + total_deduction + '&submitOrderStatus=true' + '&totalAmount=' + this.data.totalAmount,
+      })
+    }
     // console.log(total_deduction)
-    wx.navigateTo({
-      url: '../personalCenter/discountCoupon/discountCoupon?total_deduction=' + total_deduction + '&submitOrderStatus=true' + '&totalAmount=' + this.data.totalAmount ,
-    })
+   
   },
   // 支付方式选择
   paymentType(e){
@@ -223,7 +254,7 @@ Page({
       + '&customer_id=' + that.data.customer_id + '&address_id=' + that.data.defaultAddress + '&product_infos=' + product_infos + '&coupon_id=' + that.data.isSelectCoupon_id + '&freight=' + that.data.freight + '&payment_type=' + that.data.payment_type;
     if (that.data.level==3){
       // 还需要处理堡主的
-      payClickUrl = payClickUrl +'balance_cash'
+      payClickUrl = payClickUrl + 'balance_cash=' + that.data.SugarSnapPeasDeduction
     }else{
       payClickUrl = payClickUrl;
     }
@@ -240,8 +271,9 @@ Page({
         if(res.data.success){
           var data = res.data.result;
           if (that.data.payment_type==1){
+            console.log(advancePaymentUrl + '&shop_id=' + shop_id + '&order_no=' + data.order_no + '&app_id=wxb27dd17f341dc468&amount=' + data.amount + '&type=buy')
             wx.request({
-              url: advancePaymentUrl + '&shop_id=' + shop_id + '&order_no=' + data.order_no + '&customer_id=' + data.customer_id + '&app_id=wxb27dd17f341dc468&amount=' + data.amount + '&type=buy',
+              url: advancePaymentUrl + '&shop_id=' + shop_id + '&order_no=' + data.order_no +'&app_id=wxb27dd17f341dc468&amount=' + data.amount + '&type=buy',
               success(res) {
                 console.log(res)
                 if (res.data.success) {
@@ -296,6 +328,16 @@ Page({
               url: rechargeBalanceUrl + '&order_no=' + data.order_no + '&payment_infos=' + JSON.stringify(payment_infos),
               success(res){
                 console.log(res)
+                if (res.data.success){
+                  wx.showToast({
+                    title: '付款成功',
+                  })
+                } else if (res.data.msg == "蜜豆余额不足以支付本订单"){
+                  wx.showToast({
+                    title: '蜜豆余额不足',
+                    icon: 'loading'
+                  })
+                }
               }
             })
           }
@@ -323,42 +365,17 @@ Page({
   onShow: function () {
     var that=this;
     // 获取默认地址
-    if (that.data.defaultAddress){
-      that.setData({
-        isDefaultAddress:false
-      })
-    }else{
-      wx.getStorage({
-        key: 'defaultAddress',
-        success: function (res) {
-          that.setData({
-            defaultAddress: res.data,
-            isDefaultAddress: true
-          })
-          // 获取地址详情数据
-          var url = baseUrl + '/api/address/load?address_id=' + that.data.defaultAddress
-          that.getAddressDetail(url)
-        },
-      })
-    }
-    
-    // 获取customer_id
+    // console.log(that.data.defaultAddress)
     wx.getStorage({
-      key: 'customer_id',
-      success: function(res) {
+      key: 'defaultAddress',
+      success: function (res) {
         that.setData({
-          customer_id:res.data
+          defaultAddress: res.data
         })
-        var couponUrl = baseUrl + '/api/customer/coupon/load-list?customer_id=' + that.data.customer_id;
-        that.getCouponInfo(couponUrl)
-        // 确认商品信息
-        var SureProductInfoUrl = baseUrl + '/api/order/confirm-info?customer_id=' + that.data.customer_id + '&amount=' + that.data.amount + '&product_infos=' + that.data.product_infos ;
-        console.log(SureProductInfoUrl)
-        if (that.data.isShopCart==true){
-          console.log(that.data.isShopCart)
-          SureProductInfoUrl = SureProductInfoUrl+'&cart_ids=' + that.data.cart_ids;
-        }
-        that.getSureProductInfo(SureProductInfoUrl)
+        // console.log(that.data.defaultAddress)
+        // 获取地址详情数据
+        var url = baseUrl + '/api/address/load?address_id=' + that.data.defaultAddress
+        that.getAddressDetail(url)
       },
     })
     // 获取选中的优惠券
@@ -381,15 +398,15 @@ Page({
       },
     })
     // 用户等级
-    wx.getStorage({
-      key: 'level',
-      success: function(res) {
-        // console.log(res.data)
-        that.setData({
-          level:res.data
-        })
-      },
-    })
+    // wx.getStorage({
+    //   key: 'level',
+    //   success: function(res) {
+    //     // console.log(res.data)
+    //     that.setData({
+    //       level:res.data
+    //     })
+    //   },
+    // })
     // 获取支付的钱
     wx.getStorage({
       key: 'totalPayNum',
