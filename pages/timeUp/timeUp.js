@@ -29,14 +29,28 @@ Page({
         if (res.data.success) {
           var data = res.data.result;
           for (var i = 0; i < data.length; i++) {
-            // data[i].exhibition = imgUrl + data[i].exhibition;
-            // that.setData({
-            //   timeUpInfo: data
-            // })
+            data[i].exhibition = imgUrl + data[i].exhibition;
+            that.setData({
+              timeUpInfo: data
+            })
           }
           console.log(that.data.timeUpInfo)
         }
       }
+    })
+  },
+  // 进入商品详情
+  goProductDetail(e) {
+    console.log(e);
+    var product_id = e.currentTarget.dataset.product_id;
+    wx.navigateTo({
+      url: '../productDetails/productDetails?product_id=' + product_id,
+    })
+  },
+  // 立即购买
+  buyNow(e) {
+    wx.navigateTo({
+      url: '../submitOrder/submitOrder',
     })
   },
   /**

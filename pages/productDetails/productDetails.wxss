@@ -81,7 +81,7 @@ page{
   height: 80rpx;
   margin-right: 1rpx; 
   font-size: 22rpx;
-  color: rgb(209, 102, 103);
+  color: #ff1f25;
   text-align: center
 }
 .share image{
@@ -98,7 +98,7 @@ page{
 }
 .price text:nth-child(2){
   font-size: 32rpx;
-  color: rgb(209, 102, 103)
+  color: #ff1f25
 }
 .price text:nth-child(3){
   margin-left: 20rpx;
@@ -111,19 +111,19 @@ page{
 .vipPrice text:nth-child(1){
   padding: 3rpx 5rpx;
   font-size: 24rpx;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#CF03FA), to(#84047B));
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#CF03FA), to(#fe5708));
   color: white;
 }
 .vipPrice text:nth-child(2){
   margin-left: 15rpx;
   font-size: 34rpx;
-  color: rgb(148, 61, 142);
+  color: #fe5708;
   letter-spacing: 5rpx;
 }
 .beVIP{
   float: right;
   font-size: 28rpx;
-  color:rgb(209, 102, 103);
+  color:#ff1f25;
   text-decoration: underline;
   margin-right: 20rpx;
   margin-top: 10rpx;

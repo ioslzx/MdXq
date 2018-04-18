@@ -35,7 +35,7 @@
   vertical-align: middle;
 }
 .recommendDiscountPrice span:nth-child(1){
-  color: rgb(79, 20, 124);
+  color: #fe5708;
   font-size:30rpx;
 }
 .recommendDiscountPrice span:nth-child(2){

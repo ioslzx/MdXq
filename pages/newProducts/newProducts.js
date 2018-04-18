@@ -49,7 +49,9 @@ Page({
   },
   // 立即购买
   buyNow(e) {
-    console.log('买买买')
+    wx.navigateTo({
+      url: '../submitOrder/submitOrder',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

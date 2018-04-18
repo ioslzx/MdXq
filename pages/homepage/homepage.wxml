@@ -21,14 +21,14 @@
   <!--活动图  -->
    <view class='activity ' >
     <view class='imgBox {{touchMovingLeft?"redPacketBottomLeft":"redPacketBottomRight"}}' bind:touchstart='touchstart' bind='click' bind:touchmove='touchmove' bind:touchend='touchend'  style='width:150%'>
-      <image src='../images/redpack1.jpg' bindtap='goNewGoods' bindtap='goNewProducts'></image>
-      <image src='../images/redpack2.jpg' bindtap='goSales' bindtap='goTimeUp'></image>
+      <image src='../images/partner.png' bindtap='goNewGoods' bindtap='goNewProducts'></image>
+      <image src='../images/VIP.png' bindtap='goSales' bindtap='goTimeUp'></image>
     </view>
     
   </view> 
   <!--今日爆品  -->
   <view class='hotSale'>
-      <text>今日爆品</text>
+    <image src='../images/hotProducts.png'></image>
   </view>
   <view class='hotSaleGoods'>
     <block wx:for='{{hotGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
@@ -37,7 +37,7 @@
   </view>
   <!--为你推荐  -->
   <view class='recommand'>
-      <text>为你推荐</text>
+    <image src='../images/recommand.png'></image>
   </view>
   <view class='recommendGoods'>
     <block wx:for='{{recommendGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>

@@ -89,6 +89,16 @@ page{
   text-align: center;
   line-height: 85rpx;
 }
+.hotSale image{
+  margin-top: 15rpx;
+  width: 50%;
+  height: 70%;
+}
+.recommand image{
+  margin-top: 15rpx;
+  width: 50%;
+  height: 70%;
+}
 .hotSaleGoods{
   width: 100%;
   /*父级元素写这个，子元素写flex：1就是1：1的比例  */

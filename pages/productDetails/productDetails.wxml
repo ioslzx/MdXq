@@ -86,7 +86,7 @@
     <view class='buyNow' bindtap='buyNowTap'>立即购买</view>
   </view> 
   <view class='productDetailRecommand'>
-      <image src='../images/beautyCare.png'></image>
+      <image src='../images/recommand.png'></image>
   </view>
   <view class='productDetailRecommendGoods'>
       <block wx:for='{{recommendGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>

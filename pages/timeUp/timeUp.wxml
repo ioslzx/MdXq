@@ -17,7 +17,8 @@
     </view>
   </view>
   <view class='newProductsGoodsBox'>
-    <template is='newProductsTemplate'/>
-    <template is='newProductsTemplate'/>
+    <block wx:for='{{timeUpInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
+      <template is = 'newProductsTemplate' data='{{...item}}'/>
+    </block>
   </view>
 </view>

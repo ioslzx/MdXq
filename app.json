@@ -1,10 +1,12 @@
 {
   "pages":[
-   
-   "pages/shoppingCart/shoppingCart",
     "pages/homepage/homepage",
-    "pages/newProducts/newProducts",
+    "pages/shoppingCart/shoppingCart",
     "pages/timeUp/timeUp",
+   
+    
+    "pages/newProducts/newProducts",
+    
     "pages/buyNewGoods/buyNewGoods",
     "pages/productDetails/productDetails",
     "pages/submitOrder/submitOrder",
@@ -38,7 +40,7 @@
   },
   "tabBar": {
     "color":"#252525",
-    "selectedColor": "#8F178B",
+    "selectedColor": "#fe5708",
     "backgroundColor": "#ffffff",
     "list": [{
       "pagePath": "pages/homepage/homepage",

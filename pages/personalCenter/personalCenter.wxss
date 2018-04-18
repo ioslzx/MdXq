@@ -15,7 +15,7 @@ page{
   padding: 30rpx;
   box-sizing: border-box;
   overflow: hidden;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#CF03FA), to(#84047B)); 
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#ff1f25), to(#fe5708)); 
   border-radius: 20rpx;
   position: relative;
 }

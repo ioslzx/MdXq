@@ -158,13 +158,13 @@ page{
 .totalPrice{
   float: left;
   margin-left: 25%;
-  color: #8F178B;
+  color: #fe5708;
   font-size: 35rpx;
 }
 .settlement{
   font-size: 35rpx; 
   float: right;
-  background-color: #8F178B;
+  background-color: #fe5708;
   text-align: center;
   width: 180rpx;
   color: white;
