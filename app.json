@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/personalCenter/signInPage/signInPage",
+    
     "pages/homepage/homepage",
     "pages/timeUp/timeUp",
     "pages/newProducts/newProducts",
@@ -21,7 +21,7 @@
     "pages/personalCenter/recharge/recharge",
     "pages/personalCenter/myCollect/myCollect",
     "pages/personalCenter/personalCenter",
-    
+    "pages/personalCenter/signInPage/signInPage",
     "pages/personalCenter/myGiftBag/myGiftBag",
     "pages/personalCenter/webViewTest/webViewTest",  "pages/personalCenter/personalSetting/shippingAddress/shippingAddress","pages/personalCenter/rechargedSuccessfully/rechargedSuccessfully","pages/personalCenter/personalSetting/shippingAddress/addShippingAddress/addShippingAddress","pages/personalCenter/personalSetting/shippingAddress/editShippingAddress/editShippingAddress",
 

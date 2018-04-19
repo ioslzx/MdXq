@@ -12,12 +12,12 @@
       </swiper-item>
     </block>
     </swiper>
-    <view class='handBag'>
+    <!-- <view class='handBag'>
       <image src='../images/beautyCare.png'></image>
     </view>
     <view class='productShoppingCart'>
       <image src='../images/beautyCare.png'></image>
-    </view>
+    </view> -->
   </view>
   <view class='productInfo'>
     <view style='overflow:hidden'>

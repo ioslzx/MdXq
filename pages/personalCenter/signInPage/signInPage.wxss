@@ -32,13 +32,14 @@ page{
   font-size: 34rpx;
   overflow: hidden;
   position: absolute;
+  left: 26%;
 }
 .NoticeBox text{
   float: left;
 }
 .NoticeNum{
-  border: 1rpx solid white;
-  margin-left: 5%;
+  /* border: 1rpx solid white; */
+  /* margin-left: 5%; */
   padding:0 10rpx;
   box-sizing: border-box;
 }
@@ -104,8 +105,8 @@ page{
 }
 .signInTimeFinished3{
   position: absolute;
-  top: 28%;
-  right: 16%
+  top: 57%;
+  right: 14%
 }
 .signInTimeFinished4{
   position: absolute;
@@ -117,13 +118,13 @@ page{
           transform: scale(1);  /*开始为原始大小*/
       }
       25%{
-          transform: scale(1.1); /*放大1.1倍*/
+          transform: scale(1.4); /*放大1.1倍*/
       }
       50%{
           transform: scale(1);
       }
       75%{
-          transform: scale(1.1);
+          transform: scale(1.4);
       }
   }
   @keyframes living {

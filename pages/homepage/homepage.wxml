@@ -15,7 +15,7 @@
   </view>
   <!--优惠活动  -->
   <view class='specialOffers'>
-    <image src='../images/beautyCare.png'></image>
+    <image src='../images/laba.png'></image>
     <text class='discountText'>分享首单商品即可享受85折优惠！</text>
   </view>
   <!--活动图  -->
