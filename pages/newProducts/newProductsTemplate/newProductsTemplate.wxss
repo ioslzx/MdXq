@@ -9,6 +9,7 @@
   /*宽定了，不会撑大盒子  */
   box-sizing: border-box;
   float: left;
+  margin-bottom: 15rpx;
 }
 .newProductsTemplate:nth-child(odd){
   margin-right: 2%;

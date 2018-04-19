@@ -187,7 +187,7 @@ Page({
       })
     } else if (tapId == 1) { // 限时秒杀
       wx.navigateTo({
-        url: '../timeUp/timeUp',
+        url: '../timeUp/timeUp?isTimeUp='+true,
       })
     }
   },

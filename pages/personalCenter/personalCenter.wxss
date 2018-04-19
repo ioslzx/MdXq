@@ -57,11 +57,11 @@ page{
 .signInBox{
   position: absolute;
   right: 7%;
-  top: 18%; 
+  top: 22%; 
 }
 .signInBox>image{
-  width: 130rpx;
-  height: 130rpx;
+  width: 110rpx;
+  height: 110rpx;
 }
 /* 订单管理开始 */
   .orderManagement{

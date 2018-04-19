@@ -11,6 +11,7 @@ Page({
    */
   data: {
     timeUpInfo: [],
+    isTimeUp:false
   },
 
   /**
@@ -18,6 +19,11 @@ Page({
    */
   onLoad: function (options) {
     this.getTimeUpProducts(baseUrl + '/api/product/seckill?shop_id=' + shop_id)
+    if (options.isTimeUp){
+      this.setData({
+        isTimeUp: options.isTimeUp
+      })
+    }
   },
   // 获取限时秒杀商品列表
   getTimeUpProducts(url) {
