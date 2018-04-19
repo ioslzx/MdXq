@@ -14,7 +14,7 @@
   <!--购物车有商品  -->
   <view class='openVIPBox' wx:else>
     <view class='ringImg'>
-      <image src='../images/beautyCare.png'></image>
+      <image src='../images/ring.png'></image>
     </view>
     <view class='textBox'>开通会员本单可节省10元哦~</view>
     <view class='openVIPBtn'>开通</view>

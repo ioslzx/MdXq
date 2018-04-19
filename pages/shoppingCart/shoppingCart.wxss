@@ -78,8 +78,9 @@ page{
   margin-left: 30rpx;
 }
 .ringImg image{
-  width: 30rpx;
-  height: 30rpx;
+  margin-top: 25rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .textBox{
   float: left;
