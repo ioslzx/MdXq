@@ -1,14 +1,18 @@
 
 .productTemplateBox{
   display: block;
-  border: 1rpx solid rgb(245, 246, 247);
   height: 100%;
   background-color: white;
   /*跟父元素的display: flex;一起使用，按比例占空间  */
-  flex: 1;
   padding: 15rpx; 
   /*宽定了，不会撑大盒子  */
   box-sizing: border-box;
+  width: 49%;
+  float: left;
+  margin-bottom: 15rpx;
+}
+.productTemplateBox:nth-child(odd){
+  margin-right: 2%;
 }
 .productImage{
   width: 100%;

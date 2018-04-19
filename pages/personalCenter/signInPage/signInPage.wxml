@@ -1,5 +1,6 @@
 <import src='../../homepage/recommendTemplate/recommendTemplate.wxml'/>
-<view class='signInPage'>
+<view wx:if='{{NotSignIn}}' class='NotSignIn'>暂不能签到，请联系客服</view>
+<view class='signInPage' wx:else>
   <view class='NoticeBox'>
     <text>签到蜜豆币
     </text>
@@ -21,7 +22,9 @@
   </view>
 </view>
 <view class='recommendTemplateBox'>
-  <view>猜你喜欢</view>
+  <view class='recommand'>
+    <image src='../../images/recommand.png'></image>
+  </view>
   <view class='recommendTemplate' wx:for='{{recommendGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
     <template is='recommendTemplate' data='{{...item}}'/>
   </view>

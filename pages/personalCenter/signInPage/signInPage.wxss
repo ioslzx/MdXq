@@ -3,6 +3,18 @@ page{
   background-color: #F8F8F8;
   height: 100%;
 }
+/* 不能签到 */
+.NotSignIn{
+  width: 80%;
+  margin: 20rpx auto 0;
+  text-align: center;
+  padding: 15rpx 0;
+  box-sizing: border-box;
+  background-color: #fe5708;
+  color: white;
+  border-radius: 12rpx;
+  font-size: 34rpx;
+}
 .signInPage{
   width: 100%;
   /* background-color: white; */
@@ -138,3 +150,15 @@ page{
       -webkit-animation-iteration-count: infinite;  /*动画播放的次数*/
       -webkit-animation-duration: 5s; /*动画所花费的时间*/
   }
+  /* 为你推荐 */
+.recommand{
+  width: 100%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 85rpx;
+}
+.recommand image{
+  margin-top: 15rpx;
+  width: 50%;
+  height: 80%;
+}

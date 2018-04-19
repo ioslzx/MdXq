@@ -16,6 +16,7 @@ Page({
     sign_honey_bean:'',
     // 为你推荐数组
     recommendGoodsInfo: [],
+    NotSignIn:false
   },
 
   /**
@@ -52,6 +53,10 @@ Page({
           })
           // console.log(that.data.signPool)
           console.log(that.data.signPoolIng)
+        } else if (res.data.msg == "暂不能签到，请联系客服"){
+          that.setData({
+            NotSignIn:true
+          })
         }
       }
     })
