@@ -16,7 +16,8 @@ Page({
     sign_honey_bean:'',
     // 为你推荐数组
     recommendGoodsInfo: [],
-    NotSignIn:false
+    NotSignIn:false,
+    isSignInPage:true
   },
 
   /**

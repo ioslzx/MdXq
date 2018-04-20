@@ -45,17 +45,17 @@
           <view>我的礼包</view>
         </view> -->
         <view class='captainBottomRow' bindtap='goTopPage'>
-          <image src='../images/demo1.png'></image>
+          <image src='../images/rank.png'></image>
           <view>排行榜</view>
         </view>
         <view class='captainBottomRow' bindtap='goPartner'>
-          <image src='../images/demo1.png'></image>
+          <image src='../images/partner1.png'></image>
           <view>客户管理</view>
         </view>
-        <view class='captainBottomRow' bindtap='withdrawClick'>
+        <!-- <view class='captainBottomRow' bindtap='withdrawClick'>
           <image src='../images/demo1.png'></image>
           <view>提现</view>
-        </view>
+        </view> -->
       </view>
    </view>
 </view>

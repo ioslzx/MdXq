@@ -27,6 +27,6 @@
     <image src='../../images/recommand.png'></image>
   </view>
   <view class='recommendTemplate' wx:for='{{recommendGoodsInfo}}' wx:for-index='index' wx:for-item='item' wx:key='index'>
-    <template is='recommendTemplate' data='{{...item}}'/>
+    <template is='recommendTemplate' data='{{...item,isSignInPage}}'/>
   </view>
 </view>

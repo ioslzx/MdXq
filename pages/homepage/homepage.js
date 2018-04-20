@@ -191,6 +191,7 @@ Page({
       })
     }
   },
+  // 今日爆品点击进入产品详情
   goProductDetail(e){
     // console.log(e);
     var product_id = e.currentTarget.dataset.product_id;
@@ -198,10 +199,15 @@ Page({
       url: '../productDetails/productDetails?product_id=' + product_id,
     })
   },
+  // 为你推荐点击图片进入产品详情
   recommendGoProductDetail(e){
     wx.navigateTo({
       url: '../productDetails/productDetails',
     })
+  },
+  // 点击添加到购物车图标
+  addToShoppingCart(e){
+    console.log('买买买')
   },
   // 触摸开始
   touchstart: function (event) {
