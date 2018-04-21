@@ -112,6 +112,10 @@ Page({
       url: '../../productDetails/productDetails?product_id=' + product_id,
     })
   },
+  // 点击添加到购物车图标
+  addToShoppingCart(e) {
+    console.log('买买买')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

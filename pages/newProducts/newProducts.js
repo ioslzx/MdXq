@@ -3,6 +3,11 @@ var imgUrl = app.globalData.imgUrl;
 var baseUrl = app.globalData.baseUrl;
 var shop_id = app.globalData.shop_id;
 
+var app = getApp();
+var imgUrl = app.globalData.imgUrl;
+var baseUrl = app.globalData.baseUrl;
+var shop_id = app.globalData.shop_id;
+
 Page({
 
   /**
@@ -48,10 +53,15 @@ Page({
     })
   },
   // 立即购买
+<<<<<<< Updated upstream
   buyNow(e) {
     wx.navigateTo({
       url: '../submitOrder/submitOrder',
     })
+=======
+  buyNow(e){
+    console.log('买买买')
+>>>>>>> Stashed changes
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

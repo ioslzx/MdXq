@@ -10,8 +10,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     timeUpInfo: [],
     isTimeUp:false
+
   },
 
   /**
@@ -25,8 +27,10 @@ Page({
       })
     }
   },
+
   // 获取限时秒杀商品列表
-  getTimeUpProducts(url) {
+  getTimeUpProducts(url){
+
     var that = this
     wx.request({
       url: url,
@@ -35,15 +39,18 @@ Page({
         if (res.data.success) {
           var data = res.data.result;
           for (var i = 0; i < data.length; i++) {
+
             data[i].exhibition = imgUrl + data[i].exhibition;
             that.setData({
               timeUpInfo: data
             })
+            
           }
           console.log(that.data.timeUpInfo)
         }
       }
     })
+
   },
   // 进入商品详情
   goProductDetail(e) {

@@ -39,7 +39,6 @@ Page({
   goProductDetail(e) {
     console.log(e);
     var product_id = e.currentTarget.dataset.product_id;
-    debugger
     wx.navigateTo({
       url: '../productDetails/productDetails?product_id=' + product_id,
     })
@@ -427,6 +426,10 @@ Page({
       url: '../productDetails/productDetails?product_id=' + product_id + '&isShopCartPage=' + true + '&model_id=' + model_id + '&quantity=' + quantity,
     })
   },
+  // 点击添加到购物车图标
+  addToShoppingCart(e) {
+    console.log('买买买')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -438,6 +441,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log('dddddd')
+
     var that = this;
     // 获取购物车列表
     wx.getStorage({

@@ -1,7 +1,10 @@
 {
   "pages":[
-    
+
     "pages/homepage/homepage",
+
+   
+
     "pages/timeUp/timeUp",
     "pages/newProducts/newProducts",
     "pages/buyNewGoods/buyNewGoods",

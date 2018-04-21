@@ -132,7 +132,7 @@ Page({
   // 点击去加入股东
   goTimeUp(e){
     wx.navigateTo({
-      url: '../goTimeUp/goTimeUp',
+      url: '../timeUp/timeUp',
     })
   },
   //获取为你推荐数据
@@ -181,13 +181,15 @@ Page({
   goNewGoods(e){
     console.log(e)
     var tapId = e.currentTarget.dataset.tapid
-    if (tapId == 0) {//新品推荐
+
+    if(tapId==0){//新品推荐
       wx.navigateTo({
         url: '../newProducts/newProducts',
       })
-    } else if (tapId == 1) { // 限时秒杀
+    } else if (tapId == 1){ // 限时秒杀
       wx.navigateTo({
-        url: '../timeUp/timeUp?isTimeUp='+true,
+        url: '../timeUp/timeUp',
+
       })
     }
   },

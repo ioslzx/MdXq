@@ -4,8 +4,10 @@
       <image class='productImage' src='{{exhibition}}'></image> 
       <view class='productName'>【限时秒杀】{{product_name}}</view>
       <view class='discountPrice'>
+
         <span wx:if='{{!isTimeUp}}'>¥{{market_price}}</span>
         <span wx:else>¥{{member_price}}</span>
+
       </view>
     </view>
     <view class='salesAmount' bindtap='buyNow'>
